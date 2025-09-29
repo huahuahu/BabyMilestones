@@ -27,6 +27,7 @@
 		607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMeasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BabyMeasure.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +76,7 @@
 		607D48A52E8A2D1E00B5746D = {
 			isa = PBXGroup;
 			children = (
+				60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */,
 				607D48B02E8A2D1E00B5746D /* BabyMeasure */,
 				607D48BE2E8A2D2300B5746D /* BabyMeasureTests */,
 				607D48C82E8A2D2300B5746D /* BabyMeasureUITests */,

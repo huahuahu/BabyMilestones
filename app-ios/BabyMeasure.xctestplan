@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "7E3F237B-ADE9-4E98-BA2C-8F079149B678",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BabyMeasure.xcodeproj",
+      "identifier" : "607D48AD2E8A2D1E00B5746D",
+      "name" : "BabyMeasure"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BabyMeasure.xcodeproj",
+        "identifier" : "607D48BA2E8A2D2300B5746D",
+        "name" : "BabyMeasureTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BabyMeasure.xcodeproj",
+        "identifier" : "607D48C42E8A2D2300B5746D",
+        "name" : "BabyMeasureUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
