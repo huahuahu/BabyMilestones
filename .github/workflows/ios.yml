@@ -26,6 +26,9 @@ jobs:
       - name: Build Development Tools
         run: swift build --package-path scripts --configuration release
       
+      - name: Check environment
+        run: scripts/.build/release/hScript env
+      
       - name: Lint (SwiftLint & SwiftFormat)
         run: scripts/.build/release/hScript lint
       
@@ -35,7 +38,7 @@ jobs:
           xcodebuild clean build test \
             -project BabyMeasure.xcodeproj \
             -scheme BabyMeasure \
-            -destination 'platform=iOS Simulator,name=iPhone 15 Pro' \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
             -enableCodeCoverage YES
       
       - name: Upload Coverage
