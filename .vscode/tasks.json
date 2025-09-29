@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build hScript (debug)",
+      "type": "shell",
+      "command": "swift build --package-path scripts",
+      "problemMatcher": ["$swiftc"],
+      "group": "build"
+    },
+    {
+      "label": "Build hScript (release)",
+      "type": "shell",
+      "command": "swift build -c release --package-path scripts",
+      "problemMatcher": ["$swiftc"],
+      "group": "build"
+    }
+  ]
+}
