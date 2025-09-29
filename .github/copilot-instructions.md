@@ -18,81 +18,285 @@ The project has sophisticated AI assistance already configured:
 - Use these existing tools for planning and validation before coding
 
 ## iOS Development Guidelines
+## Project Overview
 
-### Project Structure Conventions
-When creating the iOS project structure:
-- Use standard Xcode project layout with clear separation of concerns
-- Create logical folder groupings: `Models/`, `Views/`, `ViewModels/`, `Services/`, `Utilities/`
-- Implement proper data persistence (Core Data or SwiftData for milestone tracking)
+IceCubesApp is a multiplatform Mastodon client built entirely in SwiftUI. It's an open-source native Apple application that runs on iOS, iPadOS, macOS, and visionOS.
 
-### Coding Standards
-- Follow Swift API Design Guidelines
-- Use SwiftUI for UI implementation (modern iOS development approach)
-- Implement proper error handling with `Result` types
-- Use `async/await` for asynchronous operations
-- Add comprehensive documentation for public APIs
+## Build Commands
 
-### Baby Milestone Domain Considerations
-- **Data Privacy**: Implement strong privacy protections for child data
-- **Offline Support**: Ensure app works without internet connectivity
-- **Data Export**: Allow parents to export/backup milestone data
-- **Age-Appropriate Tracking**: Consider different developmental stages (0-6 months, 6-12 months, etc.)
-- **Visual Progress**: Include photo/video milestone documentation capabilities
+When building, use the iPhone 17 pro simulator for iOS builds.
 
-### Development Workflow
-1. **Planning First**: Use `.github/chatmodes/plan.chatmode.md` for feature planning
-2. **Incremental Development**: Build core milestone tracking functionality first
-3. **Testing Strategy**: Implement unit tests for business logic, UI tests for user flows
-4. **Data Migration**: Plan for schema changes as milestone tracking requirements evolve
 
-### Key Integration Points
-- **Core Data/SwiftData**: For persistent milestone storage
-- **PhotoKit**: For photo/video milestone documentation
-- **HealthKit**: Potential integration for growth metrics (height/weight)
-- **CloudKit**: For cross-device synchronization (future consideration)
+### Code Formatting
+The project uses SwiftFormat with 2-space indentation. Configuration is in `.swiftformat`.
 
-### Architecture Recommendations
-- Implement Repository pattern for data access
-- Create dedicated services for milestone calculations and age-based recommendations
-- Design modular milestone types (physical, cognitive, social, emotional)
+## Architecture
 
-## Common Patterns for This Project
+### Modular Package Structure
+## Modern SwiftUI Architecture Guidelines (2025)
 
-### Milestone Data Modeling
+### Core Philosophy
+
+- SwiftUI is the default UI paradigm - embrace its declarative nature
+- Avoid legacy UIKit patterns and unnecessary abstractions
+- Focus on simplicity, clarity, and native data flow
+- Let SwiftUI handle the complexity - don't fight the framework
+- **No ViewModels** - Use native SwiftUI data flow patterns
+
+### Architecture Principles
+
+#### 1. Native State Management
+
+Use SwiftUI's built-in property wrappers appropriately:
+- `@State` - Local, ephemeral view state
+- `@Binding` - Two-way data flow between views
+- `@Observable` - Shared state (preferred for new code)
+- `@Environment` - Dependency injection for app-wide concerns
+
+#### 2. State Ownership
+
+- Views own their local state unless sharing is required
+- State flows down, actions flow up
+- Keep state as close to where it's used as possible
+- Extract shared state only when multiple views need it
+
+Example:
 ```swift
-// Example structure - adapt as needed
-struct Milestone {
-    let id: UUID
-    let type: MilestoneType
-    let achievedDate: Date?
-    let expectedAgeRange: ClosedRange<TimeInterval>
-    let description: String
-    let photos: [MilestonePhoto]
+struct TimelineView: View {
+    @Environment(Client.self) private var client
+    @State private var viewState: ViewState = .loading
+
+    enum ViewState {
+        case loading
+        case loaded(statuses: [Status])
+        case error(Error)
+    }
+
+    var body: some View {
+        Group {
+            switch viewState {
+            case .loading:
+                ProgressView()
+            case .loaded(let statuses):
+                StatusList(statuses: statuses)
+            case .error(let error):
+                ErrorView(error: error)
+            }
+        }
+        .task {
+            await loadTimeline()
+        }
+    }
+
+    private func loadTimeline() async {
+        do {
+            let statuses = try await client.getHomeTimeline()
+            viewState = .loaded(statuses: statuses)
+        } catch {
+            viewState = .error(error)
+        }
+    }
 }
 ```
 
-### Age Calculation Utilities
-- Implement precise age calculations (months, weeks, days)
-- Handle milestone timing variations and developmental ranges
-- Consider premature birth adjustments
+#### 3. Modern Async Patterns
 
-### Progress Tracking Views
-- Visual progress indicators for developmental categories
-- Timeline views for milestone achievement history
-- Age-appropriate milestone suggestions
+- Use `async/await` as the default for asynchronous operations
+- Leverage `.task` modifier for lifecycle-aware async work
+- Handle errors gracefully with try/catch
+- Avoid Combine unless absolutely necessary
 
-## Development Priorities
-1. **Core Data Model**: Define milestone types and child profiles
-2. **Basic CRUD**: Create, read, update milestone records
-3. **Age Calculations**: Accurate developmental age tracking
-4. **Simple UI**: Basic milestone viewing and recording
-5. **Data Persistence**: Reliable local storage
-6. **Photo Integration**: Visual milestone documentation
+#### 4. View Composition
 
-## Testing Approach
-- **Unit Tests**: Milestone calculations, age computations, data validation
-- **Integration Tests**: Core Data operations, data migration
-- **UI Tests**: Critical user flows (adding milestones, viewing progress)
-- **Privacy Testing**: Ensure child data protection compliance
+- Build UI with small, focused views
+- Extract reusable components naturally
+- Use view modifiers to encapsulate common styling
+- Prefer composition over inheritance
 
-Use the existing sophisticated prompt engineering setup to plan features thoroughly before implementation. The `.github/chatmodes/` tools are specifically designed to help with planning and should be leveraged for any significant feature development.
+#### 5. Code Organization
+
+- Organize by feature (e.g., Settings/)
+- Keep related code together in the same file when appropriate
+- Use extensions to organize large files
+- Follow Swift naming conventions consistently
+
+### Build Verification Process
+**IMPORTANT**: When editing code, you MUST:
+
+1. Build the project after making changes using XcodeBuildMCP commands
+2. Fix any compilation errors before proceeding
+3. Run relevant tests if modifying existing functionality
+4. Ensure code follows modern SwiftUI patterns
+
+
+### Implementation Examples
+
+#### Shared State with @Observable
+```swift
+@Observable
+class AppAccountsManager {
+    var currentAccount: Account?
+    var availableAccounts: [Account] = []
+
+    func switchAccount(_ account: Account) {
+        currentAccount = account
+        // Handle account switching
+    }
+}
+
+// In App file
+struct IceCubesApp: App {
+    @State private var accountManager = AppAccountsManager()
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environment(accountManager)
+        }
+    }
+}
+```
+
+#### Modern Async Data Loading
+```swift
+struct NotificationsView: View {
+    @Environment(Client.self) private var client
+    @State private var notifications: [Notification] = []
+    @State private var isLoading = false
+    @State private var error: Error?
+
+    var body: some View {
+        List(notifications) { notification in
+            NotificationRow(notification: notification)
+        }
+        .overlay {
+            if isLoading {
+                ProgressView()
+            }
+        }
+        .task {
+            await loadNotifications()
+        }
+        .refreshable {
+            await loadNotifications()
+        }
+    }
+
+    private func loadNotifications() async {
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            notifications = try await client.getNotifications()
+        } catch {
+            self.error = error
+        }
+    }
+}
+```
+
+### Best Practices
+
+#### DO:
+- Write self-contained views when possible
+- Use property wrappers as intended by Apple
+- Test logic in isolation, preview UI visually
+- Handle loading and error states explicitly
+- Keep views focused on presentation
+- Use Swift's type system for safety
+- Trust SwiftUI's update mechanism
+
+#### DON'T:
+- Create ViewModels for every view
+- Move state out of views unnecessarily
+- Add abstraction layers without clear benefit
+- Use Combine for simple async operations
+- Fight SwiftUI's update mechanism
+- Overcomplicate simple features
+- **Nest @Observable objects within other @Observable objects** - This breaks SwiftUI's observation system. Initialize services at the view level instead.
+
+### Testing Strategy
+
+- Unit test business logic in services/clients
+- Use SwiftUI Previews for visual testing
+- Test @Observable classes independently
+- Keep tests simple and focused
+- Don't sacrifice code clarity for testability
+
+### Code Style When Editing
+- Maintain existing patterns in legacy code
+- New features use modern patterns exclusively
+- Prefer composition over inheritance
+- Keep views focused and single-purpose
+- Use descriptive names for state enums
+- Write SwiftUI code that looks and feels like SwiftUI
+
+## Development Requirements
+- Minimum Swift 6.0
+- iOS 26 SDK (June 2025)
+- Minimum deployment: iOS 18.0, visionOS 1.0
+- Xcode 16.0 or later with iOS 26 SDK
+- Apple Developer account for device testing
+
+## iOS 26 SDK Integration
+
+**IMPORTANT**: The project now supports iOS 26 SDK
+
+### Available iOS 26 SwiftUI APIs
+
+#### Liquid Glass Effects
+- `glassEffect(_:in:isEnabled:)` - Apply Liquid Glass effects to views
+- `buttonStyle(.glass)` - Apply Liquid Glass styling to buttons
+- `ToolbarSpacer` - Create visual breaks in toolbars with Liquid Glass
+
+Example:
+```swift
+Button("Post", action: postStatus)
+    .buttonStyle(.glass)
+    .glassEffect(.thin, in: .rect(cornerRadius: 12))
+```
+
+#### Enhanced Scrolling
+- `scrollEdgeEffectStyle(_:for:)` - Configure scroll edge effects
+- `backgroundExtensionEffect()` - Duplicate, mirror, and blur views around edges
+
+#### Tab Bar Enhancements
+- `tabBarMinimizeBehavior(_:)` - Control tab bar minimization behavior
+- Search role for tabs with search field replacing tab bar
+- `TabViewBottomAccessoryPlacement` - Adjust accessory view content based on placement
+
+#### Web Integration
+- `WebView` and `WebPage` - Full control over browsing experience
+
+#### Drag and Drop
+- `draggable(_:_:)` - Drag multiple items
+- `dragContainer(for:id:in:selection:_:)` - Container for draggable views
+
+#### Animation
+- `@Animatable` macro - SwiftUI synthesizes custom animatable data properties
+
+#### UI Components
+- `Slider` with automatic tick marks when using step parameter
+- `windowResizeAnchor(_:)` - Set window anchor point for resizing
+
+#### Text Enhancements
+- `TextEditor` now supports `AttributedString`
+- `AttributedTextSelection` - Handle text selection with attributed text
+- `AttributedTextFormattingDefinition` - Define text styling in specific contexts
+- `FindContext` - Create find navigator in text editing views
+
+#### Accessibility
+- `AssistiveAccess` - Support Assistive Access in iOS/iPadOS scenes
+
+#### HDR Support
+- `Color.ResolvedHDR` - RGBA values with HDR headroom information
+
+#### UIKit Integration
+- `UIHostingSceneDelegate` - Host and present SwiftUI scenes in UIKit
+- `NSHostingSceneRepresentation` - Host SwiftUI scenes in AppKit
+- `NSGestureRecognizerRepresentable` - Incorporate gesture recognizers from AppKit
+
+### Usage Guidelines
+- Leverage Liquid Glass effects for modern UI aesthetics in timeline and status views
+- Use enhanced text capabilities for the status composer
+- Apply new drag-and-drop APIs for media and status interactions
