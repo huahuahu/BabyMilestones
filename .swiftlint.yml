@@ -1,0 +1,31 @@
+# SwiftLint Configuration
+included:
+  - BabyMilestones
+excluded:
+  - Pods
+  - .build
+
+opt_in_rules:
+  - closure_end_indentation
+  - closure_spacing
+  - empty_count
+  - force_unwrapping
+  - private_outlet
+  - redundant_nil_coalescing
+  - switch_case_on_newline
+  - vertical_parameter_alignment_on_call
+
+disabled_rules:
+  - trailing_whitespace
+
+line_length:
+  warning: 120
+  error: 200
+
+function_body_length:
+  warning: 50
+  error: 100
+
+type_body_length:
+  warning: 300
+  error: 500
