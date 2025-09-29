@@ -56,8 +56,7 @@ private func findLocalSwiftLint() -> String? {
 
   func candidatePaths() -> [String] {
     [
-      scriptsDir + "/.build/debug/swiftlint",
-      scriptsDir + "/.build/release/swiftlint",
+      scriptsDir + "/.build/artifacts/scripts/SwiftLintBinary/SwiftLintBinary.artifactbundle/swiftlint-0.61.0-macos/bin/swiftlint",
       // Older SwiftPM structures sometimes omit the trailing executable name casing differences; keep minimal.
     ]
   }
@@ -88,8 +87,7 @@ private func findLocalSwiftFormat() -> String? {
   let cwd = fileManager.currentDirectoryPath
   let scriptsDir: String = cwd.hasSuffix("/scripts") ? cwd : cwd + "/scripts"
   let candidates = [
-    scriptsDir + "/.build/debug/swiftformat",
-    scriptsDir + "/.build/release/swiftformat",
+    scriptsDir + "/.build/artifacts/scripts/swiftformat/swiftformat.artifactbundle/swiftformat-0.58.1-macos/bin/swiftformat",
   ]
   for path in candidates where fileManager.isExecutableFile(atPath: path) {
     return path

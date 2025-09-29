@@ -2,7 +2,6 @@
     // VS Code debug configurations for the BabyMilestones dev tools (scripts package)
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "hScript: Debug (no args)",
             "type": "swift",
@@ -19,7 +18,9 @@
             "cwd": "${workspaceFolder:BabyMilestones}",
             "program": "${workspaceFolder:BabyMilestones}/scripts/.build/debug/hScript",
             "preLaunchTask": "Build hScript (debug)",
-            "args": ["lint"]
+            "args": [
+                "lint"
+            ]
         },
         {
             "name": "hScript: Lint (fix)",
@@ -28,7 +29,28 @@
             "cwd": "${workspaceFolder:BabyMilestones}",
             "program": "${workspaceFolder:BabyMilestones}/scripts/.build/debug/hScript",
             "preLaunchTask": "Build hScript (debug)",
-            "args": ["lint", "--fix"]
+            "args": [
+                "lint",
+                "--fix"
+            ]
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:BabyMilestones}/scripts",
+            "name": "Debug hScript (scripts)",
+            "program": "${workspaceFolder:BabyMilestones}/scripts/.build/debug/hScript",
+            "preLaunchTask": "swift: Build Debug hScript (scripts)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:BabyMilestones}/scripts",
+            "name": "Release hScript (scripts)",
+            "program": "${workspaceFolder:BabyMilestones}/scripts/.build/release/hScript",
+            "preLaunchTask": "swift: Build Release hScript (scripts)"
         }
     ]
 }
