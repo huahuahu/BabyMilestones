@@ -48,22 +48,22 @@ class InMemoryStore {
 extension InMemoryStore {
   static func preview(seed count: Int = 1) -> InMemoryStore {
     let store = InMemoryStore()
-    for i in 0 ..< count {
+    for index in 0 ..< count {
       let child = ChildDraft(
-        id: UUID(),
-        name: "Child #\(i + 1)",
-        gender: .unspecified,
-        birthday: .now.addingTimeInterval(-Double.random(in: 60 * 60 * 24 * 30 ... 60 * 60 * 24 * 400))
+      id: UUID(),
+      name: "Child #\(index + 1)",
+      gender: .unspecified,
+      birthday: .now.addingTimeInterval(-Double.random(in: 60 * 60 * 24 * 30 ... 60 * 60 * 24 * 400))
       )
       store.add(child: child)
       let measurements = (0 ..< Int.random(in: 1 ... 4)).map { _ in
-        MeasurementDraft(
-          id: UUID(),
-          childId: child.id,
-          type: [.height, .weight, .headCircumference].randomElement()!,
-          value: Double.random(in: 30 ... 90),
-          recordedAt: Date().addingTimeInterval(-Double.random(in: 0 ... 60 * 60 * 24 * 200))
-        )
+      MeasurementDraft(
+        id: UUID(),
+        childId: child.id,
+        type: [.height, .weight, .headCircumference].randomElement()!,
+        value: Double.random(in: 30 ... 90),
+        recordedAt: Date().addingTimeInterval(-Double.random(in: 0 ... 60 * 60 * 24 * 200))
+      )
       }
       measurements.forEach { store.add(record: $0) }
     }
