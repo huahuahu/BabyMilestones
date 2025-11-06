@@ -216,7 +216,7 @@ struct NotificationsView: View {
 - **Nest @Observable objects within other @Observable objects** - This breaks SwiftUI's observation system. Initialize services at the view level instead.
 
 ### Testing Strategy
-
+- Use Swift Test framework instead of xctest
 - Unit test business logic in services/clients
 - Use SwiftUI Previews for visual testing
 - Test @Observable classes independently
