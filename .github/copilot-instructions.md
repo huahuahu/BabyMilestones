@@ -11,6 +11,7 @@ BabyMilestones is an iOS app for recording and tracking children's growth and de
 - **Domain**: Child development milestone tracking
 - **Resources**: Reference material available in `/resource/prc-wst-423-2022.pdf`
 
+
 ### Existing Tooling
 The project has sophisticated AI assistance already configured:
 - **Chat Modes**: `.github/chatmodes/` contains specialized prompt templates
@@ -303,3 +304,15 @@ Button("Post", action: postStatus)
 - Leverage Liquid Glass effects for modern UI aesthetics in timeline and status views
 - Use enhanced text capabilities for the status composer
 - Apply new drag-and-drop APIs for media and status interactions
+
+
+## Scripts & Dev Tools
+Run development scripts from the `scripts/` package.
+Build utility scripts:
+```sh
+swift build --package-path scripts 
+```
+Lint (check only):
+```sh
+swift run --package-path scripts hScript lint
+```

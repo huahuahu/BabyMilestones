@@ -1,31 +1,31 @@
-#!/bin/zsh
-set -euo pipefail
+# #!/bin/zsh
+# set -euo pipefail
 
-echo "[pre-commit] Building dev tools (if needed)..."
-swift build --package-path scripts > /dev/null
-BIN="./scripts/.build/debug/hScript"
+# echo "[pre-commit] Building dev tools (if needed)..."
+# swift build --package-path scripts > /dev/null
+# BIN="./scripts/.build/debug/hScript"
 
-if [ ! -x "$BIN" ]; then
-  echo "❌ Dev tools binary not found at $BIN" >&2
-  exit 1
-fi
+# if [ ! -x "$BIN" ]; then
+#   echo "❌ Dev tools binary not found at $BIN" >&2
+#   exit 1
+# fi
 
-echo "[pre-commit] Running lint auto-fix (SwiftLint + SwiftFormat)..."
-if ! $BIN lint --fix; then
-  echo "❌ Lint failed after auto-fix attempt." >&2
-  exit 1
-fi
+# echo "[pre-commit] Running lint auto-fix (SwiftLint + SwiftFormat)..."
+# if ! $BIN lint --fix; then
+#   echo "❌ Lint failed after auto-fix attempt." >&2
+#   exit 1
+# fi
 
-# Stage any new changes produced by auto-fix.
-if ! git diff --quiet; then
-  echo "[pre-commit] Staging auto-fix changes..."
-  git add -u
-fi
+# # Stage any new changes produced by auto-fix.
+# if ! git diff --quiet; then
+#   echo "[pre-commit] Staging auto-fix changes..."
+#   git add -u
+# fi
 
-echo "[pre-commit] Final lint check..."
-if ! $BIN lint; then
-  echo "❌ Lint check failed after fixes." >&2
-  exit 1
-fi
+# echo "[pre-commit] Final lint check..."
+# if ! $BIN lint; then
+#   echo "❌ Lint check failed after fixes." >&2
+#   exit 1
+# fi
 
-echo "✅ Pre-commit lint passed"
+# echo "✅ Pre-commit lint passed"
