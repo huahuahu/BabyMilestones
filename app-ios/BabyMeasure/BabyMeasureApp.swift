@@ -11,7 +11,7 @@ import SwiftUI
 struct BabyMeasureApp: App {
   var body: some Scene {
     WindowGroup {
-      ContentView()
+      RootView()
     }
   }
 }
