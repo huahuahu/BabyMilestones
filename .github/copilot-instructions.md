@@ -20,7 +20,7 @@ The project has sophisticated AI assistance already configured:
 ## iOS Development Guidelines
 ## Project Overview
 
-IceCubesApp is a multiplatform Mastodon client built entirely in SwiftUI. It's an open-source native Apple application that runs on iOS, iPadOS, macOS, and visionOS.
+BabyMilestones is a multiplatform Mastodon client built entirely in SwiftUI. It's an open-source native Apple application that runs on iOS, iPadOS, macOS, and visionOS.
 
 ## Build Commands
 
@@ -231,11 +231,14 @@ struct NotificationsView: View {
 - Use descriptive names for state enums
 - Write SwiftUI code that looks and feels like SwiftUI
 
+### Localization
+Use string catalog for localization. 
+
 ## Development Requirements
 - Minimum Swift 6.0
 - iOS 26 SDK (June 2025)
-- Minimum deployment: iOS 18.0, visionOS 1.0
-- Xcode 16.0 or later with iOS 26 SDK
+- Minimum deployment: iOS 26.0, 
+- Xcode 26.0 or later with iOS 26 SDK
 - Apple Developer account for device testing
 
 ## iOS 26 SDK Integration
