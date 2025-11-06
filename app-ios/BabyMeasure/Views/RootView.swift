@@ -38,12 +38,13 @@ struct MainView: View {
   var body: some View {
     NavigationStack {
       List {
+        let currentDate = Date()
         ForEach(childStore.children) { child in
           NavigationLink(destination: ChildDetailView(child: child)) {
             VStack(alignment: .leading) {
               Text(child.name)
                 .font(.headline)
-              Text("Age: \(child.ageInMonths(at: Date())) months")
+              Text("Age: \(child.ageInMonths(at: currentDate)) months")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             }
@@ -69,6 +70,7 @@ struct ChildDetailView: View {
   var body: some View {
     List {
       Section("Information") {
+        let currentDate = Date()
         HStack {
           Text("Name")
           Spacer()
@@ -84,7 +86,7 @@ struct ChildDetailView: View {
         HStack {
           Text("Age")
           Spacer()
-          Text("\(child.ageInMonths(at: Date())) months (\(child.ageInDays(at: Date())) days)")
+          Text("\(child.ageInMonths(at: currentDate)) months (\(child.ageInDays(at: currentDate)) days)")
         }
 
         HStack {

@@ -40,14 +40,16 @@ struct Child: Identifiable, Codable, Equatable {
   /// Calculate age in months from birth date
   func ageInMonths(at date: Date = Date()) -> Int {
     let calendar = Calendar.current
-    let components = calendar.dateComponents([.month], from: birthDate, to: date)
-    return components.month ?? 0
+    let components = calendar.dateComponents([.year, .month], from: birthDate, to: date)
+    let years = components.year ?? 0
+    let months = components.month ?? 0
+    return years * 12 + months
   }
 
   /// Calculate age in days from birth date
   func ageInDays(at date: Date = Date()) -> Int {
     let calendar = Calendar.current
     let components = calendar.dateComponents([.day], from: birthDate, to: date)
-    return components.day ?? 0
+    return max(0, components.day ?? 0)  // Return 0 for negative ages
   }
 }

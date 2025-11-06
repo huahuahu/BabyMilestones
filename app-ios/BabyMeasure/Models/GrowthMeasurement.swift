@@ -90,8 +90,8 @@ struct GrowthMeasurement: Identifiable, Codable, Equatable {
       return value >= 30 && value <= 150  // 30cm to 150cm (newborn to ~10 years)
     case .inches:
       return value >= 12 && value <= 60  // 12in to 60in
-    default:
-      return false
+    case .kilograms, .pounds, .grams:
+      return false  // Invalid units for height
     }
   }
 
@@ -103,8 +103,8 @@ struct GrowthMeasurement: Identifiable, Codable, Equatable {
       return value >= 2 && value <= 220  // 2lb to 220lb
     case .grams:
       return value >= 1000 && value <= 100000  // 1000g to 100000g
-    default:
-      return false
+    case .centimeters, .inches:
+      return false  // Invalid units for weight
     }
   }
 
@@ -114,8 +114,8 @@ struct GrowthMeasurement: Identifiable, Codable, Equatable {
       return value >= 25 && value <= 65  // 25cm to 65cm
     case .inches:
       return value >= 10 && value <= 26  // 10in to 26in
-    default:
-      return false
+    case .kilograms, .pounds, .grams:
+      return false  // Invalid units for head circumference
     }
   }
 
