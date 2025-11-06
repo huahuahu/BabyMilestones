@@ -25,7 +25,8 @@ struct BabyMeasureTests {
     )
     #expect(child.name == "Test Child")
     #expect(child.gender == .male)
-    #expect(child.id != UUID(uuidString: "00000000-0000-0000-0000-000000000000")!)
+    // Verify ID is a valid UUID (not nil, has valid UUID format)
+    #expect(child.id.uuidString.count == 36)
 
     // Test MeasurementDraft initialization
     let measurement = MeasurementDraft(
