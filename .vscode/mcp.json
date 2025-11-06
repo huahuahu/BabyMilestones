@@ -1,0 +1,21 @@
+{
+	"servers": {
+		"XcodeBuildMCP": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"xcodebuildmcp@latest"
+			],
+			"type": "stdio"
+		},
+		"github/github-mcp-server": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/",
+			      "headers": {
+        "X-MCP-Toolsets": "context,repos,issues,pull_requests"
+      }
+
+		}
+	},
+	"inputs": []
+}
