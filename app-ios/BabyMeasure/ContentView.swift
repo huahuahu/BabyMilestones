@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
   // Access the shared in-memory draft store injected at the App level.
-  @Environment(InMemoryStore.self) private var store
-  @State private var showAddSample = false
+  @Environment(InMemoryStore.self)
+  private var store
+  @State
+  private var showAddSample = false
 
   var body: some View {
     NavigationStack {

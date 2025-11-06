@@ -5,9 +5,9 @@
 //  Created by tigerguom4 on 2025/9/29.
 //
 
-import Testing
-import Foundation
 @testable import BabyMeasure
+import Foundation
+import Testing
 
 @MainActor
 struct BabyMeasureTests {
