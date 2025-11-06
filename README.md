@@ -40,7 +40,10 @@ resource/                # Growth standards data (WHO/CDC)
 ```
 
 ## Development Tools
-- **Lint & Format**: Run `cd scripts && swift run hScript lint --fix` to check and fix code style
+- **Lint & Format**: 
+  - Run `./scripts/format.sh` to check formatting (macOS only)
+  - Run `./scripts/format.sh --fix` to auto-fix formatting issues
+  - Alternative: `cd scripts && swift run hScript lint --fix` (requires build setup)
 - **Environment Info**: Run `cd scripts && swift run hScript env` to display development environment details
 
 ## Getting Started
