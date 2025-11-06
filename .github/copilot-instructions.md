@@ -20,7 +20,7 @@ The project has sophisticated AI assistance already configured:
 ## iOS Development Guidelines
 ## Project Overview
 
-BabyMilestones is a multiplatform Mastodon client built entirely in SwiftUI. It's an open-source native Apple application that runs on iOS, iPadOS, macOS, and visionOS.
+BabyMilestones is an iOS app designed for parents and caregivers to record, track, and visualize children's growth and developmental milestones. Built with SwiftUI, it emphasizes privacy, offline support, and intuitive milestone documentation.
 
 ## Build Commands
 
