@@ -6,7 +6,10 @@
 				"-y",
 				"xcodebuildmcp@latest"
 			],
-			"type": "stdio"
+			"type": "stdio",
+			"env": {
+			    "XCODEBUILDMCP_DYNAMIC_TOOLS": "true"
+			}
 		},
 		"github/github-mcp-server": {
 			"type": "http",

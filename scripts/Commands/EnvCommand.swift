@@ -354,6 +354,17 @@ private func printFormatted(_ info: EnvironmentInfo) {
       print("    \(key): \(value)")
     }
   }
+
+  // Project-specific environment variables (prefixed with BM_) for feature flags or local overrides.
+  let projectEnv = ProcessInfo.processInfo.environment.filter { $0.key.hasPrefix("BM_") }
+  if !projectEnv.isEmpty {
+    print("\n🎯 Project Environment Overrides (BM_*):")
+    for (key, value) in projectEnv.sorted(by: { $0.key < $1.key }) {
+      print("  \(key): \(value)")
+    }
+  } else {
+    print("\n🎯 Project Environment Overrides (BM_*): None detected")
+  }
 }
 
 private func printJSON(_ info: EnvironmentInfo) {

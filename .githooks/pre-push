@@ -1,0 +1,40 @@
+#!/bin/zsh
+# Pre-push hook that attempts lint auto-fix, stages changes, then performs a final check.
+# IMPORTANT: If auto-fix produces new changes, the push is aborted so you can commit the new diff.
+# Git computes the objects to push BEFORE this hook runs; committing inside this hook would not
+# update what gets pushed. So we abort to let you commit, then re-run push.
+
+set -euo pipefail
+
+BIN="./scripts/.build/debug/hScript"
+
+echo "[pre-push] Ensuring dev tools are built..."
+swift build --package-path scripts > /dev/null
+
+if [ ! -x "$BIN" ]; then
+  echo "❌ Dev tools binary not found at $BIN" >&2
+  exit 1
+fi
+
+echo "[pre-push] Running lint auto-fix..."
+FIX_EXIT=0
+if ! $BIN lint --fix; then
+  FIX_EXIT=$?
+  echo "⚠️ Auto-fix run completed with remaining lint issues (exit $FIX_EXIT)." >&2
+fi
+
+# Detect changes created by auto-fix.
+if ! git diff --quiet; then
+  echo "[pre-push] Auto-fix produced modifications. Staging them..."
+  git add -u
+  echo "❌ Aborting push: new formatting changes need a commit. Please commit and push again." >&2
+  exit 1
+fi
+
+echo "[pre-push] Running final lint check..."
+if ! $BIN lint; then
+  echo "❌ Lint check failed; push blocked." >&2
+  exit 1
+fi
+
+echo "✅ Lint clean. Proceeding with push."
