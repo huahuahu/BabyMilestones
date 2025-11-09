@@ -10,10 +10,10 @@ public class SwiftDataStorageAdapter: StorageAdapter {
   public let childStore: ChildStore
   public let measurementStore: MeasurementStore
   let context: ModelContext
-  
+
   public init(context: ModelContext) {
     self.context = context
-    self.childStore = ChildStore(context: context)
-    self.measurementStore = MeasurementStore(context: context)
+    childStore = ChildStore(context: context)
+    measurementStore = MeasurementStore(context: context)
   }
 }
