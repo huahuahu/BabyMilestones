@@ -14,9 +14,9 @@ struct ChildDraft: Identifiable, Hashable {
   var birthday: Date
 }
 
-enum Gender: String, CaseIterable, Codable { case male, female, unspecified }
+public enum Gender: String, CaseIterable, Codable { case male, female, unspecified }
 
-enum MeasurementType: String, CaseIterable, Codable { case height, weight, headCircumference }
+public enum MeasurementType: String, CaseIterable, Codable { case height, weight, headCircumference }
 
 struct MeasurementDraft: Identifiable, Hashable {
   let id: UUID

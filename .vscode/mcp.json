@@ -8,16 +8,15 @@
 			],
 			"type": "stdio",
 			"env": {
-			    "XCODEBUILDMCP_DYNAMIC_TOOLS": "true"
+				"XCODEBUILDMCP_DYNAMIC_TOOLS": "true"
 			}
 		},
 		"github/github-mcp-server": {
 			"type": "http",
 			"url": "https://api.githubcopilot.com/mcp/",
-			      "headers": {
-        "X-MCP-Toolsets": "context,repos,issues,pull_requests"
-      }
-
+			"headers": {
+				"X-MCP-Toolsets": "context,repos,issues,pull_requests"
+			}
 		}
 	},
 	"inputs": []
