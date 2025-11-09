@@ -10,6 +10,21 @@ An iOS app to record and track children’s growth and development milestones.
 - Dev scripts: SwiftPM utility targets in `scripts/` (e.g. `Env`, `Lint` commands)
 - Minimum Deployment: iOS 26.0
 
+## Continuous Integration
+![iOS CI](https://github.com/huahuahu/BabyMilestones/actions/workflows/ios.yml/badge.svg?branch=main)
+
+Workflow: `.github/workflows/ios.yml` runs on pushes to `main` and `develop`, and PRs targeting `main`.
+Steps:
+1. Checkout & set up Xcode 26.0 on macOS 26 runner
+2. Cache SwiftPM build artifacts
+3. Build dev tooling (`scripts/` SwiftPM package) in release mode
+4. Environment diagnostics via `hScript env`
+5. Lint (SwiftFormat + SwiftLint) via `hScript lint`
+6. Build + test (`xcodebuild`) on iPhone 17 Pro simulator with code coverage
+7. (main only) Archive build for release distribution
+
+The badge reflects the latest workflow result for `main`.
+
 ## Phase Roadmap
 See `docs/phases-index.md` for the full progression. Early highlights:
 1. Foundation & Architecture (current) – establish structure & draft models
@@ -84,12 +99,12 @@ To disable hooks temporarily:
 git config --unset core.hooksPath
 ```
 
-
 ## Goals of Phase 00
 ✅ App launches with injected in-memory store
 ✅ Draft domain models compile & are previewable
 ✅ Formatting & lint scripts wired
 ✅ README documents tech & roadmap
+✅ CI workflow documented & badge added
 
 ## Next Steps
 - Implement persistence (Phase 01)
