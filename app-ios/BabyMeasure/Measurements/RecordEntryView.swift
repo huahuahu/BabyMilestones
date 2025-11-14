@@ -3,20 +3,14 @@ import SwiftUI
 
 struct RecordEntryView: View {
   let child: ChildEntity
-  let measurementStore: MeasurementStore
-  @Environment(\.dismiss)
-  private var dismiss
+  @Environment(\.modelContext) private var modelContext
+  @Environment(\.dismiss) private var dismiss
 
-  @State
-  private var type: MeasurementType = .height
-  @State
-  private var value: String = ""
-  @State
-  private var date: Date = .now
-  @State
-  private var warning: String?
-  @FocusState
-  private var focused: Bool
+  @State private var type: MeasurementType = .height
+  @State private var value: String = ""
+  @State private var date: Date = .now
+  @State private var warning: String?
+  @FocusState private var focused: Bool
 
   private var parsedValue: Double? { Double(value) }
   private var rangeWarning: String? {
@@ -57,15 +51,30 @@ struct RecordEntryView: View {
           Button("保存") { save() }.disabled(!isSavable)
         }
       }
-      .onChange(of: value) { _ in warning = rangeWarning }
+      .onChange(of: value) {
+        warning = rangeWarning
+      }
       .task { focused = true }
     }
   }
 
   private func save() {
     guard let v = parsedValue else { return }
+    guard date >= child.birthday else {
+      warning = "记录时间不能早于生日"
+      return
+    }
+    
+    let record = MeasurementEntity(
+      childId: child.id,
+      typeRaw: type.rawValue,
+      value: v,
+      recordedAt: date
+    )
+    modelContext.insert(record)
+    
     do {
-      try measurementStore.addRecord(childId: child.id, type: type, value: v, at: date, childBirthday: child.birthday)
+      try modelContext.save()
       dismiss()
     } catch {
       warning = "保存失败"
@@ -73,14 +82,34 @@ struct RecordEntryView: View {
   }
 }
 
-#Preview {
-  let container = try! ModelContainer(for: ChildEntity.self, MeasurementEntity.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
-  let context = ModelContext(container)
-  let childStore = ChildStore(context: context)
-  let measurementStore = MeasurementStore(context: context)
-  let child = try! childStore.createChild(name: "预览", gender: nil, birthday: Date(timeIntervalSince1970: 0))
-  return RecordEntryView(child: child, measurementStore: measurementStore)
-    .modelContainer(container)
-    .environment(childStore)
-    .environment(measurementStore)
+// MARK: - Preview
+
+private struct RecordEntryPreviewSeed: View {
+  @Environment(\.modelContext) private var context
+  @State private var child: ChildEntity?
+
+  var body: some View {
+    Group {
+      if let child {
+        RecordEntryView(child: child)
+      } else {
+        ProgressView().task { seed() }
+      }
+    }
+  }
+
+  private func seed() {
+    let sample = ChildEntity(
+      name: "预览",
+      genderRaw: nil,
+      birthday: Date(timeIntervalSince1970: 0)
+    )
+    context.insert(sample)
+    try? context.save()
+    child = sample
+  }
+}
+
+#Preview("Record Entry", traits: .modifier(SampleData())) {
+  RecordEntryPreviewSeed()
 }

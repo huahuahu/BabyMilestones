@@ -28,6 +28,7 @@ private struct EnvironmentInfo {
   let simulators: [SimulatorInfo]
   let swift: SwiftInfo
   let git: GitInfo
+  // swiftlint:disable:next identifier_name
   let ci: CIInfo
 }
 

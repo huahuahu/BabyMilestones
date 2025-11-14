@@ -3,8 +3,7 @@ import SwiftData
 import SwiftUI
 
 struct ChildHeader: View {
-  @Binding
-  var selected: ChildEntity?
+  @Binding var selected: ChildEntity?
   var children: [ChildEntity]
   var onSelect: (ChildEntity) -> Void
   var body: some View {
@@ -35,8 +34,7 @@ struct ChildHeader: View {
 
 #Preview {
   struct Wrapper: View {
-    @State
-    var sel: ChildEntity?
+    @State var sel: ChildEntity?
     let children: [ChildEntity]
     init() {
       children = [ChildEntity(name: "Alice", genderRaw: nil, birthday: .now)]

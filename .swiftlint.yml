@@ -36,3 +36,7 @@ type_body_length:
 trailing_comma:
   mandatory_comma: true
   mandatory_last: true
+
+indentation_width:
+  warning: 2
+  error: 2

@@ -3,18 +3,18 @@ import SwiftUI
 
 struct RecordHistoryView: View {
   let child: ChildEntity
-  @Environment(MeasurementStore.self)
-  private var measurementStore
-  @State
-  private var records: [MeasurementEntity] = []
-  @State
-  private var grouped: [(day: Date, records: [MeasurementEntity])] = []
-  @State
-  private var formatter: DateFormatter = {
+  @Environment(\.modelContext) private var modelContext
+  @Query private var allRecords: [MeasurementEntity]
+  @State private var grouped: [(day: Date, records: [MeasurementEntity])] = []
+  @State private var formatter: DateFormatter = {
     let f = DateFormatter()
     f.dateFormat = "yyyy-MM-dd"
     return f
   }()
+
+  private var records: [MeasurementEntity] {
+    allRecords.filter { $0.childId == child.id }
+  }
 
   var body: some View {
     Group {
@@ -24,8 +24,9 @@ struct RecordHistoryView: View {
         content
       }
     }
-    .task { load() }
-    .onChange(of: child.id) { load() }
+    .onAppear { updateGrouped() }
+    .onChange(of: allRecords) { updateGrouped() }
+    .onChange(of: child.id) { updateGrouped() }
   }
 
   private var content: some View {
@@ -58,8 +59,7 @@ struct RecordHistoryView: View {
     .animation(.default, value: grouped.count)
   }
 
-  private func load() {
-    records = measurementStore.all(childId: child.id)
+  private func updateGrouped() {
     grouped = groupMeasurementsByDay(records)
   }
 
@@ -71,26 +71,21 @@ struct RecordHistoryView: View {
   }
 
   private func delete(_ rec: MeasurementEntity) {
-    try? measurementStore.delete(record: rec)
-    load()
+    modelContext.delete(rec)
+    try? modelContext.save()
   }
 }
 
 // MARK: - Preview
 
 private struct RecordHistoryPreviewSeed: View {
-  @Environment(\.modelContext)
-  private var context
-  @State
-  private var child: ChildEntity?
-  @State
-  private var measurementStore: MeasurementStore?
+  @Environment(\.modelContext) private var context
+  @State private var child: ChildEntity?
 
   var body: some View {
     Group {
-      if let child, let measurementStore {
+      if let child {
         RecordHistoryView(child: child)
-          .environment(measurementStore)
       } else {
         ProgressView().task { seed() }
       }
@@ -98,21 +93,36 @@ private struct RecordHistoryPreviewSeed: View {
   }
 
   private func seed() {
-    // Create stores backed by the injected in-memory model container.
-    let childStore = ChildStore(context: context)
-    let measurementStore = MeasurementStore(context: context)
-    // Seed sample child & measurements.
-    let sampleChild = try! childStore.createChild(name: "预览宝贝", gender: String?.none, birthday: Date(timeIntervalSince1970: 0))
-    try? measurementStore.addRecord(childId: sampleChild.id, type: MeasurementType.height, value: 80, at: Date(), childBirthday: sampleChild.birthday)
-    try? measurementStore.addRecord(childId: sampleChild.id, type: MeasurementType.weight, value: 10, at: Date().addingTimeInterval(-3600), childBirthday: sampleChild.birthday)
-    // Update state to render the actual view.
+    // Create sample child
+    let sampleChild = ChildEntity(
+      name: "预览宝贝",
+      genderRaw: nil,
+      birthday: Date(timeIntervalSince1970: 0)
+    )
+    context.insert(sampleChild)
+    
+    // Create sample measurements
+    let heightRecord = MeasurementEntity(
+      childId: sampleChild.id,
+      typeRaw: MeasurementType.height.rawValue,
+      value: 80,
+      recordedAt: Date()
+    )
+    context.insert(heightRecord)
+    
+    let weightRecord = MeasurementEntity(
+      childId: sampleChild.id,
+      typeRaw: MeasurementType.weight.rawValue,
+      value: 10,
+      recordedAt: Date().addingTimeInterval(-3600)
+    )
+    context.insert(weightRecord)
+    
+    try? context.save()
     child = sampleChild
-    self.measurementStore = measurementStore
   }
 }
 
-#Preview("历史记录") {
-  let container = try! ModelContainer(for: ChildEntity.self, MeasurementEntity.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+#Preview("历史记录", traits: .modifier(SampleData())) {
   RecordHistoryPreviewSeed()
-    .modelContainer(container)
 }
