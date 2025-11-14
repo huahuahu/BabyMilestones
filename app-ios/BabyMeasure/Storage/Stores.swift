@@ -5,6 +5,7 @@ import SwiftData
 public enum StorageError: Error {
   case duplicateRecord
   case invalidBirthday
+  case invalidName
   case notFound
 }
 
@@ -24,8 +25,10 @@ public class ChildStore {
   }
 
   public func createChild(name: String, gender: String?, birthday: Date) throws -> ChildEntity {
+    let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !trimmed.isEmpty else { throw StorageError.invalidName }
     guard birthday <= Date() else { throw StorageError.invalidBirthday }
-    let child = ChildEntity(name: name, genderRaw: gender, birthday: birthday)
+    let child = ChildEntity(name: trimmed, genderRaw: gender, birthday: birthday)
     context.insert(child)
     try context.save()
     return child
@@ -54,6 +57,10 @@ public class MeasurementStore {
 
   public func addRecord(childId: UUID, type: MeasurementType, value: Double, at date: Date, childBirthday: Date) throws {
     guard date >= childBirthday else { throw StorageError.invalidBirthday }
+    // Range soft validation: we still insert but caller can choose to show warning. Keep logic centralized.
+    if let range = type.acceptableRange, !range.contains(value) {
+      // Out-of-range measurements are still allowed; we could log or flag in future.
+    }
     let record = MeasurementEntity(childId: childId, typeRaw: type.rawValue, value: value, recordedAt: date)
     context.insert(record)
     try context.save()
