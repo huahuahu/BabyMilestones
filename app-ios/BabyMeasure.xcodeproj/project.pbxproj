@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		601769132EC707CB004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 601769122EC707CB004C9DC4 /* HStorage */; };
+		6017696F2EC72586004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6017696E2EC72586004C9DC4 /* HStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		607D48BC2E8A2D2300B5746D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		601769102EC7076F004C9DC4 /* HStorage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HStorage; path = Packages/HStorage; sourceTree = "<group>"; };
 		607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMeasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601769132EC707CB004C9DC4 /* HStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6017696F2EC72586004C9DC4 /* HStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,13 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601769112EC707CB004C9DC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		607D48A52E8A2D1E00B5746D = {
 			isa = PBXGroup;
 			children = (
+				601769102EC7076F004C9DC4 /* HStorage */,
 				60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */,
 				607D48B02E8A2D1E00B5746D /* BabyMeasure */,
 				607D48BE2E8A2D2300B5746D /* BabyMeasureTests */,
 				607D48C82E8A2D2300B5746D /* BabyMeasureUITests */,
+				601769112EC707CB004C9DC4 /* Frameworks */,
 				607D48AF2E8A2D1E00B5746D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +131,7 @@
 			);
 			name = BabyMeasure;
 			packageProductDependencies = (
+				601769122EC707CB004C9DC4 /* HStorage */,
 			);
 			productName = BabyMeasure;
 			productReference = 607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */;
@@ -137,6 +155,7 @@
 			);
 			name = BabyMeasureTests;
 			packageProductDependencies = (
+				6017696E2EC72586004C9DC4 /* HStorage */,
 			);
 			productName = BabyMeasureTests;
 			productReference = 607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */;
@@ -197,6 +216,8 @@
 			);
 			mainGroup = 607D48A52E8A2D1E00B5746D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 607D48AF2E8A2D1E00B5746D /* Products */;
 			projectDirPath = "";
@@ -612,6 +633,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		601769122EC707CB004C9DC4 /* HStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HStorage;
+		};
+		6017696E2EC72586004C9DC4 /* HStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 607D48A62E8A2D1E00B5746D /* Project object */;
 }

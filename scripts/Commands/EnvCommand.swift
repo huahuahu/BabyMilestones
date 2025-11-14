@@ -7,8 +7,7 @@ extension DevTools {
       abstract: "Print environment information for CI debugging"
     )
 
-    @Flag(name: .shortAndLong, help: "Output in JSON format")
-    var json: Bool = false
+    @Flag(name: .shortAndLong, help: "Output in JSON format") var json: Bool = false
 
     func run() throws {
       let envInfo = collectEnvironmentInfo()
@@ -28,6 +27,7 @@ private struct EnvironmentInfo {
   let simulators: [SimulatorInfo]
   let swift: SwiftInfo
   let git: GitInfo
+  // swiftlint:disable:next identifier_name
   let ci: CIInfo
 }
 

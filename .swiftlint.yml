@@ -17,6 +17,7 @@ opt_in_rules:
   - redundant_nil_coalescing
   - switch_case_on_newline
   - vertical_parameter_alignment_on_call
+  - indentation_width
 
 disabled_rules:
   - trailing_whitespace
@@ -36,3 +37,6 @@ type_body_length:
 trailing_comma:
   mandatory_comma: true
   mandatory_last: true
+
+indentation_width:
+  indentation_width: 2

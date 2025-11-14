@@ -6,7 +6,6 @@ BabyMilestones is an iOS app for recording and tracking children's growth and de
 ## Development Context
 
 ### Project Status
-- **Early Stage**: No source code exists yet - this is a fresh start
 - **Platform**: iOS native app (Swift/SwiftUI expected)
 - **Domain**: Child development milestone tracking
 - **Resources**: Reference material available in `/resource/prc-wst-423-2022.pdf`
@@ -231,6 +230,7 @@ struct NotificationsView: View {
 - Keep views focused and single-purpose
 - Use descriptive names for state enums
 - Write SwiftUI code that looks and feels like SwiftUI
+- Property wrapper annotations on same line as variable declaration
 
 ### Localization
 Use string catalog for localization. 
