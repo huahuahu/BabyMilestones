@@ -1,6 +1,7 @@
 @testable import BabyMeasure
 import SwiftData
 import XCTest
+import HStorage
 
 @MainActor
 final class MeasurementRangeTests: XCTestCase {
