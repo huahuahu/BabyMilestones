@@ -22,8 +22,8 @@ struct AddChildSheet: View {
         Section("基本信息") {
           TextField("姓名", text: $name)
           Picker("性别", selection: $gender) {
-            ForEach(Array(Gender.allCases), id: \.self) { g in
-              Text(String(describing: g))
+            ForEach(Array(Gender.allCases), id: \.self) { genderOption in
+              Text(String(describing: genderOption))
             }
           }
           DatePicker("生日", selection: $birthday, in: ...Date(), displayedComponents: .date)
@@ -57,7 +57,6 @@ struct AddChildSheet: View {
     }
   }
 }
-
 
 #Preview("Add Child", traits: .modifier(SampleData())) {
   // Use preview trait convenience instead of manual container construction.

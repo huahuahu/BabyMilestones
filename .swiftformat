@@ -10,5 +10,5 @@
 --closingparen balanced
 --funcattributes prev-line
 --typeattributes prev-line
---varattributes prev-line
+--varattributes same-line
 --exclude Pods,DerivedData,.build

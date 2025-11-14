@@ -3,8 +3,7 @@ import SwiftData
 
 @Model
 public class ChildEntity {
-  @Attribute(.unique)
-  public var id: UUID
+  @Attribute(.unique) public var id: UUID
   public var name: String
   public var genderRaw: String?
   public var birthday: Date
@@ -23,8 +22,7 @@ public class ChildEntity {
 
 @Model
 public class MeasurementEntity {
-  @Attribute(.unique)
-  public var id: UUID
+  @Attribute(.unique) public var id: UUID
   public var childId: UUID
   public var typeRaw: String // height|weight|headCircumference
   public var value: Double

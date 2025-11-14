@@ -14,7 +14,7 @@ struct RecordEntryView: View {
 
   private var parsedValue: Double? { Double(value) }
   private var rangeWarning: String? {
-    guard let v = parsedValue, let range = type.acceptableRange, !range.contains(v) else { return nil }
+    guard let val = parsedValue, let range = type.acceptableRange, !range.contains(val) else { return nil }
     return "值可能超出合理范围 (\(range.lowerBound)-\(range.upperBound) \(type.unit))"
   }
 
@@ -25,8 +25,8 @@ struct RecordEntryView: View {
       Form {
         Section("类型") {
           Picker("类型", selection: $type) {
-            ForEach(MeasurementType.allCases, id: \.self) { t in
-              Text(t.displayName).tag(t)
+            ForEach(MeasurementType.allCases, id: \.self) { measurementType in
+              Text(measurementType.displayName).tag(measurementType)
             }
           }
           .pickerStyle(.segmented)
@@ -59,20 +59,20 @@ struct RecordEntryView: View {
   }
 
   private func save() {
-    guard let v = parsedValue else { return }
+    guard let val = parsedValue else { return }
     guard date >= child.birthday else {
       warning = "记录时间不能早于生日"
       return
     }
-    
+
     let record = MeasurementEntity(
       childId: child.id,
       typeRaw: type.rawValue,
-      value: v,
+      value: val,
       recordedAt: date
     )
     modelContext.insert(record)
-    
+
     do {
       try modelContext.save()
       dismiss()

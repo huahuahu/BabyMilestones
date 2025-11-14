@@ -1,8 +1,6 @@
 import SwiftData
 import SwiftUI
 
-
-
 // Convenience alias matching naming style in example snippet if preferred.
 /// Alternate shorter name mirroring the example `SampleData` pattern.
 struct SampleData: PreviewModifier {

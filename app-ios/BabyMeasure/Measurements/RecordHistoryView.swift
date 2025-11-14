@@ -3,13 +3,14 @@ import SwiftUI
 
 struct RecordHistoryView: View {
   let child: ChildEntity
+
   @Environment(\.modelContext) private var modelContext
   @Query private var allRecords: [MeasurementEntity]
   @State private var grouped: [(day: Date, records: [MeasurementEntity])] = []
   @State private var formatter: DateFormatter = {
-    let f = DateFormatter()
-    f.dateFormat = "yyyy-MM-dd"
-    return f
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
   }()
 
   private var records: [MeasurementEntity] {
@@ -100,7 +101,7 @@ private struct RecordHistoryPreviewSeed: View {
       birthday: Date(timeIntervalSince1970: 0)
     )
     context.insert(sampleChild)
-    
+
     // Create sample measurements
     let heightRecord = MeasurementEntity(
       childId: sampleChild.id,
@@ -109,7 +110,7 @@ private struct RecordHistoryPreviewSeed: View {
       recordedAt: Date()
     )
     context.insert(heightRecord)
-    
+
     let weightRecord = MeasurementEntity(
       childId: sampleChild.id,
       typeRaw: MeasurementType.weight.rawValue,
@@ -117,7 +118,7 @@ private struct RecordHistoryPreviewSeed: View {
       recordedAt: Date().addingTimeInterval(-3600)
     )
     context.insert(weightRecord)
-    
+
     try? context.save()
     child = sampleChild
   }
