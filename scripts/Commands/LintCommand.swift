@@ -161,8 +161,7 @@ extension DevTools {
   struct Lint: ParsableCommand {
     static var configuration = CommandConfiguration(abstract: "Run SwiftLint & SwiftFormat")
 
-    @Flag(name: .shortAndLong, help: "Attempt to auto-fix issues (default is check-only).")
-    var fix: Bool = false
+    @Flag(name: .shortAndLong, help: "Attempt to auto-fix issues (default is check-only).") var fix: Bool = false
 
     func run() throws {
       let mode: LintMode = fix ? .fix : .check

@@ -7,8 +7,7 @@ extension DevTools {
       abstract: "Print environment information for CI debugging"
     )
 
-    @Flag(name: .shortAndLong, help: "Output in JSON format")
-    var json: Bool = false
+    @Flag(name: .shortAndLong, help: "Output in JSON format") var json: Bool = false
 
     func run() throws {
       let envInfo = collectEnvironmentInfo()

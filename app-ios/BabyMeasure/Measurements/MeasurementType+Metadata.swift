@@ -1,4 +1,5 @@
 import Foundation
+import HStorage
 
 // MeasurementType defined in Domain/DraftModels.swift within same target.
 

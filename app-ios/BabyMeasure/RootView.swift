@@ -1,5 +1,6 @@
 import SwiftData
 import SwiftUI
+import HStorage
 
 struct RootView: View {
   @Environment(\.modelContext) private var modelContext
