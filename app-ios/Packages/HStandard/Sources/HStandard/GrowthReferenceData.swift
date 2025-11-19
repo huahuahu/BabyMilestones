@@ -15,7 +15,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 47.6, p10: 48.7, p25: 49.9, p50: 51.2, p75: 52.5, p90: 53.6, p97: 54.8),
       weight: WeightPercentiles(p3: 2.8, p10: 3.0, p25: 3.2, p50: 3.5, p75: 3.7, p90: 4.0, p97: 4.2),
-      headCircumference: headCircumferencePercentile(p3: 31.9, p10: 32.7, p25: 33.4, p50: 34.3, p75: 35.2, p90: 36.0, p97: 36.8),
+      headCircumference: HeadCircumferencePercentile(p3: 31.9, p10: 32.7, p25: 33.4, p50: 34.3, p75: 35.2, p90: 36.0, p97: 36.8),
       bmi: BMIPercentiles(p3: 11.2, p10: 11.8, p25: 12.5, p50: 13.2, p75: 14.0, p90: 14.8, p97: 15.5)
     ),
     GrowthReference(
@@ -23,7 +23,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 51.3, p10: 52.5, p25: 53.8, p50: 55.1, p75: 56.5, p90: 57.7, p97: 59.0),
       weight: WeightPercentiles(p3: 3.7, p10: 3.9, p25: 4.2, p50: 4.6, p75: 4.9, p90: 5.2, p97: 5.6),
-      headCircumference: headCircumferencePercentile(p3: 34.8, p10: 35.5, p25: 36.2, p50: 37.0, p75: 37.8, p90: 38.5, p97: 39.2),
+      headCircumference: HeadCircumferencePercentile(p3: 34.8, p10: 35.5, p25: 36.2, p50: 37.0, p75: 37.8, p90: 38.5, p97: 39.2),
       bmi: BMIPercentiles(p3: 13.0, p10: 13.6, p25: 14.3, p50: 15.1, p75: 16.0, p90: 16.8, p97: 17.6)
     ),
     GrowthReference(
@@ -31,7 +31,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 54.9, p10: 56.2, p25: 57.5, p50: 59.0, p75: 60.4, p90: 61.7, p97: 63.0),
       weight: WeightPercentiles(p3: 4.7, p10: 5.0, p25: 5.4, p50: 5.8, p75: 6.2, p90: 6.7, p97: 7.1),
-      headCircumference: headCircumferencePercentile(p3: 36.9, p10: 37.6, p25: 38.3, p50: 39.1, p75: 39.9, p90: 40.6, p97: 41.3),
+      headCircumference: HeadCircumferencePercentile(p3: 36.9, p10: 37.6, p25: 38.3, p50: 39.1, p75: 39.9, p90: 40.6, p97: 41.3),
       bmi: BMIPercentiles(p3: 14.3, p10: 15.0, p25: 15.8, p50: 16.7, p75: 17.6, p90: 18.5, p97: 19.5)
     ),
     GrowthReference(
@@ -39,7 +39,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 58.0, p10: 59.4, p25: 60.7, p50: 62.2, p75: 63.7, p90: 65.1, p97: 66.4),
       weight: WeightPercentiles(p3: 5.5, p10: 5.9, p25: 6.3, p50: 6.8, p75: 7.3, p90: 7.8, p97: 8.3),
-      headCircumference: headCircumferencePercentile(p3: 38.3, p10: 39.0, p25: 39.7, p50: 40.5, p75: 41.3, p90: 42.0, p97: 42.7),
+      headCircumference: HeadCircumferencePercentile(p3: 38.3, p10: 39.0, p25: 39.7, p50: 40.5, p75: 41.3, p90: 42.0, p97: 42.7),
       bmi: BMIPercentiles(p3: 14.9, p10: 15.7, p25: 16.5, p50: 17.4, p75: 18.5, p90: 19.5, p97: 20.5)
     ),
     GrowthReference(
@@ -47,7 +47,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 60.5, p10: 61.9, p25: 63.3, p50: 64.8, p75: 66.4, p90: 67.8, p97: 69.1),
       weight: WeightPercentiles(p3: 6.1, p10: 6.5, p25: 7.0, p50: 7.5, p75: 8.1, p90: 8.6, p97: 9.2),
-      headCircumference: headCircumferencePercentile(p3: 39.4, p10: 40.1, p25: 40.8, p50: 41.6, p75: 42.4, p90: 43.1, p97: 43.9),
+      headCircumference: HeadCircumferencePercentile(p3: 39.4, p10: 40.1, p25: 40.8, p50: 41.6, p75: 42.4, p90: 43.1, p97: 43.9),
       bmi: BMIPercentiles(p3: 15.2, p10: 16.0, p25: 16.8, p50: 17.8, p75: 18.8, p90: 19.9, p97: 21.0)
     ),
     GrowthReference(
@@ -55,7 +55,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 62.5, p10: 63.9, p25: 65.4, p50: 66.9, p75: 68.5, p90: 69.9, p97: 71.3),
       weight: WeightPercentiles(p3: 6.6, p10: 7.0, p25: 7.5, p50: 8.0, p75: 8.6, p90: 9.2, p97: 9.8),
-      headCircumference: headCircumferencePercentile(p3: 40.3, p10: 41.0, p25: 41.7, p50: 42.5, p75: 43.4, p90: 44.1, p97: 44.9),
+      headCircumference: HeadCircumferencePercentile(p3: 40.3, p10: 41.0, p25: 41.7, p50: 42.5, p75: 43.4, p90: 44.1, p97: 44.9),
       bmi: BMIPercentiles(p3: 15.3, p10: 16.1, p25: 16.9, p50: 17.9, p75: 19.0, p90: 20.0, p97: 21.1)
     ),
     GrowthReference(
@@ -63,7 +63,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 64.2, p10: 65.7, p25: 67.1, p50: 68.7, p75: 70.3, p90: 71.8, p97: 73.2),
       weight: WeightPercentiles(p3: 6.9, p10: 7.4, p25: 7.9, p50: 8.4, p75: 9.1, p90: 9.7, p97: 10.3),
-      headCircumference: headCircumferencePercentile(p3: 41.1, p10: 41.8, p25: 42.5, p50: 43.4, p75: 44.2, p90: 44.9, p97: 45.7),
+      headCircumference: HeadCircumferencePercentile(p3: 41.1, p10: 41.8, p25: 42.5, p50: 43.4, p75: 44.2, p90: 44.9, p97: 45.7),
       bmi: BMIPercentiles(p3: 15.3, p10: 16.1, p25: 16.9, p50: 17.9, p75: 18.9, p90: 20.0, p97: 21.1)
     ),
     GrowthReference(
@@ -71,7 +71,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 65.7, p10: 67.2, p25: 68.7, p50: 70.3, p75: 71.9, p90: 73.4, p97: 74.9),
       weight: WeightPercentiles(p3: 7.2, p10: 7.7, p25: 8.2, p50: 8.8, p75: 9.5, p90: 10.1, p97: 10.8),
-      headCircumference: headCircumferencePercentile(p3: 41.8, p10: 42.5, p25: 43.2, p50: 44.0, p75: 44.9, p90: 45.6, p97: 46.4),
+      headCircumference: HeadCircumferencePercentile(p3: 41.8, p10: 42.5, p25: 43.2, p50: 44.0, p75: 44.9, p90: 45.6, p97: 46.4),
       bmi: BMIPercentiles(p3: 15.3, p10: 16.0, p25: 16.8, p50: 17.8, p75: 18.9, p90: 19.9, p97: 21.0)
     ),
     GrowthReference(
@@ -79,7 +79,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 67.1, p10: 68.6, p25: 70.1, p50: 71.7, p75: 73.4, p90: 74.9, p97: 76.4),
       weight: WeightPercentiles(p3: 7.5, p10: 8.0, p25: 8.5, p50: 9.1, p75: 9.8, p90: 10.4, p97: 11.1),
-      headCircumference: headCircumferencePercentile(p3: 42.4, p10: 43.1, p25: 43.8, p50: 44.6, p75: 45.5, p90: 46.2, p97: 47.0),
+      headCircumference: HeadCircumferencePercentile(p3: 42.4, p10: 43.1, p25: 43.8, p50: 44.6, p75: 45.5, p90: 46.2, p97: 47.0),
       bmi: BMIPercentiles(p3: 15.3, p10: 16.0, p25: 16.8, p50: 17.7, p75: 18.8, p90: 19.8, p97: 20.9)
     ),
     GrowthReference(
@@ -87,7 +87,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 68.3, p10: 69.8, p25: 71.4, p50: 73.1, p75: 74.7, p90: 76.3, p97: 77.8),
       weight: WeightPercentiles(p3: 7.7, p10: 8.2, p25: 8.7, p50: 9.4, p75: 10.1, p90: 10.8, p97: 11.5),
-      headCircumference: headCircumferencePercentile(p3: 42.8, p10: 43.5, p25: 44.3, p50: 45.1, p75: 46.0, p90: 46.7, p97: 47.5),
+      headCircumference: HeadCircumferencePercentile(p3: 42.8, p10: 43.5, p25: 44.3, p50: 45.1, p75: 46.0, p90: 46.7, p97: 47.5),
       bmi: BMIPercentiles(p3: 15.2, p10: 15.9, p25: 16.7, p50: 17.6, p75: 18.6, p90: 19.6, p97: 20.7)
     ),
     GrowthReference(
@@ -95,7 +95,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 69.5, p10: 71.0, p25: 72.6, p50: 74.3, p75: 76.0, p90: 77.6, p97: 79.1),
       weight: WeightPercentiles(p3: 7.9, p10: 8.4, p25: 9.0, p50: 9.6, p75: 10.3, p90: 11.0, p97: 11.8),
-      headCircumference: headCircumferencePercentile(p3: 43.2, p10: 43.9, p25: 44.7, p50: 45.5, p75: 46.4, p90: 47.1, p97: 47.9),
+      headCircumference: HeadCircumferencePercentile(p3: 43.2, p10: 43.9, p25: 44.7, p50: 45.5, p75: 46.4, p90: 47.1, p97: 47.9),
       bmi: BMIPercentiles(p3: 15.1, p10: 15.8, p25: 16.5, p50: 17.5, p75: 18.5, p90: 19.4, p97: 20.5)
     ),
     GrowthReference(
@@ -103,7 +103,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 70.7, p10: 72.2, p25: 73.8, p50: 75.5, p75: 77.3, p90: 78.8, p97: 80.4),
       weight: WeightPercentiles(p3: 8.1, p10: 8.6, p25: 9.2, p50: 9.8, p75: 10.6, p90: 11.3, p97: 12.0),
-      headCircumference: headCircumferencePercentile(p3: 43.6, p10: 44.3, p25: 45.0, p50: 45.8, p75: 46.7, p90: 47.5, p97: 48.3),
+      headCircumference: HeadCircumferencePercentile(p3: 43.6, p10: 44.3, p25: 45.0, p50: 45.8, p75: 46.7, p90: 47.5, p97: 48.3),
       bmi: BMIPercentiles(p3: 15.0, p10: 15.7, p25: 16.4, p50: 17.3, p75: 18.3, p90: 19.2, p97: 20.3)
     ),
     GrowthReference(
@@ -111,7 +111,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 71.7, p10: 73.3, p25: 74.9, p50: 76.7, p75: 78.5, p90: 80.1, p97: 81.6),
       weight: WeightPercentiles(p3: 8.3, p10: 8.8, p25: 9.4, p50: 10.1, p75: 10.8, p90: 11.5, p97: 12.3),
-      headCircumference: headCircumferencePercentile(p3: 43.8, p10: 44.6, p25: 45.3, p50: 46.1, p75: 47.0, p90: 47.8, p97: 48.6),
+      headCircumference: HeadCircumferencePercentile(p3: 43.8, p10: 44.6, p25: 45.3, p50: 46.1, p75: 47.0, p90: 47.8, p97: 48.6),
       bmi: BMIPercentiles(p3: 14.9, p10: 15.5, p25: 16.3, p50: 17.1, p75: 18.1, p90: 19.1, p97: 20.1)
     ),
     GrowthReference(
@@ -119,7 +119,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 72.8, p10: 74.4, p25: 76.0, p50: 77.8, p75: 79.6, p90: 81.2, p97: 82.8),
       weight: WeightPercentiles(p3: 8.4, p10: 9.0, p25: 9.6, p50: 10.3, p75: 11.0, p90: 11.7, p97: 12.5),
-      headCircumference: headCircumferencePercentile(p3: 44.1, p10: 44.8, p25: 45.5, p50: 46.4, p75: 47.2, p90: 48.0, p97: 48.8),
+      headCircumference: HeadCircumferencePercentile(p3: 44.1, p10: 44.8, p25: 45.5, p50: 46.4, p75: 47.2, p90: 48.0, p97: 48.8),
       bmi: BMIPercentiles(p3: 14.8, p10: 15.4, p25: 16.1, p50: 17.0, p75: 17.9, p90: 18.9, p97: 19.9)
     ),
     GrowthReference(
@@ -127,7 +127,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 73.8, p10: 75.4, p25: 77.1, p50: 78.9, p75: 80.7, p90: 82.4, p97: 84.0),
       weight: WeightPercentiles(p3: 8.6, p10: 9.2, p25: 9.7, p50: 10.5, p75: 11.2, p90: 12.0, p97: 12.8),
-      headCircumference: headCircumferencePercentile(p3: 44.3, p10: 45.0, p25: 45.8, p50: 46.6, p75: 47.5, p90: 48.2, p97: 49.0),
+      headCircumference: HeadCircumferencePercentile(p3: 44.3, p10: 45.0, p25: 45.8, p50: 46.6, p75: 47.5, p90: 48.2, p97: 49.0),
       bmi: BMIPercentiles(p3: 14.7, p10: 15.3, p25: 16.0, p50: 16.8, p75: 17.8, p90: 18.7, p97: 19.7)
     ),
     GrowthReference(
@@ -135,7 +135,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 74.8, p10: 76.5, p25: 78.1, p50: 80.0, p75: 81.8, p90: 83.5, p97: 85.1),
       weight: WeightPercentiles(p3: 8.8, p10: 9.3, p25: 9.9, p50: 10.7, p75: 11.4, p90: 12.2, p97: 13.0),
-      headCircumference: headCircumferencePercentile(p3: 44.5, p10: 45.2, p25: 46.0, p50: 46.8, p75: 47.7, p90: 48.5, p97: 49.3),
+      headCircumference: HeadCircumferencePercentile(p3: 44.5, p10: 45.2, p25: 46.0, p50: 46.8, p75: 47.7, p90: 48.5, p97: 49.3),
       bmi: BMIPercentiles(p3: 14.6, p10: 15.2, p25: 15.9, p50: 16.7, p75: 17.6, p90: 18.5, p97: 19.5)
     ),
     GrowthReference(
@@ -143,7 +143,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 75.8, p10: 77.5, p25: 79.2, p50: 81.0, p75: 82.9, p90: 84.6, p97: 86.3),
       weight: WeightPercentiles(p3: 9.0, p10: 9.5, p25: 10.1, p50: 10.9, p75: 11.7, p90: 12.4, p97: 13.3),
-      headCircumference: headCircumferencePercentile(p3: 44.7, p10: 45.4, p25: 46.2, p50: 47.0, p75: 47.9, p90: 48.7, p97: 49.4),
+      headCircumference: HeadCircumferencePercentile(p3: 44.7, p10: 45.4, p25: 46.2, p50: 47.0, p75: 47.9, p90: 48.7, p97: 49.4),
       bmi: BMIPercentiles(p3: 14.5, p10: 15.1, p25: 15.8, p50: 16.6, p75: 17.5, p90: 18.4, p97: 19.4)
     ),
     GrowthReference(
@@ -151,7 +151,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 76.8, p10: 78.5, p25: 80.2, p50: 82.1, p75: 84.0, p90: 85.7, p97: 87.4),
       weight: WeightPercentiles(p3: 9.1, p10: 9.7, p25: 10.3, p50: 11.1, p75: 11.9, p90: 12.7, p97: 13.5),
-      headCircumference: headCircumferencePercentile(p3: 44.9, p10: 45.6, p25: 46.3, p50: 47.2, p75: 48.0, p90: 48.8, p97: 49.6),
+      headCircumference: HeadCircumferencePercentile(p3: 44.9, p10: 45.6, p25: 46.3, p50: 47.2, p75: 48.0, p90: 48.8, p97: 49.6),
       bmi: BMIPercentiles(p3: 14.4, p10: 15.0, p25: 15.7, p50: 16.5, p75: 17.4, p90: 18.3, p97: 19.2)
     ),
     GrowthReference(
@@ -159,7 +159,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 77.7, p10: 79.4, p25: 81.2, p50: 83.1, p75: 85.0, p90: 86.8, p97: 88.5),
       weight: WeightPercentiles(p3: 9.3, p10: 9.9, p25: 10.5, p50: 11.3, p75: 12.1, p90: 12.9, p97: 13.8),
-      headCircumference: headCircumferencePercentile(p3: 45.1, p10: 45.8, p25: 46.5, p50: 47.4, p75: 48.2, p90: 49.0, p97: 49.8),
+      headCircumference: HeadCircumferencePercentile(p3: 45.1, p10: 45.8, p25: 46.5, p50: 47.4, p75: 48.2, p90: 49.0, p97: 49.8),
       bmi: BMIPercentiles(p3: 14.3, p10: 14.9, p25: 15.6, p50: 16.4, p75: 17.2, p90: 18.1, p97: 19.1)
     ),
     GrowthReference(
@@ -167,7 +167,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 78.6, p10: 80.4, p25: 82.1, p50: 84.1, p75: 86.1, p90: 87.8, p97: 89.6),
       weight: WeightPercentiles(p3: 9.5, p10: 10.1, p25: 10.7, p50: 11.5, p75: 12.3, p90: 13.2, p97: 14.0),
-      headCircumference: headCircumferencePercentile(p3: 45.2, p10: 46.0, p25: 46.7, p50: 47.5, p75: 48.4, p90: 49.2, p97: 50.0),
+      headCircumference: HeadCircumferencePercentile(p3: 45.2, p10: 46.0, p25: 46.7, p50: 47.5, p75: 48.4, p90: 49.2, p97: 50.0),
       bmi: BMIPercentiles(p3: 14.2, p10: 14.8, p25: 15.5, p50: 16.3, p75: 17.1, p90: 18.0, p97: 19.0)
     ),
     GrowthReference(
@@ -175,7 +175,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 79.6, p10: 81.3, p25: 83.1, p50: 85.1, p75: 87.1, p90: 88.9, p97: 90.6),
       weight: WeightPercentiles(p3: 9.7, p10: 10.3, p25: 10.9, p50: 11.7, p75: 12.6, p90: 13.4, p97: 14.3),
-      headCircumference: headCircumferencePercentile(p3: 45.4, p10: 46.1, p25: 46.9, p50: 47.7, p75: 48.6, p90: 49.4, p97: 50.2),
+      headCircumference: HeadCircumferencePercentile(p3: 45.4, p10: 46.1, p25: 46.9, p50: 47.7, p75: 48.6, p90: 49.4, p97: 50.2),
       bmi: BMIPercentiles(p3: 14.2, p10: 14.8, p25: 15.4, p50: 16.2, p75: 17.0, p90: 17.9, p97: 18.9)
     ),
     GrowthReference(
@@ -183,7 +183,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 80.5, p10: 82.3, p25: 84.1, p50: 86.1, p75: 88.1, p90: 89.9, p97: 91.7),
       weight: WeightPercentiles(p3: 9.8, p10: 10.5, p25: 11.1, p50: 11.9, p75: 12.8, p90: 13.7, p97: 14.6),
-      headCircumference: headCircumferencePercentile(p3: 45.6, p10: 46.3, p25: 47.0, p50: 47.9, p75: 48.8, p90: 49.6, p97: 50.4),
+      headCircumference: HeadCircumferencePercentile(p3: 45.6, p10: 46.3, p25: 47.0, p50: 47.9, p75: 48.8, p90: 49.6, p97: 50.4),
       bmi: BMIPercentiles(p3: 14.1, p10: 14.7, p25: 15.3, p50: 16.1, p75: 17.0, p90: 17.8, p97: 18.8)
     ),
     GrowthReference(
@@ -191,7 +191,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 81.4, p10: 83.2, p25: 85.0, p50: 87.0, p75: 89.1, p90: 90.9, p97: 92.7),
       weight: WeightPercentiles(p3: 10.0, p10: 10.6, p25: 11.3, p50: 12.2, p75: 13.0, p90: 13.9, p97: 14.8),
-      headCircumference: headCircumferencePercentile(p3: 45.7, p10: 46.5, p25: 47.2, p50: 48.1, p75: 48.9, p90: 49.7, p97: 50.5),
+      headCircumference: HeadCircumferencePercentile(p3: 45.7, p10: 46.5, p25: 47.2, p50: 48.1, p75: 48.9, p90: 49.7, p97: 50.5),
       bmi: BMIPercentiles(p3: 14.0, p10: 14.6, p25: 15.2, p50: 16.0, p75: 16.9, p90: 17.7, p97: 18.7)
     ),
     GrowthReference(
@@ -199,7 +199,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 82.2, p10: 84.1, p25: 85.9, p50: 88.0, p75: 90.0, p90: 91.9, p97: 93.7),
       weight: WeightPercentiles(p3: 10.2, p10: 10.8, p25: 11.5, p50: 12.4, p75: 13.3, p90: 14.2, p97: 15.1),
-      headCircumference: headCircumferencePercentile(p3: 45.9, p10: 46.6, p25: 47.4, p50: 48.2, p75: 49.1, p90: 49.9, p97: 50.7),
+      headCircumference: HeadCircumferencePercentile(p3: 45.9, p10: 46.6, p25: 47.4, p50: 48.2, p75: 49.1, p90: 49.9, p97: 50.7),
       bmi: BMIPercentiles(p3: 14.0, p10: 14.6, p25: 15.2, p50: 15.9, p75: 16.8, p90: 17.6, p97: 18.6)
     ),
     GrowthReference(
@@ -207,7 +207,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 82.4, p10: 84.2, p25: 86.1, p50: 88.2, p75: 90.3, p90: 92.2, p97: 94.0),
       weight: WeightPercentiles(p3: 10.4, p10: 11.0, p25: 11.7, p50: 12.6, p75: 13.5, p90: 14.4, p97: 15.4),
-      headCircumference: headCircumferencePercentile(p3: 46.0, p10: 46.7, p25: 47.5, p50: 48.3, p75: 49.2, p90: 50.0, p97: 50.8),
+      headCircumference: HeadCircumferencePercentile(p3: 46.0, p10: 46.7, p25: 47.5, p50: 48.3, p75: 49.2, p90: 50.0, p97: 50.8),
       bmi: BMIPercentiles(p3: 14.1, p10: 14.7, p25: 15.3, p50: 16.1, p75: 17.0, p90: 17.9, p97: 18.8)
     ),
     GrowthReference(
@@ -215,7 +215,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 84.8, p10: 86.7, p25: 88.6, p50: 90.8, p75: 93.0, p90: 94.9, p97: 96.8),
       weight: WeightPercentiles(p3: 10.8, p10: 11.5, p25: 12.2, p50: 13.1, p75: 14.1, p90: 15.1, p97: 16.1),
-      headCircumference: headCircumferencePercentile(p3: 46.3, p10: 47.1, p25: 47.8, p50: 48.7, p75: 49.5, p90: 50.4, p97: 51.2),
+      headCircumference: HeadCircumferencePercentile(p3: 46.3, p10: 47.1, p25: 47.8, p50: 48.7, p75: 49.5, p90: 50.4, p97: 51.2),
       bmi: BMIPercentiles(p3: 14.0, p10: 14.5, p25: 15.2, p50: 15.9, p75: 16.8, p90: 17.6, p97: 18.6)
     ),
     GrowthReference(
@@ -223,7 +223,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 87.0, p10: 88.9, p25: 91.0, p50: 93.2, p75: 95.4, p90: 97.4, p97: 99.4),
       weight: WeightPercentiles(p3: 11.2, p10: 12.0, p25: 12.7, p50: 13.7, p75: 14.7, p90: 15.7, p97: 16.7),
-      headCircumference: headCircumferencePercentile(p3: 46.6, p10: 47.3, p25: 48.1, p50: 48.9, p75: 49.8, p90: 50.6, p97: 51.5),
+      headCircumference: HeadCircumferencePercentile(p3: 46.6, p10: 47.3, p25: 48.1, p50: 48.9, p75: 49.8, p90: 50.6, p97: 51.5),
       bmi: BMIPercentiles(p3: 13.9, p10: 14.4, p25: 15.0, p50: 15.8, p75: 16.6, p90: 17.4, p97: 18.4)
     ),
     GrowthReference(
@@ -231,7 +231,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 89.0, p10: 91.0, p25: 93.1, p50: 95.4, p75: 97.7, p90: 99.8, p97: 101.8),
       weight: WeightPercentiles(p3: 11.6, p10: 12.4, p25: 13.2, p50: 14.2, p75: 15.2, p90: 16.3, p97: 17.4),
-      headCircumference: headCircumferencePercentile(p3: 46.8, p10: 47.5, p25: 48.3, p50: 49.2, p75: 50.0, p90: 50.9, p97: 51.7),
+      headCircumference: HeadCircumferencePercentile(p3: 46.8, p10: 47.5, p25: 48.3, p50: 49.2, p75: 50.0, p90: 50.9, p97: 51.7),
       bmi: BMIPercentiles(p3: 13.7, p10: 14.3, p25: 14.9, p50: 15.6, p75: 16.5, p90: 17.3, p97: 18.2)
     ),
     GrowthReference(
@@ -239,7 +239,7 @@ extension GrowthReference {
       biologicalSex: .male,
       height: HeightPercentiles(p3: 90.9, p10: 93.0, p25: 95.1, p50: 97.5, p75: 99.9, p90: 102.0, p97: 104.1),
       weight: WeightPercentiles(p3: 12.0, p10: 12.8, p25: 13.6, p50: 14.6, p75: 15.8, p90: 16.9, p97: 18.0),
-      headCircumference: headCircumferencePercentile(p3: 47.0, p10: 47.7, p25: 48.5, p50: 49.3, p75: 50.2, p90: 51.1, p97: 51.9),
+      headCircumference: HeadCircumferencePercentile(p3: 47.0, p10: 47.7, p25: 48.5, p50: 49.3, p75: 50.2, p90: 51.1, p97: 51.9),
       bmi: BMIPercentiles(p3: 13.7, p10: 14.2, p25: 14.8, p50: 15.5, p75: 16.3, p90: 17.2, p97: 18.1)
     ),
     GrowthReference(
@@ -373,7 +373,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 47.1, p10: 48.1, p25: 49.2, p50: 50.4, p75: 51.6, p90: 52.8, p97: 54.0), // note: source CSV p3..p97 differ slightly (CSV p3=46.8 p97=53.8); retaining existing value
       weight: WeightPercentiles(p3: 2.7, p10: 2.9, p25: 3.1, p50: 3.3, p75: 3.5, p90: 3.8, p97: 4.0),
-      headCircumference: headCircumferencePercentile(p3: 31.5, p10: 32.3, p25: 33.1, p50: 33.9, p75: 34.8, p90: 35.6, p97: 36.3),
+      headCircumference: HeadCircumferencePercentile(p3: 31.5, p10: 32.3, p25: 33.1, p50: 33.9, p75: 34.8, p90: 35.6, p97: 36.3),
       bmi: BMIPercentiles(p3: 11.1, p10: 11.7, p25: 12.3, p50: 13.1, p75: 13.8, p90: 14.5, p97: 15.3)
     ),
     GrowthReference(
@@ -381,7 +381,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 50.4, p10: 51.6, p25: 52.8, p50: 54.1, p75: 55.4, p90: 56.6, p97: 57.8),
       weight: WeightPercentiles(p3: 3.5, p10: 3.7, p25: 4.0, p50: 4.3, p75: 4.6, p90: 4.9, p97: 5.3),
-      headCircumference: headCircumferencePercentile(p3: 34.2, p10: 34.9, p25: 35.6, p50: 36.3, p75: 37.1, p90: 37.8, p97: 38.5),
+      headCircumference: HeadCircumferencePercentile(p3: 34.2, p10: 34.9, p25: 35.6, p50: 36.3, p75: 37.1, p90: 37.8, p97: 38.5),
       bmi: BMIPercentiles(p3: 12.7, p10: 13.3, p25: 13.9, p50: 14.7, p75: 15.5, p90: 16.3, p97: 17.1)
     ),
     GrowthReference(
@@ -389,7 +389,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 53.8, p10: 55.0, p25: 56.3, p50: 57.7, p75: 59.1, p90: 60.4, p97: 61.6),
       weight: WeightPercentiles(p3: 4.4, p10: 4.7, p25: 5.0, p50: 5.4, p75: 5.8, p90: 6.2, p97: 6.6),
-      headCircumference: headCircumferencePercentile(p3: 36.2, p10: 36.8, p25: 37.5, p50: 38.2, p75: 39.0, p90: 39.6, p97: 40.3),
+      headCircumference: HeadCircumferencePercentile(p3: 36.2, p10: 36.8, p25: 37.5, p50: 38.2, p75: 39.0, p90: 39.6, p97: 40.3),
       bmi: BMIPercentiles(p3: 13.9, p10: 14.5, p25: 15.2, p50: 16.1, p75: 17.0, p90: 17.9, p97: 18.9)
     ),
     GrowthReference(
@@ -397,7 +397,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 56.7, p10: 58.0, p25: 59.3, p50: 60.8, p75: 62.2, p90: 63.5, p97: 64.8),
       weight: WeightPercentiles(p3: 5.1, p10: 5.4, p25: 5.8, p50: 6.2, p75: 6.7, p90: 7.2, p97: 7.6),
-      headCircumference: headCircumferencePercentile(p3: 37.5, p10: 38.1, p25: 38.8, p50: 39.5, p75: 40.3, p90: 41.0, p97: 41.6),
+      headCircumference: HeadCircumferencePercentile(p3: 37.5, p10: 38.1, p25: 38.8, p50: 39.5, p75: 40.3, p90: 41.0, p97: 41.6),
       bmi: BMIPercentiles(p3: 14.4, p10: 15.1, p25: 15.8, p50: 16.7, p75: 17.7, p90: 18.7, p97: 19.8)
     ),
     GrowthReference(
@@ -405,7 +405,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 59.1, p10: 60.4, p25: 61.7, p50: 63.3, p75: 64.8, p90: 66.1, p97: 67.4),
       weight: WeightPercentiles(p3: 5.6, p10: 6.0, p25: 6.4, p50: 6.9, p75: 7.4, p90: 7.9, p97: 8.4),
-      headCircumference: headCircumferencePercentile(p3: 38.5, p10: 39.1, p25: 39.8, p50: 40.6, p75: 41.4, p90: 42.1, p97: 42.7),
+      headCircumference: HeadCircumferencePercentile(p3: 38.5, p10: 39.1, p25: 39.8, p50: 40.6, p75: 41.4, p90: 42.1, p97: 42.7),
       bmi: BMIPercentiles(p3: 14.7, p10: 15.4, p25: 16.2, p50: 17.1, p75: 18.1, p90: 19.1, p97: 20.2)
     ),
     GrowthReference(
@@ -413,7 +413,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 61.0, p10: 62.4, p25: 63.8, p50: 65.3, p75: 66.9, p90: 68.2, p97: 69.6),
       weight: WeightPercentiles(p3: 6.0, p10: 6.4, p25: 6.9, p50: 7.4, p75: 7.9, p90: 8.5, p97: 9.1),
-      headCircumference: headCircumferencePercentile(p3: 39.3, p10: 40.0, p25: 40.7, p50: 41.5, p75: 42.3, p90: 43.0, p97: 43.7),
+      headCircumference: HeadCircumferencePercentile(p3: 39.3, p10: 40.0, p25: 40.7, p50: 41.5, p75: 42.3, p90: 43.0, p97: 43.7),
       bmi: BMIPercentiles(p3: 14.8, p10: 15.5, p25: 16.3, p50: 17.3, p75: 18.3, p90: 19.3, p97: 20.5)
     ),
     GrowthReference(
@@ -421,7 +421,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 62.7, p10: 64.1, p25: 65.5, p50: 67.1, p75: 68.7, p90: 70.1, p97: 71.5),
       weight: WeightPercentiles(p3: 6.4, p10: 6.8, p25: 7.2, p50: 7.8, p75: 8.4, p90: 9.0, p97: 9.6),
-      headCircumference: headCircumferencePercentile(p3: 40.0, p10: 40.7, p25: 41.4, p50: 42.2, p75: 43.0, p90: 43.8, p97: 44.5),
+      headCircumference: HeadCircumferencePercentile(p3: 40.0, p10: 40.7, p25: 41.4, p50: 42.2, p75: 43.0, p90: 43.8, p97: 44.5),
       bmi: BMIPercentiles(p3: 14.9, p10: 15.6, p25: 16.4, p50: 17.3, p75: 18.4, p90: 19.4, p97: 20.5)
     ),
     GrowthReference(
@@ -429,7 +429,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 64.2, p10: 65.6, p25: 67.1, p50: 68.7, p75: 70.3, p90: 71.7, p97: 73.1),
       weight: WeightPercentiles(p3: 6.7, p10: 7.1, p25: 7.6, p50: 8.1, p75: 8.8, p90: 9.4, p97: 10.0),
-      headCircumference: headCircumferencePercentile(p3: 40.7, p10: 41.4, p25: 42.1, p50: 42.9, p75: 43.7, p90: 44.5, p97: 45.2),
+      headCircumference: HeadCircumferencePercentile(p3: 40.7, p10: 41.4, p25: 42.1, p50: 42.9, p75: 43.7, p90: 44.5, p97: 45.2),
       bmi: BMIPercentiles(p3: 14.9, p10: 15.6, p25: 16.3, p50: 17.3, p75: 18.3, p90: 19.3, p97: 20.5)
     ),
     GrowthReference(
@@ -437,7 +437,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 65.6, p10: 67.0, p25: 68.5, p50: 70.1, p75: 71.7, p90: 73.2, p97: 74.7),
       weight: WeightPercentiles(p3: 6.9, p10: 7.4, p25: 7.9, p50: 8.4, p75: 9.1, p90: 9.7, p97: 10.4),
-      headCircumference: headCircumferencePercentile(p3: 41.2, p10: 42.0, p25: 42.7, p50: 43.5, p75: 44.3, p90: 45.0, p97: 45.8),
+      headCircumference: HeadCircumferencePercentile(p3: 41.2, p10: 42.0, p25: 42.7, p50: 43.5, p75: 44.3, p90: 45.0, p97: 45.8),
       bmi: BMIPercentiles(p3: 14.8, p10: 15.5, p25: 16.3, p50: 17.2, p75: 18.2, p90: 19.2, p97: 20.3)
     ),
     GrowthReference(
@@ -445,7 +445,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 66.8, p10: 68.3, p25: 69.8, p50: 71.5, p75: 73.1, p90: 74.6, p97: 76.1),
       weight: WeightPercentiles(p3: 7.2, p10: 7.6, p25: 8.1, p50: 8.7, p75: 9.4, p90: 10.0, p97: 10.8),
-      headCircumference: headCircumferencePercentile(p3: 41.7, p10: 42.4, p25: 43.2, p50: 44.0, p75: 44.8, p90: 45.6, p97: 46.3),
+      headCircumference: HeadCircumferencePercentile(p3: 41.7, p10: 42.4, p25: 43.2, p50: 44.0, p75: 44.8, p90: 45.6, p97: 46.3),
       bmi: BMIPercentiles(p3: 14.8, p10: 15.4, p25: 16.2, p50: 17.1, p75: 18.1, p90: 19.1, p97: 20.2)
     ),
     GrowthReference(
@@ -453,7 +453,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 68.1, p10: 69.6, p25: 71.1, p50: 72.8, p75: 74.5, p90: 76.0, p97: 77.5),
       weight: WeightPercentiles(p3: 7.4, p10: 7.8, p25: 8.3, p50: 9.0, p75: 9.6, p90: 10.3, p97: 11.1),
-      headCircumference: headCircumferencePercentile(p3: 42.1, p10: 42.9, p25: 43.6, p50: 44.4, p75: 45.2, p90: 46.0, p97: 46.8),
+      headCircumference: HeadCircumferencePercentile(p3: 42.1, p10: 42.9, p25: 43.6, p50: 44.4, p75: 45.2, p90: 46.0, p97: 46.8),
       bmi: BMIPercentiles(p3: 14.7, p10: 15.3, p25: 16.1, p50: 17.0, p75: 17.9, p90: 18.9, p97: 20.0)
     ),
     GrowthReference(
@@ -461,7 +461,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 69.2, p10: 70.8, p25: 72.3, p50: 74.0, p75: 75.7, p90: 77.3, p97: 78.8),
       weight: WeightPercentiles(p3: 7.6, p10: 8.0, p25: 8.6, p50: 9.2, p75: 9.9, p90: 10.6, p97: 11.4),
-      headCircumference: headCircumferencePercentile(p3: 42.5, p10: 43.2, p25: 44.0, p50: 44.8, p75: 45.6, p90: 46.4, p97: 47.1),
+      headCircumference: HeadCircumferencePercentile(p3: 42.5, p10: 43.2, p25: 44.0, p50: 44.8, p75: 45.6, p90: 46.4, p97: 47.1),
       bmi: BMIPercentiles(p3: 14.6, p10: 15.2, p25: 15.9, p50: 16.8, p75: 17.8, p90: 18.7, p97: 19.8)
     ),
     GrowthReference(
@@ -469,7 +469,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 70.4, p10: 71.9, p25: 73.5, p50: 75.2, p75: 77.0, p90: 78.6, p97: 80.1),
       weight: WeightPercentiles(p3: 7.7, p10: 8.2, p25: 8.8, p50: 9.4, p75: 10.1, p90: 10.9, p97: 11.6),
-      headCircumference: headCircumferencePercentile(p3: 42.8, p10: 43.5, p25: 44.3, p50: 45.1, p75: 45.9, p90: 46.7, p97: 47.5),
+      headCircumference: HeadCircumferencePercentile(p3: 42.8, p10: 43.5, p25: 44.3, p50: 45.1, p75: 45.9, p90: 46.7, p97: 47.5),
       bmi: BMIPercentiles(p3: 14.5, p10: 15.1, p25: 15.8, p50: 16.7, p75: 17.6, p90: 18.5, p97: 19.6)
     ),
     GrowthReference(
@@ -477,7 +477,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 71.4, p10: 73.0, p25: 74.6, p50: 76.4, p75: 78.2, p90: 79.8, p97: 81.4),
       weight: WeightPercentiles(p3: 7.9, p10: 8.4, p25: 9.0, p50: 9.6, p75: 10.4, p90: 11.1, p97: 11.9),
-      headCircumference: headCircumferencePercentile(p3: 43.1, p10: 43.8, p25: 44.5, p50: 45.4, p75: 46.2, p90: 47.0, p97: 47.8),
+      headCircumference: HeadCircumferencePercentile(p3: 43.1, p10: 43.8, p25: 44.5, p50: 45.4, p75: 46.2, p90: 47.0, p97: 47.8),
       bmi: BMIPercentiles(p3: 14.4, p10: 15.0, p25: 15.7, p50: 16.5, p75: 17.4, p90: 18.4, p97: 19.4)
     ),
     GrowthReference(
@@ -485,7 +485,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 72.5, p10: 74.1, p25: 75.7, p50: 77.5, p75: 79.3, p90: 81.0, p97: 82.6),
       weight: WeightPercentiles(p3: 8.1, p10: 8.6, p25: 9.2, p50: 9.8, p75: 10.6, p90: 11.3, p97: 12.2),
-      headCircumference: headCircumferencePercentile(p3: 43.3, p10: 44.1, p25: 44.8, p50: 45.6, p75: 46.5, p90: 47.3, p97: 48.0),
+      headCircumference: HeadCircumferencePercentile(p3: 43.3, p10: 44.1, p25: 44.8, p50: 45.6, p75: 46.5, p90: 47.3, p97: 48.0),
       bmi: BMIPercentiles(p3: 14.3, p10: 14.9, p25: 15.6, p50: 16.4, p75: 17.3, p90: 18.2, p97: 19.2)
     ),
     GrowthReference(
@@ -493,7 +493,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 73.5, p10: 75.2, p25: 76.8, p50: 78.6, p75: 80.5, p90: 82.1, p97: 83.8),
       weight: WeightPercentiles(p3: 8.3, p10: 8.8, p25: 9.3, p50: 10.0, p75: 10.8, p90: 11.6, p97: 12.4),
-      headCircumference: headCircumferencePercentile(p3: 43.5, p10: 44.3, p25: 45.0, p50: 45.9, p75: 46.7, p90: 47.5, p97: 48.3),
+      headCircumference: HeadCircumferencePercentile(p3: 43.5, p10: 44.3, p25: 45.0, p50: 45.9, p75: 46.7, p90: 47.5, p97: 48.3),
       bmi: BMIPercentiles(p3: 14.2, p10: 14.8, p25: 15.5, p50: 16.3, p75: 17.2, p90: 18.1, p97: 19.0)
     ),
     GrowthReference(
@@ -501,7 +501,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 74.6, p10: 76.2, p25: 77.9, p50: 79.7, p75: 81.6, p90: 83.3, p97: 84.9),
       weight: WeightPercentiles(p3: 8.4, p10: 9.0, p25: 9.5, p50: 10.3, p75: 11.0, p90: 11.8, p97: 12.7),
-      headCircumference: headCircumferencePercentile(p3: 43.7, p10: 44.5, p25: 45.2, p50: 46.1, p75: 46.9, p90: 47.7, p97: 48.5),
+      headCircumference: HeadCircumferencePercentile(p3: 43.7, p10: 44.5, p25: 45.2, p50: 46.1, p75: 46.9, p90: 47.7, p97: 48.5),
       bmi: BMIPercentiles(p3: 14.1, p10: 14.7, p25: 15.4, p50: 16.2, p75: 17.0, p90: 17.9, p97: 18.9)
     ),
     GrowthReference(
@@ -509,7 +509,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 75.5, p10: 77.2, p25: 78.9, p50: 80.8, p75: 82.7, p90: 84.4, p97: 86.1),
       weight: WeightPercentiles(p3: 8.6, p10: 9.1, p25: 9.7, p50: 10.5, p75: 11.3, p90: 12.1, p97: 12.9),
-      headCircumference: headCircumferencePercentile(p3: 43.9, p10: 44.6, p25: 45.4, p50: 46.2, p75: 47.1, p90: 47.9, p97: 48.7),
+      headCircumference: HeadCircumferencePercentile(p3: 43.9, p10: 44.6, p25: 45.4, p50: 46.2, p75: 47.1, p90: 47.9, p97: 48.7),
       bmi: BMIPercentiles(p3: 14.0, p10: 14.6, p25: 15.3, p50: 16.0, p75: 16.9, p90: 17.8, p97: 18.7)
     ),
     GrowthReference(
@@ -517,7 +517,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 76.5, p10: 78.2, p25: 79.9, p50: 81.9, p75: 83.8, p90: 85.5, p97: 87.2),
       weight: WeightPercentiles(p3: 8.8, p10: 9.3, p25: 9.9, p50: 10.7, p75: 11.5, p90: 12.3, p97: 13.2),
-      headCircumference: headCircumferencePercentile(p3: 44.1, p10: 44.8, p25: 45.6, p50: 46.4, p75: 47.3, p90: 48.1, p97: 48.8),
+      headCircumference: HeadCircumferencePercentile(p3: 44.1, p10: 44.8, p25: 45.6, p50: 46.4, p75: 47.3, p90: 48.1, p97: 48.8),
       bmi: BMIPercentiles(p3: 14.0, p10: 14.5, p25: 15.2, p50: 15.9, p75: 16.8, p90: 17.7, p97: 18.6)
     ),
     GrowthReference(
@@ -525,7 +525,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 77.5, p10: 79.2, p25: 80.9, p50: 82.9, p75: 84.8, p90: 86.6, p97: 88.3),
       weight: WeightPercentiles(p3: 9.0, p10: 9.5, p25: 10.1, p50: 10.9, p75: 11.7, p90: 12.6, p97: 13.5),
-      headCircumference: headCircumferencePercentile(p3: 44.2, p10: 45.0, p25: 45.7, p50: 46.6, p75: 47.4, p90: 48.2, p97: 49.0),
+      headCircumference: HeadCircumferencePercentile(p3: 44.2, p10: 45.0, p25: 45.7, p50: 46.6, p75: 47.4, p90: 48.2, p97: 49.0),
       bmi: BMIPercentiles(p3: 13.9, p10: 14.5, p25: 15.1, p50: 15.9, p75: 16.7, p90: 17.6, p97: 18.5)
     ),
     GrowthReference(
@@ -533,7 +533,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 78.4, p10: 80.2, p25: 81.9, p50: 83.9, p75: 85.9, p90: 87.6, p97: 89.4),
       weight: WeightPercentiles(p3: 9.1, p10: 9.7, p25: 10.3, p50: 11.1, p75: 12.0, p90: 12.8, p97: 13.8),
-      headCircumference: headCircumferencePercentile(p3: 44.4, p10: 45.1, p25: 45.9, p50: 46.7, p75: 47.6, p90: 48.4, p97: 49.2),
+      headCircumference: HeadCircumferencePercentile(p3: 44.4, p10: 45.1, p25: 45.9, p50: 46.7, p75: 47.6, p90: 48.4, p97: 49.2),
       bmi: BMIPercentiles(p3: 13.8, p10: 14.4, p25: 15.0, p50: 15.8, p75: 16.6, p90: 17.5, p97: 18.4)
     ),
     GrowthReference(
@@ -541,7 +541,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 79.3, p10: 81.1, p25: 82.9, p50: 84.9, p75: 86.9, p90: 88.7, p97: 90.4),
       weight: WeightPercentiles(p3: 9.3, p10: 9.9, p25: 10.5, p50: 11.3, p75: 12.2, p90: 13.1, p97: 14.0),
-      headCircumference: headCircumferencePercentile(p3: 44.6, p10: 45.3, p25: 46.1, p50: 46.9, p75: 47.8, p90: 48.6, p97: 49.4),
+      headCircumference: HeadCircumferencePercentile(p3: 44.6, p10: 45.3, p25: 46.1, p50: 46.9, p75: 47.8, p90: 48.6, p97: 49.4),
       bmi: BMIPercentiles(p3: 13.8, p10: 14.3, p25: 14.9, p50: 15.7, p75: 16.5, p90: 17.4, p97: 18.3)
     ),
     GrowthReference(
@@ -549,7 +549,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 80.2, p10: 82.0, p25: 83.8, p50: 85.8, p75: 87.9, p90: 89.7, p97: 91.5),
       weight: WeightPercentiles(p3: 9.5, p10: 10.1, p25: 10.7, p50: 11.5, p75: 12.4, p90: 13.3, p97: 14.3),
-      headCircumference: headCircumferencePercentile(p3: 44.7, p10: 45.4, p25: 46.2, p50: 47.1, p75: 47.9, p90: 48.7, p97: 49.5),
+      headCircumference: HeadCircumferencePercentile(p3: 44.7, p10: 45.4, p25: 46.2, p50: 47.1, p75: 47.9, p90: 48.7, p97: 49.5),
       bmi: BMIPercentiles(p3: 13.7, p10: 14.3, p25: 14.9, p50: 15.6, p75: 16.5, p90: 17.3, p97: 18.2)
     ),
     GrowthReference(
@@ -557,7 +557,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 81.1, p10: 82.9, p25: 84.7, p50: 86.8, p75: 88.8, p90: 90.7, p97: 92.5),
       weight: WeightPercentiles(p3: 9.7, p10: 10.3, p25: 10.9, p50: 11.7, p75: 12.6, p90: 13.6, p97: 14.6),
-      headCircumference: headCircumferencePercentile(p3: 44.8, p10: 45.6, p25: 46.3, p50: 47.2, p75: 48.1, p90: 48.9, p97: 49.7),
+      headCircumference: HeadCircumferencePercentile(p3: 44.8, p10: 45.6, p25: 46.3, p50: 47.2, p75: 48.1, p90: 48.9, p97: 49.7),
       bmi: BMIPercentiles(p3: 13.7, p10: 14.2, p25: 14.8, p50: 15.6, p75: 16.4, p90: 17.2, p97: 18.1)
     ),
     GrowthReference(
@@ -565,7 +565,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 81.2, p10: 83.0, p25: 84.9, p50: 87.0, p75: 89.1, p90: 90.9, p97: 92.8),
       weight: WeightPercentiles(p3: 9.8, p10: 10.4, p25: 11.1, p50: 11.9, p75: 12.9, p90: 13.8, p97: 14.8),
-      headCircumference: headCircumferencePercentile(p3: 45.0, p10: 45.7, p25: 46.5, p50: 47.3, p75: 48.2, p90: 49.0, p97: 49.8),
+      headCircumference: HeadCircumferencePercentile(p3: 45.0, p10: 45.7, p25: 46.5, p50: 47.3, p75: 48.2, p90: 49.0, p97: 49.8),
       bmi: BMIPercentiles(p3: 13.8, p10: 14.4, p25: 15.0, p50: 15.8, p75: 16.6, p90: 17.4, p97: 18.4)
     ),
     GrowthReference(
@@ -573,7 +573,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 83.6, p10: 85.5, p25: 87.4, p50: 89.5, p75: 91.7, p90: 93.6, p97: 95.5),
       weight: WeightPercentiles(p3: 10.3, p10: 10.9, p25: 11.6, p50: 12.5, p75: 13.5, p90: 14.4, p97: 15.5),
-      headCircumference: headCircumferencePercentile(p3: 45.3, p10: 46.0, p25: 46.8, p50: 47.6, p75: 48.5, p90: 49.3, p97: 50.2),
+      headCircumference: HeadCircumferencePercentile(p3: 45.3, p10: 46.0, p25: 46.8, p50: 47.6, p75: 48.5, p90: 49.3, p97: 50.2),
       bmi: BMIPercentiles(p3: 13.7, p10: 14.2, p25: 14.8, p50: 15.6, p75: 16.4, p90: 17.3, p97: 18.2)
     ),
     GrowthReference(
@@ -581,7 +581,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 85.7, p10: 87.7, p25: 89.7, p50: 91.9, p75: 94.1, p90: 96.1, p97: 98.1),
       weight: WeightPercentiles(p3: 10.7, p10: 11.4, p25: 12.1, p50: 13.0, p75: 14.1, p90: 15.1, p97: 16.2),
-      headCircumference: headCircumferencePercentile(p3: 45.5, p10: 46.3, p25: 47.1, p50: 47.9, p75: 48.8, p90: 49.7, p97: 50.5),
+      headCircumference: HeadCircumferencePercentile(p3: 45.5, p10: 46.3, p25: 47.1, p50: 47.9, p75: 48.8, p90: 49.7, p97: 50.5),
       bmi: BMIPercentiles(p3: 13.6, p10: 14.1, p25: 14.7, p50: 15.5, p75: 16.3, p90: 17.1, p97: 18.0)
     ),
     GrowthReference(
@@ -589,7 +589,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 87.7, p10: 89.8, p25: 91.8, p50: 94.1, p75: 96.4, p90: 98.4, p97: 100.5),
       weight: WeightPercentiles(p3: 11.1, p10: 11.8, p25: 12.6, p50: 13.6, p75: 14.6, p90: 15.7, p97: 16.9),
-      headCircumference: headCircumferencePercentile(p3: 45.8, p10: 46.6, p25: 47.3, p50: 48.2, p75: 49.1, p90: 49.9, p97: 50.8),
+      headCircumference: HeadCircumferencePercentile(p3: 45.8, p10: 46.6, p25: 47.3, p50: 48.2, p75: 49.1, p90: 49.9, p97: 50.8),
       bmi: BMIPercentiles(p3: 13.5, p10: 14.0, p25: 14.6, p50: 15.4, p75: 16.2, p90: 17.0, p97: 17.9)
     ),
     GrowthReference(
@@ -597,7 +597,7 @@ extension GrowthReference {
       biologicalSex: .female,
       height: HeightPercentiles(p3: 89.7, p10: 91.8, p25: 93.9, p50: 96.2, p75: 98.5, p90: 100.7, p97: 102.7),
       weight: WeightPercentiles(p3: 11.5, p10: 12.3, p25: 13.1, p50: 14.1, p75: 15.3, p90: 16.4, p97: 17.7),
-      headCircumference: headCircumferencePercentile(p3: 46.1, p10: 46.8, p25: 47.6, p50: 48.5, p75: 49.4, p90: 50.3, p97: 51.1),
+      headCircumference: HeadCircumferencePercentile(p3: 46.1, p10: 46.8, p25: 47.6, p50: 48.5, p75: 49.4, p90: 50.3, p97: 51.1),
       bmi: BMIPercentiles(p3: 13.4, p10: 13.9, p25: 14.5, p50: 15.3, p75: 16.1, p90: 16.9, p97: 17.9)
     ),
     GrowthReference(

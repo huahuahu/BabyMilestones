@@ -35,7 +35,7 @@ struct PercentileValues<Unit: MeasurementUnitType>: Codable {
 
 // 便捷类型别名
 typealias HeightPercentiles = PercentileValues<Centimeter>
-typealias headCircumferencePercentile = PercentileValues<Centimeter>
+typealias HeadCircumferencePercentile = PercentileValues<Centimeter>
 typealias WeightPercentiles = PercentileValues<Kilogram>
 typealias BMIPercentiles = PercentileValues<BMI>
 
@@ -44,7 +44,7 @@ struct GrowthReference: Codable { // 单一年龄性别标准
   let biologicalSex: BiologicalSex // male/female
   let height: HeightPercentiles
   let weight: WeightPercentiles
-  let headCircumference: headCircumferencePercentile?
+  let headCircumference: HeadCircumferencePercentile?
   let bmi: BMIPercentiles
 }
 
