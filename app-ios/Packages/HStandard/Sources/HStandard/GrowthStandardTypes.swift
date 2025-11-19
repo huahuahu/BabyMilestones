@@ -15,19 +15,19 @@ public enum Centimeter: MeasurementUnitType {
 }
 
 public enum BMI: MeasurementUnitType {
-    public static let unitString: String = "kg/m2"
+  public static let unitString: String = "kg/m2"
 }
 
 // 使用幽灵类型，将单位编码在类型中
-struct PercentileValues<Unit: MeasurementUnitType> : Codable  {
+struct PercentileValues<Unit: MeasurementUnitType>: Codable {
   let p3: Double
   let p10: Double
-    let p25: Double
+  let p25: Double
   let p50: Double
-    let p75: Double
+  let p75: Double
   let p90: Double
   let p97: Double
-  
+
   var unit: String {
     Unit.unitString
   }
@@ -39,23 +39,20 @@ typealias headCircumferencePercentile = PercentileValues<Centimeter>
 typealias WeightPercentiles = PercentileValues<Kilogram>
 typealias BMIPercentiles = PercentileValues<BMI>
 
-
 struct GrowthReference: Codable { // 单一年龄性别标准
   let ageMonth: Int // 统一转为月
   let biologicalSex: BiologicalSex // male/female
   let height: HeightPercentiles
   let weight: WeightPercentiles
   let headCircumference: headCircumferencePercentile?
-    let bmi: BMIPercentiles
+  let bmi: BMIPercentiles
 }
 
 struct WeightForHeightReference: Codable {
-    let height: Double
-    let biologicalSex: BiologicalSex
-    let weight: WeightPercentiles
+  let height: Double
+  let biologicalSex: BiologicalSex
+  let weight: WeightPercentiles
 }
-
-
 
 enum BiologicalSex: CaseIterable, Hashable, Identifiable, Codable {
   case male
