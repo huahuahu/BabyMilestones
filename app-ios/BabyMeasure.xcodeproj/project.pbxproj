@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		601769132EC707CB004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 601769122EC707CB004C9DC4 /* HStorage */; };
 		6017696F2EC72586004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6017696E2EC72586004C9DC4 /* HStorage */; };
+		60C49F382EC72B2C003FF028 /* HStandard in Frameworks */ = {isa = PBXBuildFile; productRef = 60C49F372EC72B2C003FF028 /* HStandard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BabyMeasure.xctestplan; sourceTree = "<group>"; };
+		60C49F362EC72AC3003FF028 /* HStandard */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HStandard; path = Packages/HStandard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C49F382EC72B2C003FF028 /* HStandard in Frameworks */,
 				6017696F2EC72586004C9DC4 /* HStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +94,7 @@
 		607D48A52E8A2D1E00B5746D = {
 			isa = PBXGroup;
 			children = (
+				60C49F362EC72AC3003FF028 /* HStandard */,
 				601769102EC7076F004C9DC4 /* HStorage */,
 				60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */,
 				607D48B02E8A2D1E00B5746D /* BabyMeasure */,
@@ -156,6 +160,7 @@
 			name = BabyMeasureTests;
 			packageProductDependencies = (
 				6017696E2EC72586004C9DC4 /* HStorage */,
+				60C49F372EC72B2C003FF028 /* HStandard */,
 			);
 			productName = BabyMeasureTests;
 			productReference = 607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */;
@@ -642,6 +647,10 @@
 		6017696E2EC72586004C9DC4 /* HStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HStorage;
+		};
+		60C49F372EC72B2C003FF028 /* HStandard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HStandard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
