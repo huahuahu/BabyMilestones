@@ -42,12 +42,19 @@ typealias BMIPercentiles = PercentileValues<BMI>
 
 struct GrowthReference: Codable { // 单一年龄性别标准
   let ageMonth: Int // 统一转为月
-  let gender: BiologicalSex // male/female
+  let biologicalSex: BiologicalSex // male/female
   let height: HeightPercentiles
   let weight: WeightPercentiles
   let headCircumference: headCircumferencePercentile?
     let bmi: BMIPercentiles
 }
+
+struct WeightForHeightReference: Codable {
+    let height: Double
+    let biologicalSex: BiologicalSex
+    let weight: WeightPercentiles
+}
+
 
 
 enum BiologicalSex: CaseIterable, Hashable, Identifiable, Codable {
