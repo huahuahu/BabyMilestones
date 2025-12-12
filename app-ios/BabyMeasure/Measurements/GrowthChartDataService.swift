@@ -103,13 +103,13 @@ class GrowthChartDataService {
     }
 
     return InterpolatedValues(
-      p3: lerp(start: lowerVal.p3, end: upperVal.p3, t: fraction),
-      p10: lerp(start: lowerVal.p10, end: upperVal.p10, t: fraction),
-      p25: lerp(start: lowerVal.p25, end: upperVal.p25, t: fraction),
-      p50: lerp(start: lowerVal.p50, end: upperVal.p50, t: fraction),
-      p75: lerp(start: lowerVal.p75, end: upperVal.p75, t: fraction),
-      p90: lerp(start: lowerVal.p90, end: upperVal.p90, t: fraction),
-      p97: lerp(start: lowerVal.p97, end: upperVal.p97, t: fraction)
+      p3: lerp(start: lowerVal.p3, end: upperVal.p3, fraction: fraction),
+      p10: lerp(start: lowerVal.p10, end: upperVal.p10, fraction: fraction),
+      p25: lerp(start: lowerVal.p25, end: upperVal.p25, fraction: fraction),
+      p50: lerp(start: lowerVal.p50, end: upperVal.p50, fraction: fraction),
+      p75: lerp(start: lowerVal.p75, end: upperVal.p75, fraction: fraction),
+      p90: lerp(start: lowerVal.p90, end: upperVal.p90, fraction: fraction),
+      p97: lerp(start: lowerVal.p97, end: upperVal.p97, fraction: fraction)
     )
   }
 
