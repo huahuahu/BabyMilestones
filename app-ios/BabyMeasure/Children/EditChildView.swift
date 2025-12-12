@@ -22,8 +22,8 @@ struct EditChildView: View {
     self.child = child
     _name = State(initialValue: child.name)
     _birthday = State(initialValue: child.birthday)
-    if let raw = child.genderRaw, let g = Gender(rawValue: raw) {
-      _gender = State(initialValue: g)
+    if let raw = child.genderRaw, let gender = Gender(rawValue: raw) {
+      _gender = State(initialValue: gender)
     } else {
       _gender = State(initialValue: .unspecified)
     }

@@ -11,8 +11,8 @@ final class MeasurementRangeTests: XCTestCase {
     XCTAssertEqual(MeasurementType.headCircumference.acceptableRange, 25 ... 60)
   }
 
-  func testOutOfRangeDetection() {
-    let heightRange = MeasurementType.height.acceptableRange!
+  func testOutOfRangeDetection() throws {
+    let heightRange = try XCTUnwrap(MeasurementType.height.acceptableRange)
     XCTAssertFalse(heightRange.contains(10))
     XCTAssertTrue(heightRange.contains(120))
   }
