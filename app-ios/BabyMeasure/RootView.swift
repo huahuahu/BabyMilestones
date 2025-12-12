@@ -5,16 +5,17 @@ import SwiftUI
 struct RootView: View {
   @Environment(\.modelContext) private var modelContext
   @Query(sort: \ChildEntity.createdAt) private var children: [ChildEntity]
-  @State private var selectedChild: ChildEntity?
+  @State private var selectedChildState = SelectedChildState()
   @State private var showingAddChild = false
   @State private var showingAddRecord = false
 
   var body: some View {
+    @Bindable var state = selectedChildState
     NavigationStack {
       VStack(spacing: 0) {
-        ChildHeader(selected: $selectedChild, children: children) { selectedChild = $0 }
+        ChildHeader(selected: $state.current, children: children) { state.select($0) }
         Divider()
-        if let child = selectedChild {
+        if let child = state.current {
           RecordHistoryView(child: child)
         } else {
           ContentUnavailableView("未选择儿童", systemImage: "person.crop.circle.badge.exclam", description: Text("请先添加或选择儿童"))
@@ -24,12 +25,12 @@ struct RootView: View {
       .navigationTitle("记录")
       .toolbar {
         ToolbarItemGroup(placement: .topBarTrailing) {
-          if let child = selectedChild {
+          if let child = state.current {
             NavigationLink("曲线", destination: GrowthChartView(child: child))
           }
           Button("添加儿童") { showingAddChild = true }
           Button("录入") { showingAddRecord = true }
-            .disabled(selectedChild == nil)
+            .disabled(state.current == nil)
         }
       }
       .sheet(isPresented: $showingAddChild) {
@@ -37,7 +38,7 @@ struct RootView: View {
           .presentationDetents([.medium, .large])
       }
       .sheet(isPresented: $showingAddRecord) {
-        if let child = selectedChild {
+        if let child = state.current {
           RecordEntryView(child: child)
             .presentationDetents([.medium])
         } else {
@@ -45,15 +46,16 @@ struct RootView: View {
         }
       }
       .onAppear {
-        if selectedChild == nil {
-          selectedChild = children.first
+        if state.current == nil {
+          state.current = children.first
         }
       }
       .onChange(of: children) {
-        if selectedChild == nil {
-          selectedChild = children.first
+        if state.current == nil {
+          state.current = children.first
         }
       }
+      .environment(selectedChildState)
     }
   }
 }
