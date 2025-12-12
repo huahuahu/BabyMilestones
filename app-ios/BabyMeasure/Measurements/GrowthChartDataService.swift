@@ -122,7 +122,7 @@ class GrowthChartDataService {
       let refWeight: WeightPercentiles = ref.weight
       return InterpolatedValues(p3: refWeight.p3, p10: refWeight.p10, p25: refWeight.p25, p50: refWeight.p50, p75: refWeight.p75, p90: refWeight.p90, p97: refWeight.p97)
     case .headCircumference:
-      guard let refHeadCircumference     = ref.headCircumference else { return nil }
+      guard let refHeadCircumference = ref.headCircumference else { return nil }
       return InterpolatedValues(p3: refHeadCircumference.p3, p10: refHeadCircumference.p10, p25: refHeadCircumference.p25, p50: refHeadCircumference.p50, p75: refHeadCircumference.p75, p90: refHeadCircumference.p90, p97: refHeadCircumference.p97)
     }
   }
