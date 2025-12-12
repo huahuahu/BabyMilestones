@@ -5,11 +5,22 @@ import SwiftData
 import SwiftUI
 
 enum ChartRange: String, CaseIterable, Identifiable {
-  case recent3Months = "近3个月"
-  case recent1Year = "近1年"
-  case all = "全部"
+  case recent3Months
+  case recent1Year
+  case all
 
   var id: String { rawValue }
+  
+  var displayName: String {
+    switch self {
+    case .recent3Months:
+      return String(localized: "growthchart.range.recent.3months")
+    case .recent1Year:
+      return String(localized: "growthchart.range.recent.1year")
+    case .all:
+      return String(localized: "growthchart.range.all")
+    }
+  }
 }
 
 struct GrowthChartView: View {
@@ -28,86 +39,46 @@ struct GrowthChartView: View {
     _measurements = Query(filter: #Predicate<MeasurementEntity> { $0.childId == childId }, sort: \.recordedAt)
   }
 
+  // MARK: - Subviews
+  
+  private var typePicker: some View {
+    let label = String(localized: "growthchart.type")
+    return Picker(label, selection: $selectedType) {
+      ForEach(MeasurementType.allCases, id: \.self) { type in
+        Text(type.displayName).tag(type)
+      }
+    }
+    .pickerStyle(.segmented)
+    .padding()
+    .accessibilityLabel(label)
+  }
+  
+  private var rangePicker: some View {
+    let label = String(localized: "timerange.section")
+    return Picker(label, selection: $selectedRange) {
+      ForEach(ChartRange.allCases) { range in
+        Text(range.displayName).tag(range)
+      }
+    }
+    .pickerStyle(.segmented)
+    .padding(.horizontal)
+    .accessibilityLabel(label)
+  }
+
   var body: some View {
     VStack {
-      Picker("测量类型", selection: $selectedType) {
-        ForEach(MeasurementType.allCases, id: \.self) { type in
-          Text(type.displayName).tag(type)
-        }
-      }
-      .pickerStyle(.segmented)
-      .padding()
-
-      Picker("时间范围", selection: $selectedRange) {
-        ForEach(ChartRange.allCases) { range in
-          Text(range.rawValue).tag(range)
-        }
-      }
-      .pickerStyle(.segmented)
-      .padding(.horizontal)
+      typePicker
+      rangePicker
 
       if filteredMeasurements.isEmpty, standardSeries.isEmpty {
-        ContentUnavailableView("暂无数据", systemImage: "chart.xyaxis.line", description: Text("添加记录以查看生长曲线"))
+        emptyView
       } else {
-        Chart {
-          // Standard Percentiles
-          ForEach(standardSeries) { series in
-            ForEach(series.points) { point in
-              LineMark(
-                x: .value("年龄(天)", point.ageDays),
-                y: .value("数值", point.value),
-                series: .value("百分位", series.label)
-              )
-              .foregroundStyle(by: .value("百分位", series.label))
-              .interpolationMethod(.catmullRom)
-              .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 5]))
-            }
-          }
-
-          // User Measurements
-          ForEach(filteredMeasurements) { measurement in
-            if let ageDays = daysSinceBirth(date: measurement.recordedAt), ageDays >= 0 {
-              PointMark(
-                x: .value("年龄(天)", ageDays),
-                y: .value("数值", measurement.value)
-              )
-              .foregroundStyle(.blue)
-              .symbolSize(50)
-            }
-          }
-        }
-        .chartForegroundStyleScale([
-          "P3": .gray.opacity(0.3),
-          "P10": .gray.opacity(0.4),
-          "P25": .gray.opacity(0.5),
-          "P50": .green,
-          "P75": .gray.opacity(0.5),
-          "P90": .gray.opacity(0.4),
-          "P97": .gray.opacity(0.3),
-        ])
-        .chartXAxis {
-          AxisMarks(values: .automatic) { value in
-            if let doubleValue = value.as(Double.self) {
-              AxisValueLabel {
-                Text(formatAge(days: doubleValue))
-              }
-            }
-            AxisGridLine()
-            AxisTick()
-          }
-        }
-        .chartYAxis {
-          AxisMarks { _ in
-            AxisValueLabel()
-            AxisGridLine()
-          }
-        }
-        .padding()
+        chartView
       }
 
-      Spacer()
+      SwiftUI.Spacer()
     }
-    .navigationTitle("生长曲线")
+    .navigationTitle(String(localized: "growthchart.title"))
     .task(id: selectedType) {
       await updateChartData()
     }
@@ -116,6 +87,87 @@ struct GrowthChartView: View {
     }
     .onAppear {
       Task { await updateChartData() }
+    }
+  }
+  
+  private var emptyView: some View {
+    ContentUnavailableView(
+      String(localized: "growthchart.empty.title"), 
+      systemImage: "chart.xyaxis.line", 
+      description: Text(String(localized: "growthchart.empty.description"))
+    )
+    .accessibilityLabel(String(localized: "growthchart.empty.title"))
+  }
+  
+  private var chartView: some View {
+    makeChart()
+      .chartForegroundStyleScale(percentileColors)
+      .chartXAxis { xAxisMarks }
+      .chartYAxis { yAxisMarks }
+      .padding()
+      .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+      .accessibilityElement(children: .contain)
+      .accessibilityLabel(String(localized: "growthchart.title"))
+  }
+  
+  private func makeChart() -> some View {
+    Chart {
+      ForEach(standardSeries) { series in
+        ForEach(series.points) { point in
+          LineMark(
+            x: .value("年龄(天)", point.ageDays),
+            y: .value("数值", point.value),
+            series: .value("百分位", series.label)
+          )
+          .foregroundStyle(by: .value("百分位", series.label))
+          .interpolationMethod(.catmullRom)
+          .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 5]))
+        }
+      }
+
+      ForEach(filteredMeasurements) { measurement in
+        if let ageDays = daysSinceBirth(date: measurement.recordedAt), ageDays >= 0 {
+          PointMark(
+            x: .value("年龄(天)", ageDays),
+            y: .value("数值", measurement.value)
+          )
+          .foregroundStyle(.blue)
+          .symbolSize(50)
+        }
+      }
+    }
+  }
+  
+  private var percentileColors: KeyValuePairs<String, Color> {
+    [
+      "P3": .gray.opacity(0.3),
+      "P10": .gray.opacity(0.4),
+      "P25": .gray.opacity(0.5),
+      "P50": .green,
+      "P75": .gray.opacity(0.5),
+      "P90": .gray.opacity(0.4),
+      "P97": .gray.opacity(0.3),
+    ]
+  }
+  
+  @AxisContentBuilder
+  private var xAxisMarks: some AxisContent {
+    AxisMarks(values: .automatic) { value in
+      if let doubleValue = value.as(Double.self) {
+        AxisValueLabel {
+          Text(formatAge(days: doubleValue))
+        }
+      }
+      AxisGridLine()
+      AxisTick()
+    }
+  }
+  
+  @AxisContentBuilder
+  private var yAxisMarks: some AxisContent {
+    AxisMarks { _ in
+      AxisValueLabel()
+      AxisGridLine()
     }
   }
 

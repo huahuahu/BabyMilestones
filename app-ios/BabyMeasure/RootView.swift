@@ -19,22 +19,36 @@ struct RootView: View {
         if let child = state.current {
           RecordHistoryView(child: child)
         } else {
-          ContentUnavailableView("未选择儿童", systemImage: "person.crop.circle.badge.exclam", description: Text("请先添加或选择儿童"))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+          ContentUnavailableView(
+            String(localized: "child.none.title"), 
+            systemImage: "person.crop.circle.badge.exclam", 
+            description: Text(String(localized: "child.none.description"))
+          )
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .accessibilityLabel(String(localized: "child.none.title"))
         }
       }
-      .navigationTitle("记录")
+      .navigationTitle(String(localized: "root.title"))
+      .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItemGroup(placement: .topBarLeading) {
-          Button("导出", systemImage: "square.and.arrow.up") { showingExport = true }
+          Button(String(localized: "export.button"), systemImage: "square.and.arrow.up") { 
+            showingExport = true 
+          }
+          .accessibilityLabel(String(localized: "export.button"))
         }
+        ToolbarSpacer()
         ToolbarItemGroup(placement: .topBarTrailing) {
           if let child = state.current {
-            NavigationLink("曲线", destination: GrowthChartView(child: child))
+            NavigationLink(String(localized: "root.chart.button"), destination: GrowthChartView(child: child))
+              .accessibilityLabel(String(localized: "root.chart.button"))
           }
-          Button("添加儿童") { showingAddChild = true }
-          Button("录入") { showingAddRecord = true }
+          Button(String(localized: "child.add.button")) { showingAddChild = true }
+            .accessibilityLabel(String(localized: "child.add.button"))
+          Button(String(localized: "record.entry.button")) { showingAddRecord = true }
+            .buttonStyle(.glass)
             .disabled(state.current == nil)
+            .accessibilityLabel(String(localized: "record.entry.button"))
         }
       }
       .sheet(isPresented: $showingAddChild) {
@@ -46,7 +60,7 @@ struct RootView: View {
           RecordEntryView(child: child)
             .presentationDetents([.medium])
         } else {
-          Text("未选择儿童")
+          Text(String(localized: "child.none.title"))
         }
       }
       .sheet(isPresented: $showingExport) {
