@@ -2,7 +2,7 @@
 // https://docs.swift.org/swift-book
 
 // 单位标记类型
-public protocol MeasurementUnitType {
+public protocol MeasurementUnitType: Sendable {
   static var unitString: String { get }
 }
 
@@ -19,14 +19,14 @@ public enum BMI: MeasurementUnitType {
 }
 
 // 使用幽灵类型，将单位编码在类型中
-struct PercentileValues<Unit: MeasurementUnitType>: Codable {
-  let p3: Double
-  let p10: Double
-  let p25: Double
-  let p50: Double
-  let p75: Double
-  let p90: Double
-  let p97: Double
+public struct PercentileValues<Unit: MeasurementUnitType>: Codable, Sendable {
+  public let p3: Double
+  public let p10: Double
+  public let p25: Double
+  public let p50: Double
+  public let p75: Double
+  public let p90: Double
+  public let p97: Double
 
   var unit: String {
     Unit.unitString
@@ -34,31 +34,31 @@ struct PercentileValues<Unit: MeasurementUnitType>: Codable {
 }
 
 // 便捷类型别名
-typealias HeightPercentiles = PercentileValues<Centimeter>
-typealias HeadCircumferencePercentile = PercentileValues<Centimeter>
-typealias WeightPercentiles = PercentileValues<Kilogram>
-typealias BMIPercentiles = PercentileValues<BMI>
+public typealias HeightPercentiles = PercentileValues<Centimeter>
+public typealias HeadCircumferencePercentile = PercentileValues<Centimeter>
+public typealias WeightPercentiles = PercentileValues<Kilogram>
+public typealias BMIPercentiles = PercentileValues<BMI>
 
-struct GrowthReference: Codable { // 单一年龄性别标准
-  let ageMonth: Int // 统一转为月
-  let biologicalSex: BiologicalSex // male/female
-  let height: HeightPercentiles
-  let weight: WeightPercentiles
-  let headCircumference: HeadCircumferencePercentile?
-  let bmi: BMIPercentiles
+public struct GrowthReference: Codable, Sendable { // 单一年龄性别标准
+  public let ageMonth: Int // 统一转为月
+  public let biologicalSex: BiologicalSex // male/female
+  public let height: HeightPercentiles
+  public let weight: WeightPercentiles
+  public let headCircumference: HeadCircumferencePercentile?
+  public let bmi: BMIPercentiles
 }
 
-struct WeightForHeightReference: Codable {
+public struct WeightForHeightReference: Codable, Sendable {
   let height: Double
   let biologicalSex: BiologicalSex
   let weight: WeightPercentiles
 }
 
-enum BiologicalSex: CaseIterable, Hashable, Identifiable, Codable {
+public enum BiologicalSex: CaseIterable, Hashable, Identifiable, Codable, Sendable {
   case male
   case female
 
-  var id: Self {
+  public var id: Self {
     self
   }
 }
