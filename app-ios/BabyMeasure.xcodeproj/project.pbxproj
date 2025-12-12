@@ -10,17 +10,11 @@
 		601769132EC707CB004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 601769122EC707CB004C9DC4 /* HStorage */; };
 		6017696F2EC72586004C9DC4 /* HStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6017696E2EC72586004C9DC4 /* HStorage */; };
 		60C49F382EC72B2C003FF028 /* HStandard in Frameworks */ = {isa = PBXBuildFile; productRef = 60C49F372EC72B2C003FF028 /* HStandard */; };
+		60DF6FA52EEBF22A000CC140 /* HStandard in Frameworks */ = {isa = PBXBuildFile; productRef = 60DF6FA42EEBF22A000CC140 /* HStandard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		607D48BC2E8A2D2300B5746D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 607D48A62E8A2D1E00B5746D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 607D48AD2E8A2D1E00B5746D;
-			remoteInfo = BabyMeasure;
-		};
-		607D48C62E8A2D2300B5746D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607D48A62E8A2D1E00B5746D /* Project object */;
 			proxyType = 1;
@@ -33,7 +27,6 @@
 		601769102EC7076F004C9DC4 /* HStorage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HStorage; path = Packages/HStorage; sourceTree = "<group>"; };
 		607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyMeasure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyMeasureUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		60AE24CC2E8A741100004E52 /* BabyMeasure.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = BabyMeasure.xctestplan; sourceTree = "<group>"; };
 		60C49F362EC72AC3003FF028 /* HStandard */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HStandard; path = Packages/HStandard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60DF6FA52EEBF22A000CC140 /* HStandard in Frameworks */,
 				601769132EC707CB004C9DC4 /* HStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,13 +65,6 @@
 			files = (
 				60C49F382EC72B2C003FF028 /* HStandard in Frameworks */,
 				6017696F2EC72586004C9DC4 /* HStorage in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607D48C22E8A2D2300B5746D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +97,6 @@
 			children = (
 				607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */,
 				607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */,
-				607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +122,7 @@
 			name = BabyMeasure;
 			packageProductDependencies = (
 				601769122EC707CB004C9DC4 /* HStorage */,
+				60DF6FA42EEBF22A000CC140 /* HStandard */,
 			);
 			productName = BabyMeasure;
 			productReference = 607D48AE2E8A2D1E00B5746D /* BabyMeasure.app */;
@@ -166,29 +153,6 @@
 			productReference = 607D48BB2E8A2D2300B5746D /* BabyMeasureTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		607D48C42E8A2D2300B5746D /* BabyMeasureUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 607D48D52E8A2D2300B5746D /* Build configuration list for PBXNativeTarget "BabyMeasureUITests" */;
-			buildPhases = (
-				607D48C12E8A2D2300B5746D /* Sources */,
-				607D48C22E8A2D2300B5746D /* Frameworks */,
-				607D48C32E8A2D2300B5746D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				607D48C72E8A2D2300B5746D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				607D48C82E8A2D2300B5746D /* BabyMeasureUITests */,
-			);
-			name = BabyMeasureUITests;
-			packageProductDependencies = (
-			);
-			productName = BabyMeasureUITests;
-			productReference = 607D48C52E8A2D2300B5746D /* BabyMeasureUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,10 +167,6 @@
 						CreatedOnToolsVersion = 26.0;
 					};
 					607D48BA2E8A2D2300B5746D = {
-						CreatedOnToolsVersion = 26.0;
-						TestTargetID = 607D48AD2E8A2D1E00B5746D;
-					};
-					607D48C42E8A2D2300B5746D = {
 						CreatedOnToolsVersion = 26.0;
 						TestTargetID = 607D48AD2E8A2D1E00B5746D;
 					};
@@ -230,7 +190,6 @@
 			targets = (
 				607D48AD2E8A2D1E00B5746D /* BabyMeasure */,
 				607D48BA2E8A2D2300B5746D /* BabyMeasureTests */,
-				607D48C42E8A2D2300B5746D /* BabyMeasureUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -244,13 +203,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		607D48B92E8A2D2300B5746D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		607D48C32E8A2D2300B5746D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -274,13 +226,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		607D48C12E8A2D2300B5746D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,11 +233,6 @@
 			isa = PBXTargetDependency;
 			target = 607D48AD2E8A2D1E00B5746D /* BabyMeasure */;
 			targetProxy = 607D48BC2E8A2D2300B5746D /* PBXContainerItemProxy */;
-		};
-		607D48C72E8A2D2300B5746D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 607D48AD2E8A2D1E00B5746D /* BabyMeasure */;
-			targetProxy = 607D48C62E8A2D2300B5746D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -549,55 +489,6 @@
 			};
 			name = Release;
 		};
-		607D48D62E8A2D2300B5746D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.suzhou.BabyMeasureUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = BabyMeasure;
-				XROS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Debug;
-		};
-		607D48D72E8A2D2300B5746D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MACOSX_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tiger.suzhou.BabyMeasureUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = BabyMeasure;
-				XROS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,15 +519,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607D48D52E8A2D2300B5746D /* Build configuration list for PBXNativeTarget "BabyMeasureUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				607D48D62E8A2D2300B5746D /* Debug */,
-				607D48D72E8A2D2300B5746D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -649,6 +531,10 @@
 			productName = HStorage;
 		};
 		60C49F372EC72B2C003FF028 /* HStandard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HStandard;
+		};
+		60DF6FA42EEBF22A000CC140 /* HStandard */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HStandard;
 		};

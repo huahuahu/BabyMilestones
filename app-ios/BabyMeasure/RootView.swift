@@ -24,6 +24,9 @@ struct RootView: View {
       .navigationTitle("记录")
       .toolbar {
         ToolbarItemGroup(placement: .topBarTrailing) {
+          if let child = selectedChild {
+            NavigationLink("曲线", destination: GrowthChartView(child: child))
+          }
           Button("添加儿童") { showingAddChild = true }
           Button("录入") { showingAddRecord = true }
             .disabled(selectedChild == nil)
