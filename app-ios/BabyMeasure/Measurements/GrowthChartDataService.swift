@@ -116,14 +116,14 @@ class GrowthChartDataService {
   private static func extractValues(from ref: GrowthReference, type: MeasurementType) -> InterpolatedValues? {
     switch type {
     case .height:
-      let v = ref.height
-      return InterpolatedValues(p3: v.p3, p10: v.p10, p25: v.p25, p50: v.p50, p75: v.p75, p90: v.p90, p97: v.p97)
+      let refHeight = ref.height
+      return InterpolatedValues(p3: refHeight.p3, p10: refHeight.p10, p25: refHeight.p25, p50: refHeight.p50, p75: refHeight.p75, p90: refHeight.p90, p97: refHeight.p97)
     case .weight:
-      let v = ref.weight
-      return InterpolatedValues(p3: v.p3, p10: v.p10, p25: v.p25, p50: v.p50, p75: v.p75, p90: v.p90, p97: v.p97)
+      let refWeight: WeightPercentiles = ref.weight
+      return InterpolatedValues(p3: refWeight.p3, p10: refWeight.p10, p25: refWeight.p25, p50: refWeight.p50, p75: refWeight.p75, p90: refWeight.p90, p97: refWeight.p97)
     case .headCircumference:
-      guard let v = ref.headCircumference else { return nil }
-      return InterpolatedValues(p3: v.p3, p10: v.p10, p25: v.p25, p50: v.p50, p75: v.p75, p90: v.p90, p97: v.p97)
+      guard let refHeadCircumference     = ref.headCircumference else { return nil }
+      return InterpolatedValues(p3: refHeadCircumference.p3, p10: refHeadCircumference.p10, p25: refHeadCircumference.p25, p50: refHeadCircumference.p50, p75: refHeadCircumference.p75, p90: refHeadCircumference.p90, p97: refHeadCircumference.p97)
     }
   }
 
