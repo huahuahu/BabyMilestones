@@ -127,7 +127,7 @@ class GrowthChartDataService {
     }
   }
 
-  private static func lerp(start: Double, end: Double, t: Double) -> Double {
-    start + (end - start) * t
+  private static func lerp(start: Double, end: Double, fraction: Double) -> Double {
+    start + (end - start) * fraction
   }
 }
