@@ -19,7 +19,7 @@ public enum BMI: MeasurementUnitType {
 }
 
 // 使用幽灵类型，将单位编码在类型中
-public  struct PercentileValues<Unit: MeasurementUnitType>: Codable, Sendable {
+public struct PercentileValues<Unit: MeasurementUnitType>: Codable, Sendable {
   public let p3: Double
   public let p10: Double
   public let p25: Double
@@ -39,7 +39,7 @@ public typealias HeadCircumferencePercentile = PercentileValues<Centimeter>
 public typealias WeightPercentiles = PercentileValues<Kilogram>
 public typealias BMIPercentiles = PercentileValues<BMI>
 
-public  struct GrowthReference: Codable, Sendable { // 单一年龄性别标准
+public struct GrowthReference: Codable, Sendable { // 单一年龄性别标准
   public let ageMonth: Int // 统一转为月
   public let biologicalSex: BiologicalSex // male/female
   public let height: HeightPercentiles
@@ -48,7 +48,7 @@ public  struct GrowthReference: Codable, Sendable { // 单一年龄性别标准
   public let bmi: BMIPercentiles
 }
 
-public  struct WeightForHeightReference: Codable, Sendable {
+public struct WeightForHeightReference: Codable, Sendable {
   let height: Double
   let biologicalSex: BiologicalSex
   let weight: WeightPercentiles
