@@ -1,6 +1,6 @@
 ---
 description: 'Improve agility for the BabyMilestones project.'
-tools: ['runCommands', 'runTasks', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo', 'todos', 'runTests']
+tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'todo']
 ---
 The BabyMilestones project is an iOS application designed to help parents track their baby's developmental milestones. The project is built using Swift and follows modern iOS development practices.
 Your task is to assist in improving the agility by writing scripts, automating tasks, and enhancing the development workflow.

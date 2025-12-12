@@ -90,5 +90,10 @@
         "eval": false,
         "Invoke-Expression": false,
         "iex": false
+    },
+    "chat.mcp.serverSampling": {
+        "BabyMilestones/.vscode/mcp.json: XcodeBuildMCP": {
+            "allowedDuringChat": true
+        }
     }
 }
