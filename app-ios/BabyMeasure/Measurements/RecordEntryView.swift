@@ -53,7 +53,7 @@ struct RecordEntryView: View {
       }
       .navigationTitle(String(localized: "record.entry.title"))
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) { 
+        ToolbarItem(placement: .cancellationAction) {
           Button(String(localized: "common.cancel")) { dismiss() }
             .accessibilityLabel(String(localized: "common.cancel"))
         }

@@ -10,15 +10,15 @@ enum ChartRange: String, CaseIterable, Identifiable {
   case all
 
   var id: String { rawValue }
-  
+
   var displayName: String {
     switch self {
     case .recent3Months:
-      return String(localized: "growthchart.range.recent.3months")
+      String(localized: "growthchart.range.recent.3months")
     case .recent1Year:
-      return String(localized: "growthchart.range.recent.1year")
+      String(localized: "growthchart.range.recent.1year")
     case .all:
-      return String(localized: "growthchart.range.all")
+      String(localized: "growthchart.range.all")
     }
   }
 }
@@ -40,7 +40,7 @@ struct GrowthChartView: View {
   }
 
   // MARK: - Subviews
-  
+
   private var typePicker: some View {
     let label = String(localized: "growthchart.type")
     return Picker(label, selection: $selectedType) {
@@ -52,7 +52,7 @@ struct GrowthChartView: View {
     .padding()
     .accessibilityLabel(label)
   }
-  
+
   private var rangePicker: some View {
     let label = String(localized: "timerange.section")
     return Picker(label, selection: $selectedRange) {
@@ -89,16 +89,16 @@ struct GrowthChartView: View {
       Task { await updateChartData() }
     }
   }
-  
+
   private var emptyView: some View {
     ContentUnavailableView(
-      String(localized: "growthchart.empty.title"), 
-      systemImage: "chart.xyaxis.line", 
+      String(localized: "growthchart.empty.title"),
+      systemImage: "chart.xyaxis.line",
       description: Text(String(localized: "growthchart.empty.description"))
     )
     .accessibilityLabel(String(localized: "growthchart.empty.title"))
   }
-  
+
   private var chartView: some View {
     makeChart()
       .chartForegroundStyleScale(percentileColors)
@@ -109,7 +109,7 @@ struct GrowthChartView: View {
       .accessibilityElement(children: .contain)
       .accessibilityLabel(String(localized: "growthchart.title"))
   }
-  
+
   private func makeChart() -> some View {
     Chart {
       ForEach(standardSeries) { series in
@@ -137,7 +137,7 @@ struct GrowthChartView: View {
       }
     }
   }
-  
+
   private var percentileColors: KeyValuePairs<String, Color> {
     [
       "P3": .gray.opacity(0.3),
@@ -149,9 +149,8 @@ struct GrowthChartView: View {
       "P97": .gray.opacity(0.3),
     ]
   }
-  
-  @AxisContentBuilder
-  private var xAxisMarks: some AxisContent {
+
+  @AxisContentBuilder private var xAxisMarks: some AxisContent {
     AxisMarks(values: .automatic) { value in
       if let doubleValue = value.as(Double.self) {
         AxisValueLabel {
@@ -162,9 +161,8 @@ struct GrowthChartView: View {
       AxisTick()
     }
   }
-  
-  @AxisContentBuilder
-  private var yAxisMarks: some AxisContent {
+
+  @AxisContentBuilder private var yAxisMarks: some AxisContent {
     AxisMarks { _ in
       AxisValueLabel()
       AxisGridLine()

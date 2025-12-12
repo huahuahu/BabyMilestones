@@ -32,7 +32,7 @@ struct AddChildSheet: View {
           DatePicker(String(localized: "child.birthday"), selection: $birthday, in: ...Date(), displayedComponents: .date)
             .accessibilityLabel(String(localized: "child.birthday"))
         }
-        if let errorMessage { 
+        if let errorMessage {
           Text(errorMessage)
             .foregroundStyle(.red)
             .accessibilityLabel(errorMessage)
@@ -40,7 +40,7 @@ struct AddChildSheet: View {
       }
       .navigationTitle(String(localized: "child.add.title"))
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) { 
+        ToolbarItem(placement: .cancellationAction) {
           Button(String(localized: "common.cancel"), role: .cancel) { dismiss() }
             .accessibilityLabel(String(localized: "common.cancel"))
         }
@@ -57,13 +57,13 @@ struct AddChildSheet: View {
   private func save() {
     // Basic validation (mirrors former ChildStore logic)
     let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-    guard !trimmed.isEmpty else { 
+    guard !trimmed.isEmpty else {
       errorMessage = String(localized: "error.name.empty")
-      return 
+      return
     }
-    guard birthday <= Date() else { 
+    guard birthday <= Date() else {
       errorMessage = String(localized: "error.birthday.future")
-      return 
+      return
     }
     let child = ChildEntity(name: trimmed, genderRaw: gender == .unspecified ? nil : gender.rawValue, birthday: birthday)
     modelContext.insert(child)

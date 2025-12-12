@@ -22,8 +22,8 @@ struct RecordHistoryView: View {
     Group {
       if records.isEmpty {
         ContentUnavailableView(
-          String(localized: "history.empty.title"), 
-          systemImage: "list.bullet.circle", 
+          String(localized: "history.empty.title"),
+          systemImage: "list.bullet.circle",
           description: Text(String(localized: "history.empty.description"))
         )
         .accessibilityLabel(String(localized: "history.empty.title"))
@@ -58,8 +58,8 @@ struct RecordHistoryView: View {
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(typeName) \(valueString) \(unit)")
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-              Button(role: .destructive) { delete(rec) } label: { 
-                Label(String(localized: "record.delete"), systemImage: "trash") 
+              Button(role: .destructive) { delete(rec) } label: {
+                Label(String(localized: "record.delete"), systemImage: "trash")
               }
               .accessibilityLabel(String(localized: "record.delete"))
             }

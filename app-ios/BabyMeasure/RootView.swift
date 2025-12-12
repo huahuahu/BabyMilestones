@@ -20,8 +20,8 @@ struct RootView: View {
           RecordHistoryView(child: child)
         } else {
           ContentUnavailableView(
-            String(localized: "child.none.title"), 
-            systemImage: "person.crop.circle.badge.exclam", 
+            String(localized: "child.none.title"),
+            systemImage: "person.crop.circle.badge.exclam",
             description: Text(String(localized: "child.none.description"))
           )
           .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,8 +32,8 @@ struct RootView: View {
       .navigationBarTitleDisplayMode(.inline)
       .toolbar {
         ToolbarItemGroup(placement: .topBarLeading) {
-          Button(String(localized: "export.button"), systemImage: "square.and.arrow.up") { 
-            showingExport = true 
+          Button(String(localized: "export.button"), systemImage: "square.and.arrow.up") {
+            showingExport = true
           }
           .accessibilityLabel(String(localized: "export.button"))
         }
