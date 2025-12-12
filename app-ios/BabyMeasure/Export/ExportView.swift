@@ -23,10 +23,11 @@ struct ExportView: View {
         scopeSection
         exportButtonSection
       }
-      .navigationTitle("导出数据")
+      .navigationTitle(String(localized: "export.title"))
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button("取消") { dismiss() }
+          Button(String(localized: "common.cancel")) { dismiss() }
+            .accessibilityLabel(String(localized: "common.cancel"))
         }
       }
     }
@@ -36,38 +37,41 @@ struct ExportView: View {
 
   private var formatSection: some View {
     Section {
-      Picker("导出格式", selection: $exportFormat) {
+      Picker(String(localized: "export.format"), selection: $exportFormat) {
         ForEach(ExportFormat.allCases) { format in
           Text(format.displayName).tag(format)
         }
       }
       .pickerStyle(.segmented)
+      .accessibilityLabel(String(localized: "export.format"))
     } header: {
-      Text("格式")
+      Text(String(localized: "export.format.section"))
     } footer: {
       Text(exportFormat.description)
     }
   }
 
   private var scopeSection: some View {
-    Section("导出范围") {
-      Picker("范围", selection: $exportScope) {
-        Text("全部儿童").tag(ExportScope.all)
-        Text("单个儿童").tag(ExportScope.single)
+    Section(String(localized: "export.scope")) {
+      Picker(String(localized: "export.scope"), selection: $exportScope) {
+        Text(String(localized: "export.scope.all")).tag(ExportScope.all)
+        Text(String(localized: "export.scope.single")).tag(ExportScope.single)
       }
       .pickerStyle(.segmented)
+      .accessibilityLabel(String(localized: "export.scope"))
 
       if exportScope == .single {
         if allChildren.isEmpty {
-          Text("暂无儿童数据")
+          Text(String(localized: "no.children.data"))
             .foregroundStyle(.secondary)
         } else {
-          Picker("选择儿童", selection: $selectedChildId) {
-            Text("请选择").tag(nil as UUID?)
+          Picker(String(localized: "export.select.child"), selection: $selectedChildId) {
+            Text(String(localized: "export.select.placeholder")).tag(nil as UUID?)
             ForEach(allChildren) { child in
               Text(child.name).tag(child.id as UUID?)
             }
           }
+          .accessibilityLabel(String(localized: "export.select.child"))
         }
       }
     }
@@ -77,36 +81,45 @@ struct ExportView: View {
     Section {
       switch exportState {
       case .idle:
-        Button("生成导出文件", action: performExport)
+        Button(String(localized: "export.generate.button"), action: performExport)
+          .buttonStyle(.glass)
           .disabled(!canExport)
           .frame(maxWidth: .infinity)
+          .accessibilityLabel(String(localized: "export.generate.button"))
 
       case .exporting:
         HStack {
           ProgressView()
-          Text("正在生成...")
+          Text(String(localized: "export.generating"))
         }
         .frame(maxWidth: .infinity)
+        .accessibilityLabel(String(localized: "export.generating"))
 
       case .success:
         if let url = exportedFileURL {
           ShareLink(item: url) {
-            Label("分享文件", systemImage: "square.and.arrow.up")
+            Label(String(localized: "export.share.file"), systemImage: "square.and.arrow.up")
               .frame(maxWidth: .infinity)
           }
+          .buttonStyle(.glass)
+          .accessibilityLabel(String(localized: "export.share.file"))
 
-          Button("重新生成", action: resetExport)
+          Button(String(localized: "export.regenerate"), action: resetExport)
             .foregroundStyle(.secondary)
+            .accessibilityLabel(String(localized: "export.regenerate"))
         }
 
       case let .failure(error):
         VStack(spacing: 8) {
-          Label("导出失败", systemImage: "exclamationmark.triangle")
+          Label(String(localized: "export.failed"), systemImage: "exclamationmark.triangle")
             .foregroundStyle(.red)
+            .accessibilityLabel(String(localized: "export.failed"))
           Text(error)
             .font(.caption)
             .foregroundStyle(.secondary)
-          Button("重试", action: performExport)
+          Button(String(localized: "export.retry"), action: performExport)
+            .buttonStyle(.glass)
+            .accessibilityLabel(String(localized: "export.retry"))
         }
       }
     }
@@ -194,9 +207,9 @@ enum ExportFormat: String, CaseIterable, Identifiable {
   var description: String {
     switch self {
     case .csv:
-      "逗号分隔值格式，适合 Excel 等表格软件打开"
+      String(localized: "export.csv.description")
     case .json:
-      "结构化数据格式，适合程序处理和备份"
+      String(localized: "export.json.description")
     }
   }
 }
