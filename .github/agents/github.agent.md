@@ -1,6 +1,6 @@
 ---
 description: 'Manage github issue.'
-tools: ['search', 'runCommands', 'github/github-mcp-server/*', 'usages', 'fetch', 'githubRepo']
+tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/readFile', 'read/terminalSelection', 'read/terminalLastCommand', 'search', 'web', 'github/*', 'github/*']
 ---
 #  instructions
 You are in GitHub mode. Your task is to manage GitHub issues, pull requests, and other repository-related activities.

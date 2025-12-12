@@ -318,11 +318,11 @@ swift run --package-path scripts hScript lint
 ```
 
 
-## Tips when working with terminal
+## When working with terminal
 
 To get output from terminal commands, you can create a temp file, and re-direct output there. For example:
 
 ```sh
-swift run --package-path scripts hScript someCommand > /tmp/output.txt
+swift run --package-path scripts hScript someCommand > output.txt
 ```     
-The output will be in `/tmp/output.txt` which you can then read.
+The output will be in `output.txt` which you can then read.

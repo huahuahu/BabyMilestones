@@ -8,6 +8,7 @@ struct RootView: View {
   @State private var selectedChildState = SelectedChildState()
   @State private var showingAddChild = false
   @State private var showingAddRecord = false
+  @State private var showingExport = false
 
   var body: some View {
     @Bindable var state = selectedChildState
@@ -24,6 +25,9 @@ struct RootView: View {
       }
       .navigationTitle("记录")
       .toolbar {
+        ToolbarItemGroup(placement: .topBarLeading) {
+          Button("导出", systemImage: "square.and.arrow.up") { showingExport = true }
+        }
         ToolbarItemGroup(placement: .topBarTrailing) {
           if let child = state.current {
             NavigationLink("曲线", destination: GrowthChartView(child: child))
@@ -44,6 +48,9 @@ struct RootView: View {
         } else {
           Text("未选择儿童")
         }
+      }
+      .sheet(isPresented: $showingExport) {
+        ExportView()
       }
       .onAppear {
         if state.current == nil {
