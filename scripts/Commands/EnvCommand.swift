@@ -149,9 +149,9 @@ private func collectXcodeInfo() -> XcodeInfo {
 private func collectSimulatorInfo() -> [SimulatorInfo] {
   let result = run("/usr/bin/xcrun", ["simctl", "list", "devices", "--json"], quiet: true)
   guard result.code == 0,
-    let data = result.stdout.data(using: .utf8),
-    let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-    let devices = json["devices"] as? [String: Any]
+        let data = result.stdout.data(using: .utf8),
+        let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+        let devices = json["devices"] as? [String: Any]
   else {
     return []
   }
@@ -195,7 +195,8 @@ private func collectSwiftInfo() -> SwiftInfo {
      let data = targetResult.stdout.data(using: .utf8),
      let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
      let target = json["target"] as? [String: Any],
-     let triple = target["triple"] as? String {
+     let triple = target["triple"] as? String
+  {
     targetTriple = triple
   }
 
