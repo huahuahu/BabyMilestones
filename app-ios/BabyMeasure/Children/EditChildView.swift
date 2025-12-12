@@ -83,7 +83,8 @@ struct EditChildView: View {
       .onChange(of: avatarItem) {
         Task {
           if let data = try? await avatarItem?.loadTransferable(type: Data.self),
-             let uiImage = UIImage(data: data) {
+             let uiImage = UIImage(data: data)
+          {
             avatarImage = uiImage
           }
         }
