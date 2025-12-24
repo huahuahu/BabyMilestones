@@ -115,7 +115,7 @@ struct GrowthChartView: View {
     let valueLabel = String(localized: "数值", locale: locale)
     let percentileLabel = String(localized: "百分位", locale: locale)
 
-      return Chart {
+    return Chart {
       ForEach(standardSeries) { series in
         ForEach(series.points) { point in
           LineMark(
@@ -196,7 +196,7 @@ struct GrowthChartView: View {
     let formatter = DateComponentsFormatter()
     formatter.unitsStyle = .short
     formatter.maximumUnitCount = 2
-//    formatter.locale = locale
+    //    formatter.locale = locale
 
     if components.year == nil {
       formatter.allowedUnits = [.month]

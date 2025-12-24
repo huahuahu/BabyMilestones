@@ -95,7 +95,7 @@ struct SettingsTab: View {
 
       if selectedChildState.current?.id == child.id {
         Image(systemName: "checkmark.circle.fill")
-          .foregroundStyle(.green)
+          .foregroundStyle(Color.accentColor)
       }
     }
   }
