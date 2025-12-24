@@ -1,5 +1,6 @@
 import Foundation
 import HStorage
+import SwiftUI
 
 // MeasurementType defined in Domain/DraftModels.swift within same target.
 
@@ -15,15 +16,27 @@ public extension MeasurementType {
     }
   }
 
-  var displayName: String {
+  private var displayNameLocalizationKey: String {
     switch self {
     case .height:
-      String(localized: "身高")
+      "measurement.height"
     case .weight:
-      String(localized: "体重")
+      "measurement.weight"
     case .headCircumference:
-      String(localized: "头围")
+      "measurement.headCircumference"
     }
+  }
+
+  var displayNameKey: LocalizedStringKey {
+    LocalizedStringKey(displayNameLocalizationKey)
+  }
+
+  var displayNameString: String {
+    String(localized: String.LocalizationValue(displayNameLocalizationKey))
+  }
+
+  var displayName: String {
+    displayNameString
   }
 
   var unit: String {

@@ -12,7 +12,7 @@ struct AddChildSheet: View {
   @State private var name: String = ""
   @State private var birthday: Date = .now
   @State private var gender: Gender = .unspecified
-  @State private var errorMessage: String?
+  @State private var errorMessage: LocalizedStringKey?
 
   private var isValidName: Bool { !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
   private var isValidBirthday: Bool { birthday <= Date() }
@@ -20,35 +20,35 @@ struct AddChildSheet: View {
   var body: some View {
     NavigationStack {
       Form {
-        Section(String(localized: "child.info.basic")) {
-          TextField(String(localized: "child.name"), text: $name)
-            .accessibilityLabel(String(localized: "child.name"))
-          Picker(String(localized: "child.gender"), selection: $gender) {
+        Section("child.info.basic") {
+          TextField("child.name", text: $name)
+            .accessibilityLabel(Text("child.name"))
+          Picker("child.gender", selection: $gender) {
             ForEach(Array(Gender.allCases), id: \.self) { genderOption in
               Text(String(describing: genderOption))
             }
           }
-          .accessibilityLabel(String(localized: "child.gender"))
-          DatePicker(String(localized: "child.birthday"), selection: $birthday, in: ...Date(), displayedComponents: .date)
-            .accessibilityLabel(String(localized: "child.birthday"))
+          .accessibilityLabel(Text("child.gender"))
+          DatePicker("child.birthday", selection: $birthday, in: ...Date(), displayedComponents: .date)
+            .accessibilityLabel(Text("child.birthday"))
         }
         if let errorMessage {
           Text(errorMessage)
             .foregroundStyle(.red)
-            .accessibilityLabel(errorMessage)
+            .accessibilityLabel(Text(errorMessage))
         }
       }
-      .navigationTitle(String(localized: "child.add.title"))
+      .navigationTitle("child.add.title")
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "common.cancel"), role: .cancel) { dismiss() }
-            .accessibilityLabel(String(localized: "common.cancel"))
+          Button("common.cancel", role: .cancel) { dismiss() }
+            .accessibilityLabel(Text("common.cancel"))
         }
         ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "common.save")) { save() }
+          Button("common.save") { save() }
             .buttonStyle(.glass)
             .disabled(!isValidName || !isValidBirthday)
-            .accessibilityLabel(String(localized: "common.save"))
+            .accessibilityLabel(Text("common.save"))
         }
       }
     }
@@ -58,11 +58,11 @@ struct AddChildSheet: View {
     // Basic validation (mirrors former ChildStore logic)
     let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
     guard !trimmed.isEmpty else {
-      errorMessage = String(localized: "error.name.empty")
+      errorMessage = "error.name.empty"
       return
     }
     guard birthday <= Date() else {
-      errorMessage = String(localized: "error.birthday.future")
+      errorMessage = "error.birthday.future"
       return
     }
     let child = ChildEntity(name: trimmed, genderRaw: gender == .unspecified ? nil : gender.rawValue, birthday: birthday)
@@ -72,7 +72,7 @@ struct AddChildSheet: View {
       dismiss()
     } catch {
       // Map to a generic failure; could inspect specific errors if needed.
-      errorMessage = String(localized: "error.save.failed")
+      errorMessage = "error.save.failed"
     }
   }
 }

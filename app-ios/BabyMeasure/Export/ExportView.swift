@@ -23,11 +23,11 @@ struct ExportView: View {
         scopeSection
         exportButtonSection
       }
-      .navigationTitle(String(localized: "export.title"))
+      .navigationTitle("export.title")
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "common.cancel")) { dismiss() }
-            .accessibilityLabel(String(localized: "common.cancel"))
+          Button("common.cancel") { dismiss() }
+            .accessibilityLabel(Text("common.cancel"))
         }
       }
     }
@@ -37,41 +37,41 @@ struct ExportView: View {
 
   private var formatSection: some View {
     Section {
-      Picker(String(localized: "export.format"), selection: $exportFormat) {
+      Picker("export.format", selection: $exportFormat) {
         ForEach(ExportFormat.allCases) { format in
           Text(format.displayName).tag(format)
         }
       }
       .pickerStyle(.segmented)
-      .accessibilityLabel(String(localized: "export.format"))
+      .accessibilityLabel(Text("export.format"))
     } header: {
-      Text(String(localized: "export.format.section"))
+      Text("export.format.section")
     } footer: {
-      Text(exportFormat.description)
+      Text(exportFormat.descriptionKey)
     }
   }
 
   private var scopeSection: some View {
-    Section(String(localized: "export.scope")) {
-      Picker(String(localized: "export.scope"), selection: $exportScope) {
-        Text(String(localized: "export.scope.all")).tag(ExportScope.all)
-        Text(String(localized: "export.scope.single")).tag(ExportScope.single)
+    Section("export.scope") {
+      Picker("export.scope", selection: $exportScope) {
+        Text("export.scope.all").tag(ExportScope.all)
+        Text("export.scope.single").tag(ExportScope.single)
       }
       .pickerStyle(.segmented)
-      .accessibilityLabel(String(localized: "export.scope"))
+      .accessibilityLabel(Text("export.scope"))
 
       if exportScope == .single {
         if allChildren.isEmpty {
-          Text(String(localized: "no.children.data"))
+          Text("no.children.data")
             .foregroundStyle(.secondary)
         } else {
-          Picker(String(localized: "export.select.child"), selection: $selectedChildId) {
-            Text(String(localized: "export.select.placeholder")).tag(nil as UUID?)
+          Picker("export.select.child", selection: $selectedChildId) {
+            Text("export.select.placeholder").tag(nil as UUID?)
             ForEach(allChildren) { child in
               Text(child.name).tag(child.id as UUID?)
             }
           }
-          .accessibilityLabel(String(localized: "export.select.child"))
+          .accessibilityLabel(Text("export.select.child"))
         }
       }
     }
@@ -81,45 +81,45 @@ struct ExportView: View {
     Section {
       switch exportState {
       case .idle:
-        Button(String(localized: "export.generate.button"), action: performExport)
+        Button("export.generate.button", action: performExport)
           .buttonStyle(.glass)
           .disabled(!canExport)
           .frame(maxWidth: .infinity)
-          .accessibilityLabel(String(localized: "export.generate.button"))
+          .accessibilityLabel(Text("export.generate.button"))
 
       case .exporting:
         HStack {
           ProgressView()
-          Text(String(localized: "export.generating"))
+          Text("export.generating")
         }
         .frame(maxWidth: .infinity)
-        .accessibilityLabel(String(localized: "export.generating"))
+        .accessibilityLabel(Text("export.generating"))
 
       case .success:
         if let url = exportedFileURL {
           ShareLink(item: url) {
-            Label(String(localized: "export.share.file"), systemImage: "square.and.arrow.up")
+            Label("export.share.file", systemImage: "square.and.arrow.up")
               .frame(maxWidth: .infinity)
           }
           .buttonStyle(.glass)
-          .accessibilityLabel(String(localized: "export.share.file"))
+          .accessibilityLabel(Text("export.share.file"))
 
-          Button(String(localized: "export.regenerate"), action: resetExport)
+          Button("export.regenerate", action: resetExport)
             .foregroundStyle(.secondary)
-            .accessibilityLabel(String(localized: "export.regenerate"))
+            .accessibilityLabel(Text("export.regenerate"))
         }
 
       case let .failure(error):
         VStack(spacing: 8) {
-          Label(String(localized: "export.failed"), systemImage: "exclamationmark.triangle")
+          Label("export.failed", systemImage: "exclamationmark.triangle")
             .foregroundStyle(.red)
-            .accessibilityLabel(String(localized: "export.failed"))
+            .accessibilityLabel(Text("export.failed"))
           Text(error)
             .font(.caption)
             .foregroundStyle(.secondary)
-          Button(String(localized: "export.retry"), action: performExport)
+          Button("export.retry", action: performExport)
             .buttonStyle(.glass)
-            .accessibilityLabel(String(localized: "export.retry"))
+            .accessibilityLabel(Text("export.retry"))
         }
       }
     }
@@ -210,6 +210,15 @@ enum ExportFormat: String, CaseIterable, Identifiable {
       String(localized: "export.csv.description")
     case .json:
       String(localized: "export.json.description")
+    }
+  }
+
+  var descriptionKey: LocalizedStringKey {
+    switch self {
+    case .csv:
+      "export.csv.description"
+    case .json:
+      "export.json.description"
     }
   }
 }

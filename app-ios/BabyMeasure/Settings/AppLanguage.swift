@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 /// Supported app languages.
 enum AppLanguage: String, CaseIterable, Identifiable {
@@ -8,10 +9,10 @@ enum AppLanguage: String, CaseIterable, Identifiable {
 
   var id: String { rawValue }
 
-  var displayName: String {
+  var displayName: LocalizedStringKey {
     switch self {
     case .system:
-      String(localized: "跟随系统")
+      "跟随系统"
     case .chinese:
       "中文"
     case .english:
@@ -27,6 +28,14 @@ enum AppLanguage: String, CaseIterable, Identifiable {
       "zh-Hans"
     case .english:
       "en"
+    }
+  }
+
+  var locale: Locale {
+    if let code = languageCode {
+      Locale(identifier: code)
+    } else {
+      .autoupdatingCurrent
     }
   }
 }

@@ -7,7 +7,7 @@ struct AppPreferencesSection: View {
   var body: some View {
     @Bindable var preferences = preferences
 
-    Section("应用偏好") {
+    Section("settings.preferences.section") {
       unitsPicker
       languagePicker
       themePicker
@@ -19,7 +19,7 @@ struct AppPreferencesSection: View {
   private var unitsPicker: some View {
     @Bindable var preferences = preferences
 
-    return Picker("单位", selection: $preferences.unitSystem) {
+    return Picker("settings.units", selection: $preferences.unitSystem) {
       ForEach(UnitSystem.allCases) { unit in
         Text(unit.displayName)
           .tag(unit)
@@ -30,7 +30,7 @@ struct AppPreferencesSection: View {
   private var languagePicker: some View {
     @Bindable var preferences = preferences
 
-    return Picker("语言", selection: $preferences.language) {
+    return Picker("settings.language", selection: $preferences.language) {
       ForEach(AppLanguage.allCases) { language in
         Text(language.displayName)
           .tag(language)
@@ -41,7 +41,7 @@ struct AppPreferencesSection: View {
   private var themePicker: some View {
     @Bindable var preferences = preferences
 
-    return Picker("主题", selection: $preferences.theme) {
+    return Picker("settings.theme", selection: $preferences.theme) {
       ForEach(AppTheme.allCases) { theme in
         Text(theme.displayName)
           .tag(theme)
