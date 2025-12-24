@@ -30,74 +30,82 @@ struct EditChildView: View {
   }
 
   var body: some View {
-    NavigationStack {
-      Form {
-        Section {
-          HStack {
-            Spacer()
-            VStack {
-              if let avatarImage {
-                Image(uiImage: avatarImage)
-                  .resizable()
-                  .scaledToFill()
-                  .frame(width: 100, height: 100)
-                  .clipShape(Circle())
-              } else {
-                Image(systemName: "person.crop.circle.fill")
-                  .resizable()
-                  .foregroundStyle(.gray)
-                  .frame(width: 100, height: 100)
-              }
-
-              PhotosPicker(selection: $avatarItem, matching: .images) {
-                Text("更换头像")
-              }
+    Form {
+      Section {
+        HStack {
+          Spacer()
+          VStack {
+            if let avatarImage {
+              Image(uiImage: avatarImage)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 100, height: 100)
+                .clipShape(.circle)
+            } else {
+              Image(systemName: "person.crop.circle.fill")
+                .resizable()
+                .foregroundStyle(.gray)
+                .frame(width: 100, height: 100)
             }
-            Spacer()
-          }
-        }
 
-        Section("基本信息") {
-          TextField("姓名", text: $name)
-          Picker("性别", selection: $gender) {
-            ForEach(Array(Gender.allCases), id: \.self) { genderOption in
-              Text(String(describing: genderOption))
+            PhotosPicker(selection: $avatarItem, matching: .images) {
+              Text("更换头像")
             }
           }
-          DatePicker("生日", selection: $birthday, in: ...Date(), displayedComponents: .date)
+          Spacer()
         }
+      }
 
-        Section {
-          Button("删除儿童", role: .destructive) {
-            showingDeleteConfirmation = true
+      Section("基本信息") {
+        TextField("姓名", text: $name)
+        Picker("性别", selection: $gender) {
+          ForEach(Array(Gender.allCases), id: \.self) { genderOption in
+            Text(String(describing: genderOption))
           }
         }
+        DatePicker("生日", selection: $birthday, in: ...Date(), displayedComponents: .date)
+      }
 
-        if let errorMessage { Text(errorMessage).foregroundStyle(.red) }
-      }
-      .navigationTitle("编辑儿童")
-      .toolbar {
-        ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
-        ToolbarItem(placement: .confirmationAction) { Button("保存") { save() } }
-      }
-      .onChange(of: avatarItem) {
-        Task {
-          if let data = try? await avatarItem?.loadTransferable(type: Data.self),
-             let uiImage = UIImage(data: data)
-          {
-            avatarImage = uiImage
+      Section {
+        if selectedChildState.current?.id == child.id {
+          Label("当前选中", systemImage: "checkmark.circle.fill")
+            .foregroundStyle(.green)
+        } else {
+          Button("设为当前儿童", systemImage: "checkmark.circle") {
+            selectedChildState.select(child)
           }
         }
       }
-      .onAppear {
-        avatarImage = AvatarManager.shared.loadAvatar(for: child.id)
+
+      Section {
+        Button("删除儿童", role: .destructive) {
+          showingDeleteConfirmation = true
+        }
       }
-      .alert("确认删除", isPresented: $showingDeleteConfirmation) {
-        Button("删除", role: .destructive) { deleteChild() }
-        Button("取消", role: .cancel) {}
-      } message: {
-        Text("删除后将无法恢复，所有相关记录也将被删除。")
+
+      if let errorMessage { Text(errorMessage).foregroundStyle(.red) }
+    }
+    .navigationTitle("编辑儿童")
+    .toolbar {
+      ToolbarItem(placement: .confirmationAction) { Button("保存") { save() } }
+    }
+    .onChange(of: avatarItem) {
+      Task {
+        if let data = try? await avatarItem?.loadTransferable(type: Data.self),
+           let uiImage = UIImage(data: data)
+        {
+          avatarImage = uiImage
+        }
       }
+    }
+    .onAppear {
+      avatarImage = AvatarManager.shared.loadAvatar(for: child.id)
+    }
+    .alert("确认删除", isPresented: $showingDeleteConfirmation) {
+      Button("删除", role: .destructive) { deleteChild() }
+      Button("取消", role: .cancel) {}
+    } message: {
+      Text("删除后将无法恢复，所有相关记录也将被删除。")
     }
   }
 

@@ -37,7 +37,7 @@ struct ChildHeader: View {
               .resizable()
               .scaledToFill()
               .frame(width: 32, height: 32)
-              .clipShape(Circle())
+              .clipShape(.circle)
           } else {
             Image(systemName: "person.crop.circle")
               .resizable()
@@ -61,7 +61,14 @@ struct ChildHeader: View {
     .padding(.horizontal)
     .sheet(isPresented: $showingEditSheet) {
       if let child = selected {
-        EditChildView(child: child)
+        NavigationStack {
+          EditChildView(child: child)
+            .toolbar {
+              ToolbarItem(placement: .cancellationAction) {
+                Button("取消") { showingEditSheet = false }
+              }
+            }
+        }
       }
     }
     .onAppear { loadAvatar() }
