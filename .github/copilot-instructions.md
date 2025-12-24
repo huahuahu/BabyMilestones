@@ -24,7 +24,7 @@ BabyMilestones is an iOS app designed for parents and caregivers to record, trac
 
 ## Build Commands
 
-When building, use the iPhone 17 pro simulator for iOS builds.
+When usign xcodebuid command, use the iPhone 17 pro simulator for iOS.
 
 
 ### Code Formatting
@@ -317,12 +317,3 @@ Lint (check only):
 swift run --package-path scripts hScript lint
 ```
 
-
-## When working with terminal
-
-To get output from terminal commands, you can create a temp file, and re-direct output there. For example:
-
-```sh
-swift run --package-path scripts hScript someCommand > output.txt
-```     
-The output will be in `output.txt` which you can then read.

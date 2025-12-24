@@ -2,6 +2,7 @@ import Foundation
 import HStorage
 import Observation
 
+@MainActor
 @Observable
 class SelectedChildState {
   var current: ChildEntity?

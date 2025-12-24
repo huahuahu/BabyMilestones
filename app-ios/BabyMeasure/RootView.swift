@@ -6,67 +6,38 @@ struct RootView: View {
   @Environment(\.modelContext) private var modelContext
   @Query(sort: \ChildEntity.createdAt) private var children: [ChildEntity]
   @State private var selectedChildState = SelectedChildState()
-  @State private var showingAddChild = false
-  @State private var showingAddRecord = false
-  @State private var showingExport = false
+  @State private var appPreferences = AppPreferences()
+  @State private var selectedTab: AppTab = .home
 
   var body: some View {
-    @Bindable var state = selectedChildState
-    NavigationStack {
-      VStack(spacing: 0) {
-        ChildHeader(selected: $state.current, children: children) { state.select($0) }
-        Divider()
-        if let child = state.current {
-          RecordHistoryView(child: child)
-        } else {
-          ContentUnavailableView("未选择儿童", systemImage: "person.crop.circle.badge.exclam", description: Text("请先添加或选择儿童"))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+    TabView(selection: $selectedTab) {
+      Tab(AppTab.home.title, systemImage: AppTab.home.systemImage, value: .home) {
+        HomeTab()
       }
-      .navigationTitle("记录")
-      .toolbar {
-        ToolbarItemGroup(placement: .topBarLeading) {
-          Button("导出", systemImage: "square.and.arrow.up") { showingExport = true }
-        }
-        ToolbarItemGroup(placement: .topBarTrailing) {
-          if let child = state.current {
-            NavigationLink("曲线", destination: GrowthChartView(child: child))
-          }
-          Button("添加儿童") { showingAddChild = true }
-          Button("录入") { showingAddRecord = true }
-            .disabled(state.current == nil)
-        }
+
+      Tab(AppTab.growth.title, systemImage: AppTab.growth.systemImage, value: .growth) {
+        GrowthTab()
       }
-      .sheet(isPresented: $showingAddChild) {
-        AddChildSheet()
-          .presentationDetents([.medium, .large])
+
+      Tab(AppTab.settings.title, systemImage: AppTab.settings.systemImage, value: .settings) {
+        SettingsTab()
       }
-      .sheet(isPresented: $showingAddRecord) {
-        if let child = state.current {
-          RecordEntryView(child: child)
-            .presentationDetents([.medium])
-        } else {
-          Text("未选择儿童")
-        }
-      }
-      .sheet(isPresented: $showingExport) {
-        ExportView()
-      }
-      .onAppear {
-        if state.current == nil {
-          state.current = children.first
-        }
-      }
-      .onChange(of: children) {
-        if state.current == nil {
-          state.current = children.first
-        }
-      }
-      .environment(selectedChildState)
+    }
+    .environment(selectedChildState)
+    .environment(appPreferences)
+    .preferredColorScheme(appPreferences.theme.colorScheme)
+    .onAppear { initializeSelection() }
+    .onChange(of: children) { initializeSelection() }
+  }
+
+  private func initializeSelection() {
+    if selectedChildState.current == nil {
+      selectedChildState.current = children.first
     }
   }
 }
 
 #Preview("RootView", traits: .modifier(SampleData())) {
   RootView()
+    .environment(AppPreferences())
 }

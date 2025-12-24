@@ -19,73 +19,30 @@ Following modern SwiftUI best practices and iOS 26 design patterns:
 
 ```
 ├── 🏠 Home (Dashboard)
-├── 📊 Milestones
 ├── 📈 Growth
-├── 📸 Memories
 └── ⚙️ Settings
 ```
 
 ### 1. Home Tab (Dashboard)
-**Purpose**: Quick overview and primary actions
+**Purpose**: visualization
 
-**Navigation Flow**:
-```
-Home
-├── Recent Milestones (List)
-│   └── Milestone Detail
-│       └── Edit Milestone
-├── Quick Actions
-│   ├── Add New Milestone
-│   ├── Record Growth Measurement  
-│   └── Capture Memory
-├── Child Profile Card
-│   └── Child Profile Detail
-│       ├── Edit Profile
-│       └── Add New Child
-└── Upcoming Milestones (Preview)
-    └── Milestone Categories
-```
 
-### 2. Milestones Tab
-**Purpose**: Comprehensive milestone tracking and management
-
-**Navigation Flow**:
-```
-Milestones
-├── Age-Based Categories
-│   ├── 0-3 months
-│   ├── 3-6 months
-│   ├── 6-12 months
-│   ├── 12-18 months
-│   └── ... (continues by age)
-├── Development Areas
-│   ├── Physical Development
-│   ├── Cognitive Development
-│   ├── Social & Emotional
-│   ├── Communication & Language
-│   └── Adaptive Skills
-├── Milestone Detail
-│   ├── Mark as Achieved
-│   ├── Add Notes
-│   ├── Attach Photo/Video
-│   └── Set Reminder
-└── Search & Filter
-    └── Filtered Results
-```
-
-### 3. Growth Tab
-**Purpose**: Physical growth tracking and visualization
-
-**Navigation Flow**:
-```
-Growth
 ├── Growth Charts
 │   ├── Height Chart
 │   ├── Weight Chart
 │   ├── Head Circumference
 │   └── BMI (for older children)
+
+
 ├── Add Measurement
 │   └── Measurement Entry Form
+
+### 2. Growth Tab
+**Purpose**: Physical growth tracking and visualization
+
+**Navigation Flow**:
+```
+Growth
 ├── Growth History
 │   └── Measurement Detail
 │       ├── Edit Measurement
@@ -94,33 +51,8 @@ Growth
     └── Export Options
 ```
 
-### 4. Memories Tab
-**Purpose**: Photo/video memories and milestone celebrations
 
-**Navigation Flow**:
-```
-Memories
-├── Timeline View
-│   └── Memory Detail
-│       ├── Edit Memory
-│       ├── Share Memory
-│       └── Add to Album
-├── Albums
-│   ├── First Year
-│   ├── Milestones
-│   ├── Growth Photos
-│   └── Custom Albums
-│       └── Album Detail
-│           └── Photo/Video Detail
-├── Add Memory
-│   ├── Take Photo/Video
-│   ├── Choose from Library
-│   └── Link to Milestone
-└── Search Memories
-    └── Search Results
-```
-
-### 5. Settings Tab
+### 3. Settings Tab
 **Purpose**: App configuration and child management
 
 **Navigation Flow**:
@@ -133,10 +65,6 @@ Settings
 │       ├── Edit Profile
 │       ├── Switch Active Child
 │       └── Archive Child
-├── Notifications
-│   ├── Milestone Reminders
-│   ├── Growth Tracking
-│   └── Memory Prompts
 ├── Data & Privacy
 │   ├── Export Data
 │   ├── Import Data
@@ -265,16 +193,6 @@ NavigationView {
 }
 ```
 
-### 3. Advanced Search Integration
-```swift
-NavigationStack {
-    MilestoneListView()
-        .searchable(text: $searchText, placement: .navigationBarDrawer)
-        .searchSuggestions {
-            // Search suggestions
-        }
-}
-```
 
 ## Implementation Phases
 
@@ -296,22 +214,3 @@ NavigationStack {
 - [ ] Performance optimizations
 - [ ] Analytics integration
 
-## Testing Strategy
-
-### Navigation Testing
-- Unit tests for navigation state management
-- UI tests for navigation flows
-- Accessibility testing for navigation elements
-- Performance testing for deep navigation stacks
-
-### User Experience Testing
-- Task completion analysis
-- Navigation efficiency metrics
-- User confusion points identification
-- Accessibility user testing
-
-## Conclusion
-
-This navigation architecture provides a scalable, user-friendly foundation for the BabyMilestones app. It leverages modern SwiftUI patterns while maintaining flexibility for future enhancements and iOS updates.
-
-The structure balances discoverability with efficiency, ensuring parents can quickly access the features they need while providing comprehensive functionality for detailed milestone tracking.
