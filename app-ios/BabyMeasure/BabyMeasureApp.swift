@@ -10,10 +10,10 @@ import SwiftUI
 
 @main
 struct BabyMeasureApp: App {
-  var body: some Scene {
-    WindowGroup {
-      RootView()
-        .modelContainer(HContainer.localContainer)
+    var body: some Scene {
+        WindowGroup {
+            RootView()
+                .modelContainer(HContainer.localContainer)
+        }
     }
-  }
 }
