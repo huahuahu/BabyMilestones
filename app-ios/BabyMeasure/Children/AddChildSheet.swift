@@ -20,23 +20,35 @@ struct AddChildSheet: View {
   var body: some View {
     NavigationStack {
       Form {
-        Section("基本信息") {
-          TextField("姓名", text: $name)
-          Picker("性别", selection: $gender) {
+        Section(String(localized: "child.info.basic")) {
+          TextField(String(localized: "child.name"), text: $name)
+            .accessibilityLabel(String(localized: "child.name"))
+          Picker(String(localized: "child.gender"), selection: $gender) {
             ForEach(Array(Gender.allCases), id: \.self) { genderOption in
               Text(String(describing: genderOption))
             }
           }
-          DatePicker("生日", selection: $birthday, in: ...Date(), displayedComponents: .date)
+          .accessibilityLabel(String(localized: "child.gender"))
+          DatePicker(String(localized: "child.birthday"), selection: $birthday, in: ...Date(), displayedComponents: .date)
+            .accessibilityLabel(String(localized: "child.birthday"))
         }
-        if let errorMessage { Text(errorMessage).foregroundStyle(.red) }
+        if let errorMessage {
+          Text(errorMessage)
+            .foregroundStyle(.red)
+            .accessibilityLabel(errorMessage)
+        }
       }
-      .navigationTitle("添加儿童")
+      .navigationTitle(String(localized: "child.add.title"))
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) { Button("取消", role: .cancel) { dismiss() } }
+        ToolbarItem(placement: .cancellationAction) {
+          Button(String(localized: "common.cancel"), role: .cancel) { dismiss() }
+            .accessibilityLabel(String(localized: "common.cancel"))
+        }
         ToolbarItem(placement: .confirmationAction) {
-          Button("保存") { save() }
+          Button(String(localized: "common.save")) { save() }
+            .buttonStyle(.glass)
             .disabled(!isValidName || !isValidBirthday)
+            .accessibilityLabel(String(localized: "common.save"))
         }
       }
     }
@@ -45,8 +57,14 @@ struct AddChildSheet: View {
   private func save() {
     // Basic validation (mirrors former ChildStore logic)
     let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-    guard !trimmed.isEmpty else { errorMessage = "姓名不能为空"; return }
-    guard birthday <= Date() else { errorMessage = "生日不能晚于今天"; return }
+    guard !trimmed.isEmpty else {
+      errorMessage = String(localized: "error.name.empty")
+      return
+    }
+    guard birthday <= Date() else {
+      errorMessage = String(localized: "error.birthday.future")
+      return
+    }
     let child = ChildEntity(name: trimmed, genderRaw: gender == .unspecified ? nil : gender.rawValue, birthday: birthday)
     modelContext.insert(child)
     do {
@@ -54,7 +72,7 @@ struct AddChildSheet: View {
       dismiss()
     } catch {
       // Map to a generic failure; could inspect specific errors if needed.
-      errorMessage = "保存失败，请检查输入"
+      errorMessage = String(localized: "error.save.failed")
     }
   }
 }

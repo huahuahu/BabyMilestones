@@ -24,32 +24,44 @@ struct RecordEntryView: View {
   var body: some View {
     NavigationStack {
       Form {
-        Section("类型") {
-          Picker("类型", selection: $type) {
+        Section(String(localized: "record.entry.type")) {
+          Picker(String(localized: "record.entry.type"), selection: $type) {
             ForEach(MeasurementType.allCases, id: \.self) { measurementType in
               Text(measurementType.displayName).tag(measurementType)
             }
           }
           .pickerStyle(.segmented)
+          .accessibilityLabel(String(localized: "record.entry.type"))
         }
-        Section("数值") {
+        Section(String(localized: "record.entry.value")) {
           HStack {
-            TextField("数值", text: $value)
+            TextField(String(localized: "record.entry.value"), text: $value)
               .keyboardType(.decimalPad)
               .focused($focused)
+              .accessibilityLabel(String(localized: "record.entry.value"))
             Text(type.unit).foregroundStyle(.secondary)
           }
-          DatePicker("时间", selection: $date, in: child.birthday ... Date())
+          DatePicker(String(localized: "record.entry.date"), selection: $date, in: child.birthday ... Date())
+            .accessibilityLabel(String(localized: "record.entry.date"))
         }
         if let warn = rangeWarning {
-          Text(warn).font(.footnote).foregroundStyle(.orange)
+          Text(warn)
+            .font(.footnote)
+            .foregroundStyle(.orange)
+            .accessibilityLabel(warn)
         }
       }
-      .navigationTitle("新建记录")
+      .navigationTitle(String(localized: "record.entry.title"))
       .toolbar {
-        ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
+        ToolbarItem(placement: .cancellationAction) {
+          Button(String(localized: "common.cancel")) { dismiss() }
+            .accessibilityLabel(String(localized: "common.cancel"))
+        }
         ToolbarItem(placement: .confirmationAction) {
-          Button("保存") { save() }.disabled(!isSavable)
+          Button(String(localized: "common.save")) { save() }
+            .buttonStyle(.glass)
+            .disabled(!isSavable)
+            .accessibilityLabel(String(localized: "common.save"))
         }
       }
       .onChange(of: value) {
@@ -62,7 +74,7 @@ struct RecordEntryView: View {
   private func save() {
     guard let val = parsedValue else { return }
     guard date >= child.birthday else {
-      warning = "记录时间不能早于生日"
+      warning = String(localized: "error.record.before.birthday")
       return
     }
 
@@ -78,7 +90,7 @@ struct RecordEntryView: View {
       try modelContext.save()
       dismiss()
     } catch {
-      warning = "保存失败"
+      warning = String(localized: "error.save.generic")
     }
   }
 }

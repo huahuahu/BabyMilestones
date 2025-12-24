@@ -18,11 +18,11 @@ public extension MeasurementType {
   var displayName: String {
     switch self {
     case .height:
-      "身高"
+      String(localized: "身高")
     case .weight:
-      "体重"
+      String(localized: "体重")
     case .headCircumference:
-      "头围"
+      String(localized: "头围")
     }
   }
 

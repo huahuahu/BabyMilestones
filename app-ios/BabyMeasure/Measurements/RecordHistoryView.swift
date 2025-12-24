@@ -21,7 +21,12 @@ struct RecordHistoryView: View {
   var body: some View {
     Group {
       if records.isEmpty {
-        ContentUnavailableView("暂无记录", systemImage: "list.bullet.circle", description: Text("添加测量以开始跟踪"))
+        ContentUnavailableView(
+          String(localized: "history.empty.title"),
+          systemImage: "list.bullet.circle",
+          description: Text(String(localized: "history.empty.description"))
+        )
+        .accessibilityLabel(String(localized: "history.empty.title"))
       } else {
         content
       }
@@ -50,8 +55,13 @@ struct RecordHistoryView: View {
                   .foregroundStyle(.secondary)
               }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(typeName) \(valueString) \(unit)")
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-              Button(role: .destructive) { delete(rec) } label: { Label("删除", systemImage: "trash") }
+              Button(role: .destructive) { delete(rec) } label: {
+                Label(String(localized: "record.delete"), systemImage: "trash")
+              }
+              .accessibilityLabel(String(localized: "record.delete"))
             }
           }
         }
