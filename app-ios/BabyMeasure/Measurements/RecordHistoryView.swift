@@ -22,11 +22,11 @@ struct RecordHistoryView: View {
     Group {
       if records.isEmpty {
         ContentUnavailableView(
-          String(localized: "history.empty.title"),
+          "history.empty.title",
           systemImage: "list.bullet.circle",
-          description: Text(String(localized: "history.empty.description"))
+          description: Text("history.empty.description")
         )
-        .accessibilityLabel(String(localized: "history.empty.title"))
+        .accessibilityLabel(Text("history.empty.title"))
       } else {
         content
       }
@@ -43,9 +43,9 @@ struct RecordHistoryView: View {
           ForEach(section.records, id: \.persistentModelID) { rec in
             // Break complex Text concatenation into smaller subviews to help the compiler type-check quickly.
             let measurementType = MeasurementType(rawValue: rec.typeRaw)
-            let typeName = measurementType?.displayName ?? rec.typeRaw
+            let typeName = measurementType?.displayNameString ?? rec.typeRaw
             let unit = measurementType?.unit ?? ""
-            let valueString = String(format: "%.2f", rec.value)
+            let valueString = rec.value.formatted(.number.precision(.fractionLength(2)))
             HStack(alignment: .firstTextBaseline, spacing: 8) {
               Text(typeName)
               Spacer()
@@ -59,9 +59,9 @@ struct RecordHistoryView: View {
             .accessibilityLabel("\(typeName) \(valueString) \(unit)")
             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
               Button(role: .destructive) { delete(rec) } label: {
-                Label(String(localized: "record.delete"), systemImage: "trash")
+                Label("record.delete", systemImage: "trash")
               }
-              .accessibilityLabel(String(localized: "record.delete"))
+              .accessibilityLabel(Text("record.delete"))
             }
           }
         }

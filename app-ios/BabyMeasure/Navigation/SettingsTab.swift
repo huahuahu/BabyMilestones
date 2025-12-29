@@ -21,7 +21,7 @@ struct SettingsTab: View {
         aboutSection
       }
       .preferredColorScheme(preferences.theme.colorScheme)
-      .navigationTitle("设置")
+      .navigationTitle("tab.settings")
       .sheet(isPresented: $showingAddChild) {
         AddChildSheet()
           .presentationDetents([.medium, .large])
@@ -35,7 +35,7 @@ struct SettingsTab: View {
   // MARK: - Sections
 
   private var childrenSection: some View {
-    Section("儿童管理") {
+    Section("settings.children.section") {
       ForEach(children, id: \.persistentModelID) { child in
         NavigationLink {
           EditChildView(child: child)
@@ -44,23 +44,23 @@ struct SettingsTab: View {
         }
       }
 
-      Button("添加儿童", systemImage: "plus.circle") {
+      Button("settings.children.add", systemImage: "plus.circle") {
         showingAddChild = true
       }
     }
   }
 
   private var dataSection: some View {
-    Section("数据") {
-      Button("导出数据", systemImage: "square.and.arrow.up") {
+    Section("settings.data.section") {
+      Button("settings.data.export", systemImage: "square.and.arrow.up") {
         showingExport = true
       }
     }
   }
 
   private var aboutSection: some View {
-    Section("关于") {
-      LabeledContent("版本") {
+    Section("settings.about.section") {
+      LabeledContent("settings.about.version") {
         Text(appVersion)
       }
     }
@@ -95,7 +95,7 @@ struct SettingsTab: View {
 
       if selectedChildState.current?.id == child.id {
         Image(systemName: "checkmark.circle.fill")
-          .foregroundStyle(.green)
+          .foregroundStyle(Color.accentColor)
       }
     }
   }

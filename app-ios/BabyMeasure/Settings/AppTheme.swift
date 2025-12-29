@@ -8,14 +8,14 @@ enum AppTheme: String, CaseIterable, Identifiable {
 
   var id: String { rawValue }
 
-  var displayName: String {
+  var displayName: LocalizedStringKey {
     switch self {
     case .system:
-      String(localized: "跟随系统")
+      "跟随系统"
     case .light:
-      String(localized: "浅色")
+      "浅色"
     case .dark:
-      String(localized: "深色")
+      "深色"
     }
   }
 

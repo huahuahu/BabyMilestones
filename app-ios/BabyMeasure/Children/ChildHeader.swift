@@ -26,7 +26,7 @@ struct ChildHeader: View {
         Divider()
 
         Button(action: { showingEditSheet = true }) {
-          Label("编辑资料", systemImage: "pencil")
+          Label("child.profile.edit", systemImage: "pencil")
         }
         .disabled(selected == nil)
 
@@ -44,8 +44,14 @@ struct ChildHeader: View {
               .frame(width: 32, height: 32)
           }
 
-          Text(selected?.name ?? "选择儿童")
-            .font(.headline)
+          Group {
+            if let name = selected?.name {
+              Text(name)
+            } else {
+              Text("child.select")
+            }
+          }
+          .font(.headline)
 
           Image(systemName: "chevron.down")
             .font(.caption)
@@ -65,7 +71,7 @@ struct ChildHeader: View {
           EditChildView(child: child)
             .toolbar {
               ToolbarItem(placement: .cancellationAction) {
-                Button("取消") { showingEditSheet = false }
+                Button("common.cancel") { showingEditSheet = false }
               }
             }
         }

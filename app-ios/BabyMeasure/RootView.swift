@@ -25,6 +25,7 @@ struct RootView: View {
     }
     .environment(selectedChildState)
     .environment(appPreferences)
+    .environment(\.locale, appPreferences.language.locale)
     .preferredColorScheme(appPreferences.theme.colorScheme)
     .onAppear { initializeSelection() }
     .onChange(of: children) { initializeSelection() }

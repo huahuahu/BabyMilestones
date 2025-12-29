@@ -8,11 +8,11 @@ enum AppTab: String, CaseIterable, Identifiable {
 
   var id: String { rawValue }
 
-  var title: String {
+  var title: LocalizedStringKey {
     switch self {
-    case .home: "首页"
-    case .growth: "记录"
-    case .settings: "设置"
+    case .home: "tab.home"
+    case .growth: "tab.growth"
+    case .settings: "tab.settings"
     }
   }
 

@@ -16,7 +16,14 @@ struct RecordEntryView: View {
   private var parsedValue: Double? { Double(value) }
   private var rangeWarning: String? {
     guard let val = parsedValue, let range = type.acceptableRange, !range.contains(val) else { return nil }
-    return "值可能超出合理范围 (\(range.lowerBound)-\(range.upperBound) \(type.unit))"
+    let lower = Int64(range.lowerBound.rounded())
+    let upper = Int64(range.upperBound.rounded())
+    return String.localizedStringWithFormat(
+      String(localized: "record.entry.warning.range"),
+      lower,
+      upper,
+      type.unit
+    )
   }
 
   private var isSavable: Bool { parsedValue != nil }
@@ -24,25 +31,25 @@ struct RecordEntryView: View {
   var body: some View {
     NavigationStack {
       Form {
-        Section(String(localized: "record.entry.type")) {
-          Picker(String(localized: "record.entry.type"), selection: $type) {
+        Section("record.entry.type") {
+          Picker("record.entry.type", selection: $type) {
             ForEach(MeasurementType.allCases, id: \.self) { measurementType in
-              Text(measurementType.displayName).tag(measurementType)
+              Text(measurementType.displayNameKey).tag(measurementType)
             }
           }
           .pickerStyle(.segmented)
-          .accessibilityLabel(String(localized: "record.entry.type"))
+          .accessibilityLabel(Text("record.entry.type"))
         }
-        Section(String(localized: "record.entry.value")) {
+        Section("record.entry.value") {
           HStack {
-            TextField(String(localized: "record.entry.value"), text: $value)
+            TextField("record.entry.value", text: $value)
               .keyboardType(.decimalPad)
               .focused($focused)
-              .accessibilityLabel(String(localized: "record.entry.value"))
+              .accessibilityLabel(Text("record.entry.value"))
             Text(type.unit).foregroundStyle(.secondary)
           }
-          DatePicker(String(localized: "record.entry.date"), selection: $date, in: child.birthday ... Date())
-            .accessibilityLabel(String(localized: "record.entry.date"))
+          DatePicker("record.entry.date", selection: $date, in: child.birthday ... Date())
+            .accessibilityLabel(Text("record.entry.date"))
         }
         if let warn = rangeWarning {
           Text(warn)
@@ -51,17 +58,17 @@ struct RecordEntryView: View {
             .accessibilityLabel(warn)
         }
       }
-      .navigationTitle(String(localized: "record.entry.title"))
+      .navigationTitle("record.entry.title")
       .toolbar {
         ToolbarItem(placement: .cancellationAction) {
-          Button(String(localized: "common.cancel")) { dismiss() }
-            .accessibilityLabel(String(localized: "common.cancel"))
+          Button("common.cancel") { dismiss() }
+            .accessibilityLabel(Text("common.cancel"))
         }
         ToolbarItem(placement: .confirmationAction) {
-          Button(String(localized: "common.save")) { save() }
+          Button("common.save") { save() }
             .buttonStyle(.glass)
             .disabled(!isSavable)
-            .accessibilityLabel(String(localized: "common.save"))
+            .accessibilityLabel(Text("common.save"))
         }
       }
       .onChange(of: value) {

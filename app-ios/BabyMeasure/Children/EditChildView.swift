@@ -16,7 +16,7 @@ struct EditChildView: View {
   @State private var avatarItem: PhotosPickerItem?
   @State private var avatarImage: UIImage?
   @State private var showingDeleteConfirmation = false
-  @State private var errorMessage: String?
+  @State private var errorMessage: LocalizedStringKey?
 
   init(child: ChildEntity) {
     self.child = child
@@ -49,45 +49,45 @@ struct EditChildView: View {
             }
 
             PhotosPicker(selection: $avatarItem, matching: .images) {
-              Text("更换头像")
+              Text("child.edit.avatar.change")
             }
           }
           Spacer()
         }
       }
 
-      Section("基本信息") {
-        TextField("姓名", text: $name)
-        Picker("性别", selection: $gender) {
+      Section("child.info.basic") {
+        TextField("child.name", text: $name)
+        Picker("child.gender", selection: $gender) {
           ForEach(Array(Gender.allCases), id: \.self) { genderOption in
             Text(String(describing: genderOption))
           }
         }
-        DatePicker("生日", selection: $birthday, in: ...Date(), displayedComponents: .date)
+        DatePicker("child.birthday", selection: $birthday, in: ...Date(), displayedComponents: .date)
       }
 
       Section {
         if selectedChildState.current?.id == child.id {
-          Label("当前选中", systemImage: "checkmark.circle.fill")
-            .foregroundStyle(.green)
+          Label("child.edit.current", systemImage: "checkmark.circle.fill")
+            .foregroundStyle(.accent)
         } else {
-          Button("设为当前儿童", systemImage: "checkmark.circle") {
+          Button("child.edit.setCurrent", systemImage: "checkmark.circle") {
             selectedChildState.select(child)
           }
         }
       }
 
       Section {
-        Button("删除儿童", role: .destructive) {
+        Button("child.delete.button", role: .destructive) {
           showingDeleteConfirmation = true
         }
       }
 
       if let errorMessage { Text(errorMessage).foregroundStyle(.red) }
     }
-    .navigationTitle("编辑儿童")
+    .navigationTitle("child.edit.title")
     .toolbar {
-      ToolbarItem(placement: .confirmationAction) { Button("保存") { save() } }
+      ToolbarItem(placement: .confirmationAction) { Button("common.save") { save() } }
     }
     .onChange(of: avatarItem) {
       Task {
@@ -101,18 +101,18 @@ struct EditChildView: View {
     .onAppear {
       avatarImage = AvatarManager.shared.loadAvatar(for: child.id)
     }
-    .alert("确认删除", isPresented: $showingDeleteConfirmation) {
-      Button("删除", role: .destructive) { deleteChild() }
-      Button("取消", role: .cancel) {}
+    .alert("child.delete.confirm.title", isPresented: $showingDeleteConfirmation) {
+      Button("common.delete", role: .destructive) { deleteChild() }
+      Button("common.cancel", role: .cancel) {}
     } message: {
-      Text("删除后将无法恢复，所有相关记录也将被删除。")
+      Text("child.delete.confirm.message")
     }
   }
 
   private func save() {
     let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-    guard !trimmed.isEmpty else { errorMessage = "姓名不能为空"; return }
-    guard birthday <= Date() else { errorMessage = "生日不能晚于今天"; return }
+    guard !trimmed.isEmpty else { errorMessage = "error.name.empty"; return }
+    guard birthday <= Date() else { errorMessage = "error.birthday.future"; return }
 
     child.name = trimmed
     child.birthday = birthday
@@ -127,7 +127,7 @@ struct EditChildView: View {
       try modelContext.save()
       dismiss()
     } catch {
-      errorMessage = "保存失败"
+      errorMessage = "error.save.generic"
     }
   }
 
@@ -150,7 +150,7 @@ struct EditChildView: View {
       try modelContext.save()
       dismiss()
     } catch {
-      errorMessage = "删除失败: \(error.localizedDescription)"
+      errorMessage = "error.delete.generic"
     }
   }
 }

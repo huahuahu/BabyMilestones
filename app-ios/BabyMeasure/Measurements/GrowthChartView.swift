@@ -11,20 +11,22 @@ enum ChartRange: String, CaseIterable, Identifiable {
 
   var id: String { rawValue }
 
-  var displayName: String {
+  var displayName: LocalizedStringKey {
     switch self {
     case .recent3Months:
-      String(localized: "growthchart.range.recent.3months")
+      "growthchart.range.recent.3months"
     case .recent1Year:
-      String(localized: "growthchart.range.recent.1year")
+      "growthchart.range.recent.1year"
     case .all:
-      String(localized: "growthchart.range.all")
+      "growthchart.range.all"
     }
   }
 }
 
 struct GrowthChartView: View {
   let child: ChildEntity
+
+  @Environment(\.locale) private var locale
 
   @Query private var measurements: [MeasurementEntity]
 
@@ -42,27 +44,25 @@ struct GrowthChartView: View {
   // MARK: - Subviews
 
   private var typePicker: some View {
-    let label = String(localized: "growthchart.type")
-    return Picker(label, selection: $selectedType) {
+    Picker("growthchart.type", selection: $selectedType) {
       ForEach(MeasurementType.allCases, id: \.self) { type in
-        Text(type.displayName).tag(type)
+        Text(type.displayNameKey).tag(type)
       }
     }
     .pickerStyle(.segmented)
     .padding()
-    .accessibilityLabel(label)
+    .accessibilityLabel(Text("growthchart.type"))
   }
 
   private var rangePicker: some View {
-    let label = String(localized: "timerange.section")
-    return Picker(label, selection: $selectedRange) {
+    Picker("timerange.section", selection: $selectedRange) {
       ForEach(ChartRange.allCases) { range in
         Text(range.displayName).tag(range)
       }
     }
     .pickerStyle(.segmented)
     .padding(.horizontal)
-    .accessibilityLabel(label)
+    .accessibilityLabel(Text("timerange.section"))
   }
 
   var body: some View {
@@ -78,7 +78,7 @@ struct GrowthChartView: View {
 
       SwiftUI.Spacer()
     }
-    .navigationTitle(String(localized: "growthchart.title"))
+    .navigationTitle("growthchart.title")
     .task(id: selectedType) {
       await updateChartData()
     }
@@ -92,11 +92,11 @@ struct GrowthChartView: View {
 
   private var emptyView: some View {
     ContentUnavailableView(
-      String(localized: "growthchart.empty.title"),
+      "growthchart.empty.title",
       systemImage: "chart.xyaxis.line",
-      description: Text(String(localized: "growthchart.empty.description"))
+      description: Text("growthchart.empty.description")
     )
-    .accessibilityLabel(String(localized: "growthchart.empty.title"))
+    .accessibilityLabel(Text("growthchart.empty.title"))
   }
 
   private var chartView: some View {
@@ -107,19 +107,23 @@ struct GrowthChartView: View {
       .padding()
       .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
       .accessibilityElement(children: .contain)
-      .accessibilityLabel(String(localized: "growthchart.title"))
+      .accessibilityLabel(Text("growthchart.title"))
   }
 
   private func makeChart() -> some View {
-    Chart {
+    let ageDaysLabel = String(localized: "年龄(天)", locale: locale)
+    let valueLabel = String(localized: "数值", locale: locale)
+    let percentileLabel = String(localized: "百分位", locale: locale)
+
+    return Chart {
       ForEach(standardSeries) { series in
         ForEach(series.points) { point in
           LineMark(
-            x: .value("年龄(天)", point.ageDays),
-            y: .value("数值", point.value),
-            series: .value("百分位", series.label)
+            x: .value(ageDaysLabel, point.ageDays),
+            y: .value(valueLabel, point.value),
+            series: .value(percentileLabel, series.label)
           )
-          .foregroundStyle(by: .value("百分位", series.label))
+          .foregroundStyle(by: .value(percentileLabel, series.label))
           .interpolationMethod(.catmullRom)
           .lineStyle(StrokeStyle(lineWidth: 1, dash: [5, 5]))
         }
@@ -128,8 +132,8 @@ struct GrowthChartView: View {
       ForEach(filteredMeasurements) { measurement in
         if let ageDays = daysSinceBirth(date: measurement.recordedAt), ageDays >= 0 {
           PointMark(
-            x: .value("年龄(天)", ageDays),
-            y: .value("数值", measurement.value)
+            x: .value(ageDaysLabel, ageDays),
+            y: .value(valueLabel, measurement.value)
           )
           .foregroundStyle(.blue)
           .symbolSize(50)
@@ -180,18 +184,27 @@ struct GrowthChartView: View {
   }
 
   private func formatAge(days: Double) -> String {
-    let months = Int(days / 30.44)
-    if months < 12 {
-      return "\(months)月"
+    let totalMonths = max(0, Int((days / 30.44).rounded(.down)))
+    var components = DateComponents()
+    if totalMonths < 12 {
+      components.month = totalMonths
     } else {
-      let years = months / 12
-      let remainingMonths = months % 12
-      if remainingMonths == 0 {
-        return "\(years)岁"
-      } else {
-        return "\(years)岁\(remainingMonths)月"
-      }
+      components.year = totalMonths / 12
+      components.month = totalMonths % 12
     }
+
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .short
+    formatter.maximumUnitCount = 2
+    //    formatter.locale = locale
+
+    if components.year == nil {
+      formatter.allowedUnits = [.month]
+    } else {
+      formatter.allowedUnits = [.year, .month]
+    }
+
+    return formatter.string(from: components) ?? ""
   }
 
   private func updateChartData() async {

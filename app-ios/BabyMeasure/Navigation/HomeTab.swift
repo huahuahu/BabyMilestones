@@ -20,10 +20,10 @@ struct HomeTab: View {
           emptyState
         }
       }
-      .navigationTitle(state.current?.name ?? "首页")
+      .navigationTitle(Text(state.current?.name ?? "tab.home"))
       .toolbar {
         ToolbarItemGroup(placement: .topBarTrailing) {
-          Button("录入", systemImage: "plus.circle") { showingAddRecord = true }
+          Button("record.entry.button", systemImage: "plus.circle") { showingAddRecord = true }
             .disabled(state.current == nil)
         }
       }
@@ -40,9 +40,9 @@ struct HomeTab: View {
 
   private var emptyState: some View {
     ContentUnavailableView(
-      "未选择儿童",
+      "child.none.title",
       systemImage: "person.crop.circle.badge.exclam",
-      description: Text("请先添加或选择儿童")
+      description: Text("child.none.description")
     )
     .frame(maxWidth: .infinity, maxHeight: .infinity)
   }

@@ -21,13 +21,13 @@ struct GrowthTab: View {
           emptyState
         }
       }
-      .navigationTitle("记录")
+      .navigationTitle("tab.growth")
       .toolbar {
         ToolbarItemGroup(placement: .topBarLeading) {
-          Button("导出", systemImage: "square.and.arrow.up") { showingExport = true }
+          Button("export.button", systemImage: "square.and.arrow.up") { showingExport = true }
         }
         ToolbarItemGroup(placement: .topBarTrailing) {
-          Button("录入", systemImage: "plus.circle") { showingAddRecord = true }
+          Button("record.entry.button", systemImage: "plus.circle") { showingAddRecord = true }
             .disabled(state.current == nil)
         }
       }
@@ -47,9 +47,9 @@ struct GrowthTab: View {
 
   private var emptyState: some View {
     ContentUnavailableView(
-      "未选择儿童",
+      "child.none.title",
       systemImage: "person.crop.circle.badge.exclam",
-      description: Text("请先添加或选择儿童")
+      description: Text("child.none.description")
     )
     .frame(maxWidth: .infinity, maxHeight: .infinity)
   }
