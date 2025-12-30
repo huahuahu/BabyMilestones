@@ -33,6 +33,7 @@ struct GrowthChartView: View {
   @State private var selectedType: MeasurementType = .height
   @State private var selectedRange: ChartRange = .recent3Months
   @State private var standardSeries: [PercentileSeries] = []
+  @State private var scrollPosition: Double?
 
   init(child: ChildEntity) {
     self.child = child
@@ -82,8 +83,12 @@ struct GrowthChartView: View {
     .task(id: selectedType) {
       await updateChartData()
     }
-    .task(id: selectedRange) {
-      await updateChartData()
+    .onChange(of: selectedRange) {
+      if let age = daysSinceBirth(date: Date()) {
+        withAnimation {
+          scrollPosition = age
+        }
+      }
     }
     .onAppear {
       Task { await updateChartData() }
@@ -99,15 +104,34 @@ struct GrowthChartView: View {
     .accessibilityLabel(Text("growthchart.empty.title"))
   }
 
+  @ViewBuilder
   private var chartView: some View {
-    makeChart()
+    let chart = makeChart()
       .chartForegroundStyleScale(percentileColors)
       .chartXAxis { xAxisMarks }
       .chartYAxis { yAxisMarks }
-      .padding()
-      .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
-      .accessibilityElement(children: .contain)
-      .accessibilityLabel(Text("growthchart.title"))
+      .chartScrollableAxes(.horizontal)
+
+    Group {
+      if let length = visibleDomainLength {
+        if let scrollPosition = Binding($scrollPosition) {
+          chart.chartXVisibleDomain(length: length)
+            .chartScrollPosition(x: scrollPosition)
+        } else {
+          chart.chartXVisibleDomain(length: length)
+        }
+      } else {
+        if let scrollPosition = Binding($scrollPosition) {
+          chart.chartScrollPosition(x: scrollPosition)
+        } else {
+          chart
+        }
+      }
+    }
+    .padding()
+    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+    .accessibilityElement(children: .contain)
+    .accessibilityLabel(Text("growthchart.title"))
   }
 
   private func makeChart() -> some View {
@@ -177,6 +201,14 @@ struct GrowthChartView: View {
     measurements.filter { $0.typeRaw == selectedType.rawValue }
   }
 
+  private var visibleDomainLength: Double? {
+    switch selectedRange {
+    case .recent3Months: 90
+    case .recent1Year: 365
+    case .all: nil
+    }
+  }
+
   private func daysSinceBirth(date: Date) -> Double? {
     let calendar = Calendar.current
     let components = calendar.dateComponents([.day], from: child.birthday, to: date)
@@ -208,29 +240,10 @@ struct GrowthChartView: View {
   }
 
   private func updateChartData() async {
-    // Calculate range
-    let calendar = Calendar.current
     let now = Date()
-    let minDate: Date = switch selectedRange {
-    case .recent3Months:
-      calendar.date(byAdding: .month, value: -3, to: now) ?? now
-    case .recent1Year:
-      calendar.date(byAdding: .year, value: -1, to: now) ?? now
-    case .all:
-      child.birthday
-    }
-
-    // Determine min and max age in days for the chart x-axis
-    // We want to cover the selected range, but relative to the child's age.
-
-    // If "Recent 3 Months", we want [Now - 3 months, Now] converted to Age.
-    // But if the child is only 1 month old, we start from 0.
-
-    let startAgeDays = max(0, daysSinceBirth(date: minDate) ?? 0)
+    // Always fetch from birth (0) to now so we can scroll back
+    let startAgeDays = 0.0
     let endAgeDays = max(startAgeDays + 1, daysSinceBirth(date: now) ?? 0)
-
-    // If "All", we go from 0 to current age (or max measurement age)
-    // Let's just use the calculated start/end based on the time range.
 
     // Ensure we have a valid gender
     let gender = Gender(rawValue: child.genderRaw ?? "") ?? .unspecified
@@ -254,6 +267,9 @@ struct GrowthChartView: View {
 
     await MainActor.run {
       standardSeries = series
+      if scrollPosition == nil {
+        scrollPosition = endAgeDays
+      }
     }
   }
 }
