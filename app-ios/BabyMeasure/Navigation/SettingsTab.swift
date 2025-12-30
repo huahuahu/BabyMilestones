@@ -11,14 +11,21 @@ struct SettingsTab: View {
 
   @State private var showingAddChild = false
   @State private var showingExport = false
+  @State private var cloudStatus = CloudAccountStatus()
 
   var body: some View {
     NavigationStack {
       List {
+        if cloudStatus.shouldShowWarning(for: preferences.storageMode) {
+          iCloudWarningSection
+        }
         childrenSection
         AppPreferencesSection()
         dataSection
         aboutSection
+        #if DEBUG
+          debugSection
+        #endif
       }
       .preferredColorScheme(preferences.theme.colorScheme)
       .navigationTitle("tab.settings")
@@ -33,6 +40,29 @@ struct SettingsTab: View {
   }
 
   // MARK: - Sections
+
+  private var iCloudWarningSection: some View {
+    Section {
+      Label {
+        VStack(alignment: .leading) {
+          Text("settings.icloud.warning.title")
+            .font(.headline)
+          Text(cloudStatus.statusMessage)
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+        }
+      } icon: {
+        Image(systemName: "exclamationmark.icloud.fill")
+          .foregroundStyle(.orange)
+      }
+
+      Button("settings.icloud.warning.openSettings", systemImage: "gear") {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+          UIApplication.shared.open(url)
+        }
+      }
+    }
+  }
 
   private var childrenSection: some View {
     Section("settings.children.section") {
@@ -65,6 +95,27 @@ struct SettingsTab: View {
       }
     }
   }
+
+  #if DEBUG
+    private var debugSection: some View {
+      @Bindable var preferences = preferences
+
+      return Section {
+        Picker("settings.storage.mode", selection: $preferences.storageMode) {
+          ForEach(StorageMode.allCases) { mode in
+            Text(mode.displayName)
+              .tag(mode)
+          }
+        }
+
+        Text("settings.storage.restart.hint")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+      } header: {
+        Label("settings.debug.section", systemImage: "hammer")
+      }
+    }
+  #endif
 
   // MARK: - Helper Views
 

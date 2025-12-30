@@ -1,3 +1,4 @@
+import HStorage
 import SwiftUI
 
 /// Settings section for app preferences including units, language, and theme.
