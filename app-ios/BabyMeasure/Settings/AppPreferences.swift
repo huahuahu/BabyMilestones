@@ -5,91 +5,87 @@ import SwiftUI
 @MainActor
 @Observable
 final class AppPreferences {
-  // MARK: - UserDefaults Keys
+    // MARK: - UserDefaults Keys
 
-  private enum Keys {
-    static let unitSystem = "app.preferences.unitSystem"
-    static let language = "app.preferences.language"
-    static let theme = "app.preferences.theme"
-    static let storageMode = "app.preferences.storageMode"
-  }
-
-  // MARK: - Properties
-
-  var unitSystem: UnitSystem {
-    didSet {
-      UserDefaults.standard.set(unitSystem.rawValue, forKey: Keys.unitSystem)
-    }
-  }
-
-  var language: AppLanguage {
-    didSet {
-      UserDefaults.standard.set(language.rawValue, forKey: Keys.language)
-      applyLanguage()
-    }
-  }
-
-  var theme: AppTheme {
-    didSet {
-      UserDefaults.standard.set(theme.rawValue, forKey: Keys.theme)
-    }
-  }
-
-  /// Storage mode for data persistence.
-  /// Note: Changing this requires app restart to take effect.
-  var storageMode: StorageMode {
-    didSet {
-      UserDefaults.standard.set(storageMode.rawValue, forKey: Keys.storageMode)
-    }
-  }
-
-  // MARK: - Initialization
-
-  init() {
-    if let rawValue = UserDefaults.standard.string(forKey: Keys.unitSystem),
-       let unit = UnitSystem(rawValue: rawValue)
-    {
-      unitSystem = unit
-    } else {
-      unitSystem = .metric
+    private enum Keys {
+        static let unitSystem = "app.preferences.unitSystem"
+        static let language = "app.preferences.language"
+        static let theme = "app.preferences.theme"
+        static let storageMode = "app.preferences.storageMode"
     }
 
-    if let rawValue = UserDefaults.standard.string(forKey: Keys.language),
-       let lang = AppLanguage(rawValue: rawValue)
-    {
-      language = lang
-    } else {
-      language = .system
+    // MARK: - Properties
+
+    var unitSystem: UnitSystem {
+        didSet {
+            UserDefaults.standard.set(unitSystem.rawValue, forKey: Keys.unitSystem)
+        }
     }
 
-    if let rawValue = UserDefaults.standard.string(forKey: Keys.theme),
-       let appTheme = AppTheme(rawValue: rawValue)
-    {
-      theme = appTheme
-    } else {
-      theme = .system
+    var language: AppLanguage {
+        didSet {
+            UserDefaults.standard.set(language.rawValue, forKey: Keys.language)
+            applyLanguage()
+        }
     }
 
-    if let rawValue = UserDefaults.standard.string(forKey: Keys.storageMode),
-       let mode = StorageMode(rawValue: rawValue)
-    {
-      #if DEBUG
-        storageMode = mode
-      #else
-        storageMode = .iCloud
-      #endif
-    } else {
-      storageMode = .iCloud
+    var theme: AppTheme {
+        didSet {
+            UserDefaults.standard.set(theme.rawValue, forKey: Keys.theme)
+        }
     }
-  }
 
-  // MARK: - Private Methods
-
-  private func applyLanguage() {
-    if let code = language.languageCode {
-      UserDefaults.standard.set([code], forKey: "AppleLanguages")
-    } else {
-      UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+    /// Storage mode for data persistence.
+    /// Note: Changing this requires app restart to take effect.
+    var storageMode: StorageMode {
+        didSet {
+            UserDefaults.standard.set(storageMode.rawValue, forKey: Keys.storageMode)
+        }
     }
-  }
+
+    // MARK: - Initialization
+
+    init() {
+        if let rawValue = UserDefaults.standard.string(forKey: Keys.unitSystem),
+           let unit = UnitSystem(rawValue: rawValue) {
+            unitSystem = unit
+        } else {
+            unitSystem = .metric
+        }
+
+        if let rawValue = UserDefaults.standard.string(forKey: Keys.language),
+           let lang = AppLanguage(rawValue: rawValue) {
+            language = lang
+        } else {
+            language = .system
+        }
+
+        if let rawValue = UserDefaults.standard.string(forKey: Keys.theme),
+           let appTheme = AppTheme(rawValue: rawValue) {
+            theme = appTheme
+        } else {
+            theme = .system
+        }
+
+        if let rawValue = UserDefaults.standard.string(forKey: Keys.storageMode),
+           let mode = StorageMode(rawValue: rawValue) {
+            #if DEBUG
+            storageMode = mode
+            #else
+            storageMode = .iCloud
+            #endif
+        } else {
+            storageMode = .iCloud
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func applyLanguage() {
+        if let code = language.languageCode {
+            UserDefaults.standard.set([code], forKey: "AppleLanguages")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+        }
+    }
 }
