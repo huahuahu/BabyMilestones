@@ -1,3 +1,4 @@
+import HStorage
 import SwiftUI
 
 /// Observable class managing app-wide user preferences.
@@ -10,6 +11,7 @@ final class AppPreferences {
     static let unitSystem = "app.preferences.unitSystem"
     static let language = "app.preferences.language"
     static let theme = "app.preferences.theme"
+    static let storageMode = "app.preferences.storageMode"
   }
 
   // MARK: - Properties
@@ -30,6 +32,14 @@ final class AppPreferences {
   var theme: AppTheme {
     didSet {
       UserDefaults.standard.set(theme.rawValue, forKey: Keys.theme)
+    }
+  }
+
+  /// Storage mode for data persistence.
+  /// Note: Changing this requires app restart to take effect.
+  var storageMode: StorageMode {
+    didSet {
+      UserDefaults.standard.set(storageMode.rawValue, forKey: Keys.storageMode)
     }
   }
 
@@ -58,6 +68,18 @@ final class AppPreferences {
       theme = appTheme
     } else {
       theme = .system
+    }
+
+    if let rawValue = UserDefaults.standard.string(forKey: Keys.storageMode),
+       let mode = StorageMode(rawValue: rawValue)
+    {
+      #if DEBUG
+        storageMode = mode
+      #else
+        storageMode = .iCloud
+      #endif
+    } else {
+      storageMode = .iCloud
     }
   }
 
