@@ -5,20 +5,20 @@ import SwiftData
 import SwiftUI
 
 enum ChartRange: String, CaseIterable, Identifiable {
-  case recent3Months
-  case recent1Year
-  case all
+  case week
+  case month
+  case year
 
   var id: String { rawValue }
 
   var displayName: LocalizedStringKey {
     switch self {
-    case .recent3Months:
-      "growthchart.range.recent.3months"
-    case .recent1Year:
-      "growthchart.range.recent.1year"
-    case .all:
-      "growthchart.range.all"
+    case .week:
+      "growthchart.range.week"
+    case .month:
+      "growthchart.range.month"
+    case .year:
+      "growthchart.range.year"
     }
   }
 }
@@ -31,7 +31,7 @@ struct GrowthChartView: View {
   @Query private var measurements: [MeasurementEntity]
 
   @State private var selectedType: MeasurementType = .height
-  @State private var selectedRange: ChartRange = .recent3Months
+  @State private var selectedRange: ChartRange = .month
   @State private var standardSeries: [PercentileSeries] = []
   @State private var scrollPosition: Double?
 
@@ -104,8 +104,7 @@ struct GrowthChartView: View {
     .accessibilityLabel(Text("growthchart.empty.title"))
   }
 
-  @ViewBuilder
-  private var chartView: some View {
+  @ViewBuilder private var chartView: some View {
     let chart = makeChart()
       .chartForegroundStyleScale(percentileColors)
       .chartXAxis { xAxisMarks }
@@ -203,9 +202,9 @@ struct GrowthChartView: View {
 
   private var visibleDomainLength: Double? {
     switch selectedRange {
-    case .recent3Months: 90
-    case .recent1Year: 365
-    case .all: nil
+    case .week: 7
+    case .month: 31
+    case .year: 365
     }
   }
 
