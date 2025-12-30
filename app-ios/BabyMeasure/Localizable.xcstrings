@@ -877,53 +877,53 @@
         }
       }
     },
-    "growthchart.range.all" : {
+    "growthchart.range.month" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "All"
+            "value" : "By Month"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全部"
+            "value" : "按月"
           }
         }
       }
     },
-    "growthchart.range.recent.1year" : {
+    "growthchart.range.week" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recent 1 Year"
+            "value" : "By Week"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "近1年"
+            "value" : "按周"
           }
         }
       }
     },
-    "growthchart.range.recent.3months" : {
+    "growthchart.range.year" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recent 3 Months"
+            "value" : "By Year"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "近3个月"
+            "value" : "按年"
           }
         }
       }
